@@ -60,7 +60,6 @@ nbdist/
 # Java compiled files
 # =========================
 *.class
-*.jar
 *.war
 *.ear
 
