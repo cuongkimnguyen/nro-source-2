@@ -5,6 +5,7 @@ COPY pom.xml ./
 COPY lib ./lib
 COPY src ./src
 COPY Config.properties ./Config.properties
+COPY data ./data
 
 RUN mvn -B -DskipTests clean package
 
@@ -13,6 +14,7 @@ WORKDIR /app
 RUN mkdir -p /app/logs
 
 COPY --from=builder /build/target/NgocRongOnline.jar /app/app.jar
+COPY data /app/data
 COPY Config.properties /app/Config.properties
 COPY run.sh /app/run.sh
 COPY restart_server.sh /app/restart_server.sh
