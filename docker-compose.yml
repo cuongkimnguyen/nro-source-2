@@ -1,0 +1,50 @@
+services:
+  db:
+    image: mysql:5.7
+    container_name: nro-db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-rootpassword}
+      MYSQL_DATABASE: ${DB_NAME:-ngocrong}
+    ports:
+      - "${DB_PORT_HOST:-3306}:3306"
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+      - --max_allowed_packet=256M
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./sql/nro1.sql:/docker-entrypoint-initdb.d/nro1.sql:ro
+      - ./docker/db/init/01-import.sh:/docker-entrypoint-initdb.d/01-import.sh:ro
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -uroot -p$$MYSQL_ROOT_PASSWORD"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+
+  app:
+    build:
+      context: .
+      dockerfile: docker/app/Dockerfile
+    container_name: nro-app
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_NAME: ${DB_NAME:-ngocrong}
+      DB_USER: root
+      DB_PASSWORD: ${DB_ROOT_PASSWORD:-rootpassword}
+      SERVER_IP: ${SERVER_IP:-127.0.0.1}
+      SERVER_PORT: ${SERVER_PORT:-14445}
+      SERVER_NAME: ${SERVER_NAME:-NRO}
+      SERVER_SV1: ${SERVER_SV1:-NroLight:127.0.0.1:14449:0,0,0}
+    ports:
+      - "${SERVER_PORT:-14445}:14445"
+    stdin_open: true
+    tty: true
+
+volumes:
+  mysql_data:

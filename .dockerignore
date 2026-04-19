@@ -1,0 +1,8 @@
+.git
+.gitignore
+build/
+dist/
+target/
+nbproject/private/
+*.iml
+.DS_Store

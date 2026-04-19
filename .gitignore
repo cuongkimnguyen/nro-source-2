@@ -1,0 +1,105 @@
+# =========================
+# OS files
+# =========================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# =========================
+# Logs
+# =========================
+logs/
+*.log
+hs_err_pid*
+replay_pid*
+
+# =========================
+# Maven
+# =========================
+target/
+!.mvn/wrapper/maven-wrapper.jar
+
+# =========================
+# Build outputs cũ / legacy
+# =========================
+dist/
+build/
+out/
+
+# =========================
+# NetBeans
+# =========================
+nbproject/private/
+nbbuild/
+nbdist/
+.nb-gradle/
+
+# =========================
+# IntelliJ IDEA
+# =========================
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# =========================
+# Eclipse / STS
+# =========================
+.project
+.classpath
+.settings/
+.springBeans
+.factorypath
+
+# =========================
+# VS Code
+# =========================
+.vscode/
+
+# =========================
+# Java compiled files
+# =========================
+*.class
+*.jar
+*.war
+*.ear
+
+# Giữ wrapper/scripts nếu có thư mục lib source thật thì không ignore toàn bộ lib
+# Nếu lib/ chỉ chứa dependency binary thì có thể bật dòng dưới:
+# lib/
+
+# =========================
+# Temp / backup
+# =========================
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+*.bak
+
+# =========================
+# Environment files
+# =========================
+.env
+.env.*
+!.env.example
+
+# =========================
+# Docker
+# =========================
+docker-compose.override.yml
+
+# =========================
+# Runtime data
+# =========================
+data/
+mysql-data/
+
+# =========================
+# Package archives
+# =========================
+*.zip
+*.tar
+*.tar.gz
+*.rar
