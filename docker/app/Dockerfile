@@ -13,6 +13,7 @@ WORKDIR /app
 RUN mkdir -p /app/logs
 
 COPY --from=builder /build/target/NgocRongOnline.jar /app/app.jar
+COPY --from=builder /build/lib /app/lib
 COPY data /app/data
 COPY Config.properties /app/Config.properties
 COPY run.sh /app/run.sh
