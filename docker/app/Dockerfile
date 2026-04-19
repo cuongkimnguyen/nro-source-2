@@ -5,7 +5,6 @@ COPY pom.xml ./
 COPY lib ./lib
 COPY src ./src
 COPY Config.properties ./Config.properties
-COPY data ./data
 
 RUN mvn -B -DskipTests clean package
 
