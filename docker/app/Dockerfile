@@ -2,10 +2,10 @@ FROM maven:3.9.9-eclipse-temurin-17 AS builder
 WORKDIR /build
 
 COPY pom.xml ./
-RUN mvn -B -q dependency:go-offline
-
+COPY lib ./lib
 COPY src ./src
 COPY Config.properties ./Config.properties
+
 RUN mvn -B -DskipTests clean package
 
 FROM eclipse-temurin:17-jre-jammy
