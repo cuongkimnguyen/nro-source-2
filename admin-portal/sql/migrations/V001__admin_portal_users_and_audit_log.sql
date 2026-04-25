@@ -8,7 +8,8 @@ CREATE TABLE IF NOT EXISTS `admin_portal_users` (
   `role`       TINYINT(1)   NOT NULL DEFAULT 1 COMMENT '1=admin, 2=superadmin',
   `is_active`  TINYINT(1)   NOT NULL DEFAULT 1,
   `last_login` TIMESTAMP    NULL DEFAULT NULL,
-  `created_at` TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `created_at` TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Default superadmin: username=admin, password=Admin@1234  (CHANGE IMMEDIATELY after first login)
