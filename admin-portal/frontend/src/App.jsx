@@ -3,6 +3,7 @@ import Layout from './components/Layout.jsx';
 import ProtectedRoute from './components/ProtectedRoute.jsx';
 import Login from './pages/Login.jsx';
 import Register from './pages/Register.jsx';
+import GameGuide from './pages/GameGuide.jsx';
 import Dashboard from './pages/Dashboard.jsx';
 import Players from './pages/Players.jsx';
 import PlayerDetail from './pages/PlayerDetail.jsx';
@@ -15,8 +16,9 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/login"    element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/login"       element={<Login />} />
+        <Route path="/register"    element={<Register />} />
+        <Route path="/game-guide"  element={<GameGuide />} />
         <Route element={<ProtectedRoute />}>
           <Route element={<Layout />}>
             <Route index element={<Navigate to="/dashboard" replace />} />

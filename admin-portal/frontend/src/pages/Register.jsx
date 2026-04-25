@@ -121,9 +121,33 @@ export default function Register() {
           </form>
         )}
 
-        <p style={{ marginTop: 16, textAlign: 'center', fontSize: '0.875rem' }}>
+        <div style={{
+          marginTop: 20,
+          padding: '12px 14px',
+          background: 'var(--surface2)',
+          border: '1px solid var(--border)',
+          borderRadius: 6,
+          textAlign: 'center',
+        }}>
+          <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginBottom: 6 }}>
+            Muon biet co che boss va ty le roi do?
+          </p>
+          <Link
+            to="/game-guide"
+            style={{
+              fontSize: '0.8rem',
+              color: 'var(--accent)',
+              fontWeight: 600,
+              textDecoration: 'none',
+            }}
+          >
+            Xem huong dan co che game
+          </Link>
+        </div>
+
+        <p style={{ marginTop: 14, textAlign: 'center', fontSize: '0.875rem' }}>
           Already have an account?{' '}
-          <Link to="/login" style={{ color: 'var(--primary, #3b82f6)' }}>
+          <Link to="/login" style={{ color: 'var(--accent)' }}>
             Sign in
           </Link>
         </p>
