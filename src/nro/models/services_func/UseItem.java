@@ -161,7 +161,7 @@ public class UseItem {
                 case DO_USE_ITEM -> {
                     if (player != null && player.inventory != null) {
                         if (index != -1) {
-                            if (index < 0) {
+                            if (index < 0 || index >= player.inventory.itemsBag.size()) {
                                 return;
                             }
                             Item item = player.inventory.itemsBag.get(index);
@@ -213,8 +213,10 @@ public class UseItem {
                             return;
                         }
                         if (where == 0) {
+                            if (index >= player.inventory.itemsBody.size()) return;
                             item = player.inventory.itemsBody.get(index);
                         } else {
+                            if (index >= player.inventory.itemsBag.size()) return;
                             item = player.inventory.itemsBag.get(index);
                         }
 
@@ -240,8 +242,10 @@ public class UseItem {
                     Service.gI().point(player);
                     InventoryService.gI().sendItemBags(player);
                 }
-                case ACCEPT_USE_ITEM ->
+                case ACCEPT_USE_ITEM -> {
+                    if (index < 0 || index >= player.inventory.itemsBag.size()) return;
                     UseItem.gI().useItem(player, player.inventory.itemsBag.get(index), index);
+                }
             }
         } catch (Exception e) {
             Logger.logException(UseItem.class, e);
