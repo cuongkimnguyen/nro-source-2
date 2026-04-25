@@ -32,8 +32,8 @@ public class Cumber extends Boss {
         BadgesTaskService.updateCountBagesTask(plKill, ConstTaskBadges.TRUM_SAN_BOSS, 1);
         int x = this.location.x;
         int y = this.zone.map.yPhysicInTop(x, this.location.y - 24);
-        int drop = 190;
-        int quantity = Util.nextInt(20000, 30000);
+        int drop = 457;
+        int quantity = Util.nextInt(4, 8);
         if (Util.isTrue(5 , 100)) {
         ItemMap it = ItemService.gI().randDoTLBoss(this.zone, 1, x, y, plKill.id);
         if (it != null) {
@@ -68,7 +68,7 @@ public class Cumber extends Boss {
             optionalItemMap.options.add(new Item.ItemOption(107, value));
             Service.gI().dropItemMap(zone, optionalItemMap);
         }
-        if (Util.isTrue(10, 100)) {
+        if (Util.isTrue(11, 100)) {
             int[] dropItems = {15,16,17,18,19,20,992};
             int dropOptional = dropItems[Util.nextInt(0, dropItems.length - 1)];
             ItemMap optionalItemMap = new ItemMap(this.zone, dropOptional, Util.nextInt(1, 3), x, y, plKill.id);

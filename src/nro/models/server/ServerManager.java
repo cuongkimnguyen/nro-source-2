@@ -54,7 +54,7 @@ import nro.models.shop_ky_gui.ConsignShopManager;
 public class ServerManager {
 
     public static String timeStart;
-    public static final Map<Object, Object> CLIENTS = new HashMap<>();
+    public static final Map<Object, Object> CLIENTS = new java.util.concurrent.ConcurrentHashMap<>();
     public static String NAME_SERVER = "Ngọc Rồng Onlime";
     public static String DOMAIN = "Server 1";
     public static String NAME = "Ngọc Rồng Online";
@@ -182,7 +182,7 @@ public class ServerManager {
                 Manager.Topsukien1 = Manager.realTop(Manager.queryTopsukien1, con);
             }
             if (Manager.isTopSukien2Changed) {
-                Manager.Topsukien1 = Manager.realTop(Manager.queryTopsukien1, con);
+                Manager.Topsukien2 = Manager.realTop(Manager.queryTopsukien2, con);
             }
             if (Manager.isTopWhisChanged) {
                 Manager.Topwhis = Manager.realTop(Manager.queryTopwhis, con);
@@ -255,22 +255,14 @@ public class ServerManager {
     }
 
     public void resetNhanQuaHangNgay() {
-        String url = "jdbc:mysql://localhost:3306/ngocrong";
-        String username = "root";
-        String password = "";
         String resetJson = "[1,1,\"1970-01-01T00:00:00\"]";
-
-        try (Connection conn = DriverManager.getConnection(url, username, password)) {
-            String sql = "UPDATE player SET checkNhanQua = ? WHERE checkNhanQua != ?";
-            PreparedStatement statement = conn.prepareStatement(sql);
-
-            statement.setString(1, resetJson);
-            statement.setString(2, resetJson);
-
-            int rowsUpdated = statement.executeUpdate();
+        try {
+            int rowsUpdated = nro.models.data.LocalManager.executeUpdate(
+                    "UPDATE player SET checkNhanQua = ? WHERE checkNhanQua != ?",
+                    resetJson, resetJson);
             Logger.success("Đã reset nhận quà hằng ngày cho " + rowsUpdated + " người chơi với dữ liệu: " + resetJson);
-        } catch (SQLException e) {
-            System.err.println("Lỗi reset nhận quà hằng ngày: " + e.getMessage());
+        } catch (Exception e) {
+            Logger.error("Lỗi reset nhận quà hằng ngày: " + e.getMessage());
         }
     }
 
@@ -296,7 +288,15 @@ public class ServerManager {
     private static void activeCommandLine() {
         Scanner sc = new Scanner(System.in);
         while (true) {
+            if (!sc.hasNextLine()) {
+                // stdin closed (e.g. Docker without TTY) — avoid CPU spin
+                try { Thread.sleep(60000); } catch (InterruptedException ie) { Thread.currentThread().interrupt(); break; }
+                continue;
+            }
             String line = sc.nextLine();
+            if (line == null || line.isBlank()) {
+                continue;
+            }
             switch (line) {
                 case "bt":
                     Maintenance.gI().startSeconds(5);

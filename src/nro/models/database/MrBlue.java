@@ -635,7 +635,7 @@ public class MrBlue {
                 timeNuocMia2 = (int) Long.parseLong(String.valueOf(dataArray.get(28)));
             }
             if (dataArray.size() > 29) {
-                timeNuocMia3 = (int) Long.parseLong(String.valueOf(dataArray.get(28)));
+                timeNuocMia3 = (int) Long.parseLong(String.valueOf(dataArray.get(29)));
             }
             if (dataArray.size() > 30) {
             }
@@ -962,8 +962,8 @@ public class MrBlue {
                 player.joinCDRD = Boolean.parseBoolean(dataArray.get(0).toString());
                 player.lastTimeJoinCDRD = Long.parseLong(dataArray.get(1).toString());
                 player.talkToThuongDe = Boolean.parseBoolean(dataArray.get(2).toString());
-                player.talkToThanMeo = Boolean.parseBoolean(dataArray.get(2).toString());
-                if (player.clan.ConDuongRanDoc == null || player.lastTimeJoinCDRD != player.clan.lastTimeOpenConDuongRanDoc) {
+                player.talkToThanMeo = dataArray.size() > 3 ? Boolean.parseBoolean(dataArray.get(3).toString()) : false;
+                if (player.clan == null || player.clan.ConDuongRanDoc == null || player.lastTimeJoinCDRD != player.clan.lastTimeOpenConDuongRanDoc) {
                     player.joinCDRD = false;
                     player.talkToThuongDe = false;
                     player.talkToThanMeo = false;

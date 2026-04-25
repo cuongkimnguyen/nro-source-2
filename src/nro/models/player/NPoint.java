@@ -681,8 +681,16 @@ public class NPoint {
                     this.tlSubSD += ItemService.gI().getPercentTrainArmor(gtl);
                 } else {
                     if (this.player.inventory.trainArmor == null) {
-                        gtl = this.player.inventory.itemsBag.stream().filter(item -> item.isNotNullItem() && item.template.type == 32 && item.itemOptions != null
-                                && item.itemOptions.stream().filter(io -> io.optionTemplate.id == 9 && io.param > 0).findFirst().orElse(null) != null).findFirst().orElse(null);
+                        gtl = this.player.inventory.itemsBag.stream()
+                                .filter(item -> item.isNotNullItem() && item.template.type == 32 && item.itemOptions != null
+                                        && item.itemOptions.stream().anyMatch(io -> io.optionTemplate.id == 9 && io.param > 0))
+                                .findFirst().orElse(null);
+                        if (gtl == null) {
+                            gtl = this.player.inventory.itemsBox.stream()
+                                    .filter(item -> item.isNotNullItem() && item.template.type == 32 && item.itemOptions != null
+                                            && item.itemOptions.stream().anyMatch(io -> io.optionTemplate.id == 9 && io.param > 0))
+                                    .findFirst().orElse(null);
+                        }
                         if (gtl == null) {
                             return;
                         }

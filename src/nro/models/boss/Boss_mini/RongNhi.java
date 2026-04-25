@@ -39,8 +39,8 @@ public class RongNhi extends Boss {
 
     @Override
     public void reward(Player plKill) {
-        if (Util.isTrue(20, 100)) {
-            int[] items = Util.isTrue(20, 100) ? new int[]{1821} : new int[]{18, 19, 20};
+        if (Util.isTrue(22, 100)) {
+            int[] items = Util.isTrue(22, 100) ? new int[]{1821} : new int[]{18, 19, 20};
             int randomItem = items[new Random().nextInt(items.length)];
             Service.gI().dropItemMap(this.zone, new ItemMap(this.zone, randomItem, 1,
                     this.location.x, this.zone.map.yPhysicInTop(this.location.x, this.location.y - 24), plKill.id));

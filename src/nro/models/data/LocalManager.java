@@ -32,6 +32,11 @@ public class LocalManager {
 
     static {
         loadProperties();
+        if (DB_HOST == null || DB_NAME == null || DB_USER == null) {
+            throw new ExceptionInInitializerError(
+                "Config.properties is missing or could not be loaded — DB_HOST/DB_NAME/DB_USER are null. " +
+                "Ensure Config.properties is present in the working directory and all database.* keys are set.");
+        }
         config = createConfig("User Management", DB_NAME);
         ds = new HikariDataSource(config);
     }

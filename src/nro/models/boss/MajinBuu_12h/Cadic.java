@@ -228,8 +228,8 @@ public class Cadic extends Boss {
         Service.gI().sendThongBao(plKill, "+5 Point");
         int x = this.location.x; // đâyyyy
         int y = this.zone.map.yPhysicInTop(x, this.location.y - 24);
-        int drop = 190; // 100% rơi item ID 190
-        int quantity = Util.nextInt(20000, 30000);
+        int drop = 457; // 100% rơi item ID 190
+        int quantity = Util.nextInt(4, 8);
         // Tạo itemMap cho item ID 190
         if (Util.isTrue(1 , 100)) {
         ItemMap it = ItemService.gI().randDoTLBoss(this.zone, 1, x, y, plKill.id);
@@ -272,7 +272,7 @@ public class Cadic extends Boss {
             Service.gI().dropItemMap(zone, optionalItemMap);
         }
         // 80% xác suất rơi ngọc rồng
-        if (Util.isTrue(10, 100)) {
+        if (Util.isTrue(11, 100)) {
             int[] dropItems = {15,16,17,18,19,20};
             int dropOptional = dropItems[Util.nextInt(0, dropItems.length - 1)];
             // Tạo và rơi vật phẩm ngọc rồng hoặc item cấp 2

@@ -48,7 +48,7 @@ public class NinjaClone extends Boss {
         int diem = 5;
         plKill.event.addEventPoint(diem);
         Service.gI().sendThongBao(plKill, "+5 Point");
-        if (Util.isTrue(10, 100)) {
+        if (Util.isTrue(11, 100)) {
             ItemMap it = new ItemMap(this.zone, 17, 1, this.location.x, this.zone.map.yPhysicInTop(this.location.x,
                     this.location.y - 24), plKill.id);
             Service.gI().dropItemMap(this.zone, it);

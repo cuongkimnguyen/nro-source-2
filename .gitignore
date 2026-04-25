@@ -101,3 +101,11 @@ mysql-data/
 *.tar
 *.tar.gz
 *.rar
+
+web
+
+.claude
+
+CLAUDE.md
+
+templates

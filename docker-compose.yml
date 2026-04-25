@@ -16,6 +16,10 @@ services:
       - mysql_data:/var/lib/mysql
       - ./sql/nro1.sql:/docker-entrypoint-initdb.d/nro1.sql:ro
       - ./docker/db/init/01-import.sh:/docker-entrypoint-initdb.d/01-import.sh:ro
+      # Admin portal migration — runs automatically on first DB init only.
+      # For existing volumes, run manually: see admin-portal/README.md
+      - ./admin-portal/sql/migrations/V001__admin_portal_users_and_audit_log.sql:/docker-entrypoint-initdb.d/02-admin-migration.sql:ro
+      - ./admin-portal/sql/migrations/V002__account_register_ip.sql:/docker-entrypoint-initdb.d/03-account-register-ip.sql:ro
     healthcheck:
       test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -uroot -p$$MYSQL_ROOT_PASSWORD"]
       interval: 10s
@@ -45,6 +49,32 @@ services:
       - "${SERVER_PORT:-14445}:14445"
     stdin_open: true
     tty: true
+
+  admin:
+    build:
+      context: .
+      dockerfile: docker/admin/Dockerfile
+    container_name: nro-admin
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_NAME: ${DB_NAME:-ngocrong}
+      DB_USER: root
+      DB_PASS: ${DB_ROOT_PASSWORD:-rootpassword}
+      JWT_SECRET: ${ADMIN_JWT_SECRET:-change_me_to_at_least_32_random_chars!!}
+      JWT_EXPIRES_IN: ${ADMIN_JWT_EXPIRES_IN:-8h}
+      PORT: 4000
+    ports:
+      - "${ADMIN_PORT:-4000}:4000"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:4000/health || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
 
 volumes:
   mysql_data:

@@ -118,11 +118,11 @@ public final class Manager {
     public static final String queryTopsukien2 = "SELECT id, point_sukien2 FROM player ORDER BY point_sukien2 DESC LIMIT 100";
     public static final String queryTopwhis = "SELECT id, thachdauwhis FROM player ORDER BY thachdauwhis DESC LIMIT 100";
     public static final String queryTopsukien = "SELECT id, point_sukien FROM player ORDER BY point_sukien DESC LIMIT 100";
-    public static boolean isTopMaydamChanged = false;
-    public static boolean isTopSukienChanged = false;
-    public static boolean isTopSukien1Changed = false;
-    public static boolean isTopSukien2Changed = false;
-    public static boolean isTopWhisChanged = false;
+    public static volatile boolean isTopMaydamChanged = false;
+    public static volatile boolean isTopSukienChanged = false;
+    public static volatile boolean isTopSukien1Changed = false;
+    public static volatile boolean isTopSukien2Changed = false;
+    public static volatile boolean isTopWhisChanged = false;
 
     public static Manager gI() {
         if (instance == null) {

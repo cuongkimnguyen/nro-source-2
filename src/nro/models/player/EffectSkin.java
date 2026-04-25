@@ -475,18 +475,17 @@ public class EffectSkin {
                 }
             }
             for (Item item : this.player.inventory.itemsBox) {
-                if (item.isNotNullItem()) {
-                    if (ItemService.gI().isTrainArmor(item)) {
-                        for (Item.ItemOption io : item.itemOptions) {
-                            if (io.optionTemplate.id == 9) {
-                                if (io.param > 0) {
-                                    io.param--;
-                                }
+                if (!item.isNotNullItem()) {
+                    continue; // rương có thể có slot rỗng xen kẽ, không break
+                }
+                if (ItemService.gI().isTrainArmor(item)) {
+                    for (Item.ItemOption io : item.itemOptions) {
+                        if (io.optionTemplate.id == 9) {
+                            if (io.param > 0) {
+                                io.param--;
                             }
                         }
                     }
-                } else {
-                    break;
                 }
             }
             this.lastTimeSubTimeTrainArmor = System.currentTimeMillis();
