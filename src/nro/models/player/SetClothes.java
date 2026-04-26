@@ -205,6 +205,9 @@ public class SetClothes {
         if (this.player.isBot) {
             return false;
         }
+        if (this.player.inventory.itemsBody.size() < 5) {
+            return false;
+        }
         for (int i = 0; i < 5; i++) {
             Item item = this.player.inventory.itemsBody.get(i);
             if (item.isNotNullItem()) {
@@ -219,6 +222,9 @@ public class SetClothes {
     }
 
     public boolean checkSetDes() {
+        if (this.player.inventory.itemsBody.size() < 5) {
+            return false;
+        }
         for (int i = 0; i < 5; i++) {
             Item item = this.player.inventory.itemsBody.get(i);
             if (item.isNotNullItem()) {
