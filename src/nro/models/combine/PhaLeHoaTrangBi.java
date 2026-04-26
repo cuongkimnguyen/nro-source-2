@@ -182,6 +182,17 @@ public class PhaLeHoaTrangBi {
                 star++;
                 if (item != null) {
                     if (optionStar == null) {
+                        // Lần đầu pha lê hoá: đánh dấu không thể giao dịch
+                        boolean hasNoTrade = false;
+                        for (Item.ItemOption io : item.itemOptions) {
+                            if (io.optionTemplate.id == 30) {
+                                hasNoTrade = true;
+                                break;
+                            }
+                        }
+                        if (!hasNoTrade) {
+                            item.itemOptions.add(new Item.ItemOption(30, 0));
+                        }
                         item.itemOptions.add(new Item.ItemOption(107, star));
                     } else {
                         optionStar.param = star;
