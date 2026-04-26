@@ -123,7 +123,7 @@ public class MrBlue {
                                 player.point_maydam = rs.getInt("point_maydam");
                                 player.total_damage_maydam = rs.getLong("total_damage_maydam");
                                 player.isNewMember = !Util.isTimeDifferenceGreaterThanNDays(createTime, 35);
-                                LocalManager.executeUpdate("update account set last_time_login = '" + new Timestamp(System.currentTimeMillis()) + "', ip_address = '" + session.ipAddress + "' where id = " + session.userId);
+                                LocalManager.executeUpdate("update account set last_time_login = ?, ip_address = ? where id = ?", new Timestamp(System.currentTimeMillis()), session.ipAddress, session.userId);
                             }
                         }
                     }
@@ -305,8 +305,8 @@ public class MrBlue {
             player.nPoint.limitPower = Byte.parseByte(String.valueOf(dataArray.get(0)));
             player.nPoint.power = Long.parseLong(String.valueOf(dataArray.get(1)));
             player.nPoint.tiemNang = Long.parseLong(String.valueOf(dataArray.get(2)));
-            player.nPoint.stamina = Short.parseShort(String.valueOf(dataArray.get(3)));
-            player.nPoint.maxStamina = Short.parseShort(String.valueOf(dataArray.get(4)));
+            player.nPoint.stamina = Integer.parseInt(String.valueOf(dataArray.get(3)));
+            player.nPoint.maxStamina = Integer.parseInt(String.valueOf(dataArray.get(4)));
             player.nPoint.hpg = Integer.parseInt(String.valueOf(dataArray.get(5)));
             player.nPoint.mpg = Integer.parseInt(String.valueOf(dataArray.get(6)));
             player.nPoint.dameg = Integer.parseInt(String.valueOf(dataArray.get(7)));
@@ -821,8 +821,8 @@ public class MrBlue {
                 pet.nPoint.limitPower = Byte.parseByte(String.valueOf(dataArray.get(0)));
                 pet.nPoint.power = Long.parseLong(String.valueOf(dataArray.get(1)));
                 pet.nPoint.tiemNang = Long.parseLong(String.valueOf(dataArray.get(2)));
-                pet.nPoint.stamina = Short.parseShort(String.valueOf(dataArray.get(3)));
-                pet.nPoint.maxStamina = Short.parseShort(String.valueOf(dataArray.get(4)));
+                pet.nPoint.stamina = Integer.parseInt(String.valueOf(dataArray.get(3)));
+                pet.nPoint.maxStamina = Integer.parseInt(String.valueOf(dataArray.get(4)));
                 pet.nPoint.hpg = Integer.parseInt(String.valueOf(dataArray.get(5)));
                 pet.nPoint.mpg = Integer.parseInt(String.valueOf(dataArray.get(6)));
                 pet.nPoint.dameg = Integer.parseInt(String.valueOf(dataArray.get(7)));

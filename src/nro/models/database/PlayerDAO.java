@@ -13,7 +13,6 @@ import nro.models.utils.Logger;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Date;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -1065,22 +1064,13 @@ public class PlayerDAO {
     public static boolean checkLogout(Connection con, Player player) {
         long lastTimeLogout = 0;
         long lastTimeLogin = 0;
-        try {
-            PreparedStatement ps = con.prepareStatement("select * from account where id = ? limit 1");
+        try (PreparedStatement ps = con.prepareStatement("select last_time_logout, last_time_login from account where id = ? limit 1")) {
             ps.setInt(1, player.getSession().userId);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                lastTimeLogout = rs.getTimestamp("last_time_logout").getTime();
-                lastTimeLogin = rs.getTimestamp("last_time_login").getTime();
-            }
-            try {
-                if (rs != null) {
-                    rs.close();
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    lastTimeLogout = rs.getTimestamp("last_time_logout").getTime();
+                    lastTimeLogin = rs.getTimestamp("last_time_login").getTime();
                 }
-                if (ps != null) {
-                    ps.close();
-                }
-            } catch (SQLException ex) {
             }
         } catch (Exception e) {
             return false;

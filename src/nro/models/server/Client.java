@@ -16,10 +16,10 @@ import nro.models.services_dungeon.NgocRongNamecService;
 import nro.models.utils.Functions;
 import nro.models.utils.Logger;
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.Executors;
 import nro.models.services.shenron.SummonDragonNamek;
 
@@ -33,17 +33,17 @@ public class Client implements Runnable {
 
     private static Client instance;
 
-    private final Map<Long, Player> players_id = new HashMap<>();
-    private final Map<Integer, Player> players_userId = new HashMap<>();
-    private final Map<String, Player> players_name = new HashMap<>();
+    private final Map<Long, Player> players_id = new ConcurrentHashMap<>();
+    private final Map<Integer, Player> players_userId = new ConcurrentHashMap<>();
+    private final Map<String, Player> players_name = new ConcurrentHashMap<>();
     @Getter
-    private final List<Player> players = new ArrayList<>();
+    private final List<Player> players = new CopyOnWriteArrayList<>();
 
     private Client() {
         Executors.newSingleThreadExecutor().submit(this, "Update Client");
     }
 
-    public static Client gI() {
+    public static synchronized Client gI() {
         if (instance == null) {
             instance = new Client();
         }

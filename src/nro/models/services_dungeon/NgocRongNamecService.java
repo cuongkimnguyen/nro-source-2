@@ -434,8 +434,13 @@ public class NgocRongNamecService implements Runnable {
             int y = pl.zone.map.yPhysicInTop(x, 100);
             ItemMap itemMap = new ItemMap(pl.zone, pl.idNRNM, 1, x, y, -1);
             Service.gI().dropItemMap(pl.zone, itemMap);
-            NgocRongNamecService.gI().pNrNamec[pl.idNRNM - 353] = "";
-            NgocRongNamecService.gI().idpNrNamec[pl.idNRNM - 353] = -1;
+            int ballIdx = pl.idNRNM - 353;
+            if (ballIdx < 0 || ballIdx >= NgocRongNamecService.gI().pNrNamec.length) {
+                pl.idNRNM = -1;
+                return;
+            }
+            NgocRongNamecService.gI().pNrNamec[ballIdx] = "";
+            NgocRongNamecService.gI().idpNrNamec[ballIdx] = -1;
             pl.idNRNM = -1;
             PlayerService.gI().changeAndSendTypePK(pl, ConstPlayer.NON_PK);
             if (pl.pet != null) {

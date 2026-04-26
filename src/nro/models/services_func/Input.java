@@ -290,7 +290,8 @@ public class Input {
                     int pr = Integer.parseInt(text[3]);
                     int q = Integer.parseInt(text[4]);
 
-                    if (Client.gI().getPlayer(name) != null) {
+                    Player target = Client.gI().getPlayer(name);
+                    if (target != null) {
                         Item item = ItemService.gI().createNewItem(((short) id));
                         List<Item.ItemOption> ops = ItemService.gI().getListOptionItemShop((short) id);
                         if (!ops.isEmpty()) {
@@ -298,10 +299,9 @@ public class Input {
                         }
                         item.quantity = q;
                         item.itemOptions.add(new Item.ItemOption(op, pr));
-                        InventoryService.gI().addItemBag(Client.gI().getPlayer(name), item);
-                        InventoryService.gI().sendItemBags(Client.gI().getPlayer(name));
-                        Service.gI().sendThongBao(Client.gI().getPlayer(name), "Nhận " + item.template.name + " từ " + player.name);
-
+                        InventoryService.gI().addItemBag(target, item);
+                        InventoryService.gI().sendItemBags(target);
+                        Service.gI().sendThongBao(target, "Nhận " + item.template.name + " từ " + player.name);
                     } else {
                         Service.gI().sendThongBao(player, "Không online");
                     }

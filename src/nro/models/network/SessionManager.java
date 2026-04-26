@@ -11,7 +11,7 @@ public class SessionManager {
     private static SessionManager instance;
     private final List<ISession> sessions = new CopyOnWriteArrayList<>();
 
-    public static SessionManager gI() {
+    public static synchronized SessionManager gI() {
         if (instance == null) {
             instance = new SessionManager();
         }

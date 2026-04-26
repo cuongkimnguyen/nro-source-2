@@ -422,7 +422,11 @@ public class Controller implements IMessageHandler {
                     DataGame.sendIcon(_session, id);
                     break;
                 case 66:
-                    DataGame.sendImageByName(_session, _msg.reader().readUTF());
+                    try {
+                        DataGame.sendImageByName(_session, _msg.reader().readUTF());
+                    } catch (java.io.UTFDataFormatException e) {
+                        Logger.warning("case 66: malformed UTF from " + _session.ipAddress);
+                    }
                     break;
                 case -66:
                     if (player != null) {

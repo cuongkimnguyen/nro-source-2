@@ -61,7 +61,7 @@ public class NPoint {
 
     /*-----------------------Chỉ số cơ bản------------------------------------*/
     public byte numAttack;
-    public short stamina, maxStamina;
+    public int stamina, maxStamina;
 
     public byte limitPower;
     public long power;
