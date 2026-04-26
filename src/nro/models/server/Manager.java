@@ -923,6 +923,10 @@ public final class Manager {
                 JSONArray jar = (JSONArray) JSONValue.parse(rs.getString("detail"));
                 if (jar != null) {
                     for (int i = 0; i < jar.size(); ++i) {
+                        if (!(jar.get(i) instanceof JSONObject)) {
+                            Logger.error("GiftCode [" + giftcode.code + "] detail[" + i + "] is not a JSONObject, skipping: " + jar.get(i));
+                            continue;
+                        }
                         JSONObject jsonObj = (JSONObject) jar.get(i);
 
                         int id = Integer.parseInt(jsonObj.get("id").toString());
