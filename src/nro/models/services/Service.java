@@ -1904,7 +1904,7 @@ public class Service {
             String[] arrPlatform = platform.split("\\|");
             session.version = Integer.parseInt(arrPlatform[1].replaceAll("\\.", ""));
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger.warning("setClientType malformed data from " + session.ipAddress);
         } finally {
             msg.cleanup();
         }
