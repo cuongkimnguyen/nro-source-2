@@ -26,9 +26,9 @@ public class MapDauDinh extends Boss {
 
     @Override
     public void reward(Player plKill) {
-        int diem = 5;
+        int diem = 3;
         plKill.event.addEventPoint(diem);
-        Service.gI().sendThongBao(plKill, "+5 Point");
+        Service.gI().sendThongBao(plKill, "+3 Point");
         TaskService.gI().checkDoneTaskKillBoss(plKill, this);
         Service.gI().dropItemMap(this.zone, new ItemMap(this.zone, 457, Util.nextInt(4, 8),
           this.location.x, this.zone.map.yPhysicInTop(this.location.x, this.location.y - 24), plKill.id));

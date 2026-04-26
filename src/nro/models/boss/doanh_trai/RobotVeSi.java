@@ -43,9 +43,9 @@ public class RobotVeSi extends Boss {
 
     @Override
     public void reward(Player plKill) {
-        int diem = 5;
+        int diem = 3;
         plKill.event.addEventPoint(diem);
-        Service.gI().sendThongBao(plKill, "+5 Point");
+        Service.gI().sendThongBao(plKill, "+3 Point");
         if (Util.isTrue(30, 100)) {
             ItemMap it = new ItemMap(this.zone, 17, 1, this.location.x, this.zone.map.yPhysicInTop(this.location.x,
                     this.location.y - 24), plKill.id);

@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import http from 'http';
 import pool from '../db.js';
 import { requireAuth } from '../middleware/auth.js';
 import { writeAuditLog } from '../middleware/auditLog.js';
@@ -74,6 +75,56 @@ router.post('/broadcast', requireAuth, async (req, res) => {
   } catch (err) {
     console.error('[server/broadcast]', err);
     return res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+// POST /api/server/restart-app
+// Restarts the game-app Docker container via Docker Engine API over Unix socket.
+router.post('/restart-app', requireAuth, async (req, res) => {
+  const containerName = process.env.APP_CONTAINER_NAME || 'nro-app';
+  const socketPath = '/var/run/docker.sock';
+
+  try {
+    await new Promise((resolve, reject) => {
+      const options = {
+        socketPath,
+        path: `/containers/${encodeURIComponent(containerName)}/restart`,
+        method: 'POST',
+        headers: { 'Content-Length': '0' },
+      };
+
+      const dockerReq = http.request(options, (dockerRes) => {
+        // 204 = success, 404 = container not found
+        if (dockerRes.statusCode === 204) {
+          resolve();
+        } else {
+          let body = '';
+          dockerRes.on('data', (chunk) => { body += chunk; });
+          dockerRes.on('end', () => {
+            reject(new Error(`Docker API responded ${dockerRes.statusCode}: ${body}`));
+          });
+        }
+      });
+
+      dockerReq.on('error', (err) => {
+        reject(new Error(`Cannot reach Docker socket: ${err.message}`));
+      });
+
+      dockerReq.end();
+    });
+
+    await writeAuditLog({
+      adminUsername: req.admin.username,
+      action: 'restart_app',
+      targetType: 'server',
+      after: { container: containerName },
+      ip: req.ip,
+    });
+
+    return res.json({ ok: true, note: `Container "${containerName}" restart initiated.` });
+  } catch (err) {
+    console.error('[server/restart-app]', err.message);
+    return res.status(500).json({ error: err.message });
   }
 });
 

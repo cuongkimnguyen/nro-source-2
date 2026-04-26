@@ -34,17 +34,25 @@ public class ThuyTinh extends Boss {
 
     @Override
     public void reward(Player plKill) {
-        int diem = 5;
+        int diem = 4;
         plKill.event.addEventPoint(diem);
-        Service.gI().sendThongBao(plKill, "+5 Point");
-        for (Boss boss : this.bossAppearTogether[this.currentLevel]) {
-            boss.playerReward = plKill;
-            boss.changeStatus(BossStatus.AFK);
+        Service.gI().sendThongBao(plKill, "+4 Point");
+        if (this.bossAppearTogether != null
+                && this.currentLevel < this.bossAppearTogether.length
+                && this.bossAppearTogether[this.currentLevel] != null) {
+            for (Boss boss : this.bossAppearTogether[this.currentLevel]) {
+                boss.playerReward = plKill;
+                boss.changeStatus(BossStatus.AFK);
+            }
         }
     }
 
     @Override
     public void afk() {
+        if (playerReward == null) {
+            this.leaveMap();
+            return;
+        }
         if (playerReward.isPl() && !isReward && this.zone != null) {
             ItemMap it = new ItemMap(this.zone, 422, 1, this.location.x, this.zone.map.yPhysicInTop(this.location.x,
                     this.location.y - 24), playerReward.id);

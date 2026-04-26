@@ -53,6 +53,10 @@ public class Command {
     }
 
     private void initAdminCommands() {
+        adminCommands.put("reloadgc", player -> {
+            GiftCodeManager.gI().reloadGiftCodes();
+            Service.gI().sendThongBao(player, "Đã reload " + GiftCodeManager.gI().listGiftCode.size() + " giftcodes!");
+        });
         adminCommands.put("item", player -> Input.gI().createFormGiveItem(player));
         adminCommands.put("brl", player -> BrolyManager.gI().showListBoss(player));
         adminCommands.put("getitem", player -> Input.gI().createFormGetItem(player));

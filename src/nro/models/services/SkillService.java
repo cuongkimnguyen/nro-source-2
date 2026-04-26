@@ -36,6 +36,7 @@ import nro.models.skill.Skill;
 public class SkillService {
 
     private static SkillService instance;
+    private static long lastTimeLogSkillSpecialError = 0; // rate-limit log tuyệt kỹ
 
     public static SkillService gI() {
         if (instance == null) {
@@ -142,6 +143,12 @@ public class SkillService {
             }
             affterUseSkill(player, player.playerSkill.skillSelect.template.id);
         } catch (Exception e) {
+            // BUG #9 fix: rate-limit 1 log/5s để tránh flood log khi bị attack
+            long now = System.currentTimeMillis();
+            if (now - lastTimeLogSkillSpecialError > 5000) {
+                lastTimeLogSkillSpecialError = now;
+                Logger.warning("[SkillService] useNewSkillNotFocus error: " + e.getClass().getSimpleName() + " - " + e.getMessage());
+            }
         }
     }
 
@@ -727,16 +734,14 @@ public class SkillService {
                     player.playerSkill.lastTimePrepareTuSat = System.currentTimeMillis();
                     sendPlayerPrepareBom(player, 2000);
                 } else {
-                    if (!player.isBoss && !player.isPet && !Util.canDoWithTime(player.playerSkill.lastTimePrepareTuSat, 1500)) {
-                        player.playerSkill.skillSelect.lastTimeUseThisSkill = System.currentTimeMillis();
-                        player.playerSkill.prepareTuSat = false;
-                        return;
-                    }
-                    if (player.isBoss || player.isPet) {
-                        try {
-                            Thread.sleep(1500);
-                        } catch (InterruptedException e) {
+                    // BUG #2 fix: Thread.sleep block toàn bộ game thread khi boss/pet dùng TU_SAT.
+                    // Thống nhất logic: dùng time-check cho cả player, boss, pet.
+                    if (!Util.canDoWithTime(player.playerSkill.lastTimePrepareTuSat, 1500)) {
+                        if (!player.isBoss && !player.isPet) {
+                            player.playerSkill.skillSelect.lastTimeUseThisSkill = System.currentTimeMillis();
+                            player.playerSkill.prepareTuSat = false;
                         }
+                        return;
                     }
                     //nổ
                     player.playerSkill.prepareTuSat = !player.playerSkill.prepareTuSat;
@@ -766,8 +771,10 @@ public class SkillService {
                     if (!MapService.gI().isMapOffline(player.zone.map.mapId)) {
                         for (Player pl : playersMap) {
                             if (!player.equals(pl) && canAttackPlayer(player, pl) && Util.getDistance(player, pl) <= rangeBom) {
-                                dame = pl.isBoss ? player.effectSkill.isMonkey ? dame / 3 : dame / 2 : dame;
-                                pl.injured(player, dame, MapService.gI().isMapYardart(player.zone.map.mapId), false);
+                                // BUG #3 fix: dame bị ghi đè giữa các vòng lặp → các player sau nhận dame sai.
+                                // Dùng biến tạm dameForPl để giữ nguyên dame gốc.
+                                long dameForPl = pl.isBoss ? player.effectSkill.isMonkey ? dame / 3 : dame / 2 : dame;
+                                pl.injured(player, dameForPl, MapService.gI().isMapYardart(player.zone.map.mapId), false);
                                 PlayerService.gI().sendInfoHpMpMoney(pl);
                                 Service.gI().Send_Info_NV(pl);
                             }
@@ -1041,7 +1048,13 @@ public class SkillService {
     public boolean canUseSkillWithMana(Player player) {
         if (player.playerSkill.skillSelect != null) {
             if (player.playerSkill.skillSelect.template.id == Skill.KAIOKEN) {
+                // BUG #4 fix: phải tính giống useSkillAttack — set ThanVuTruKaio giảm HP tiêu thụ
                 long hpUse = player.nPoint.hpMax / 100 * 10;
+                if (player.setClothes.thanVuTruKaio == 4) {
+                    hpUse = player.nPoint.hpMax / 100 * 5;
+                } else if (player.setClothes.thanVuTruKaio == 5) {
+                    hpUse = player.nPoint.hpMax / 100 * 3;
+                }
                 if (player.isBoss && player instanceof Rival) {
                     hpUse = 0;
                 }

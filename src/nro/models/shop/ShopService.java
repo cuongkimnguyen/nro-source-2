@@ -769,6 +769,13 @@ public class ShopService {
                     eventPointPrice = 99;
                     break;
                 default:
+                    Service.gI().sendThongBao(player, "Vật phẩm này không thể mua bằng điểm sự kiện!");
+                    return;
+            }
+
+            if (eventPointPrice <= 0) {
+                Service.gI().sendThongBao(player, "Vật phẩm này không thể mua bằng điểm sự kiện!");
+                return;
             }
 
             if (player.event.getEventPoint() < eventPointPrice) {

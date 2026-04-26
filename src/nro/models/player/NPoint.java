@@ -953,14 +953,13 @@ public class NPoint {
         }
 
         // Xử lý set worldcup
-        if (this.player.setClothes.worldcup
-                == 2) {
-            mpMax += (this.mpMax * 10 / 100L);
-            // xử lý pet mabu
-            if (this.player.isPet && ((Pet) this.player).typePet == 1
-                    && (((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA || ((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA2 || ((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA3)) {
-                mpMax += (this.mpMax * 0 / 100L);
-            }
+        if (this.player.setClothes.worldcup == 2) {
+            mpMax += (mpMax * 10 / 100L); // BUG #7 fix: dùng biến local mpMax thay vì this.mpMax (giá trị cũ)
+            // BUG #11: mpMax * 0 luôn = 0, giữ lại để điền bonus pet mabu sau
+            // if (this.player.isPet && ((Pet) this.player).typePet == 1
+            //         && (((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA || ((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA2 || ((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA3)) {
+            //     mpMax += (mpMax * 0 / 100L);
+            // }
         }
 
         // Xử lý pet Uub
@@ -1077,10 +1076,10 @@ public class NPoint {
             dame += (dame * 20 / 100L);
         }
 
-        // Xử lý pet mabư
-        if (this.player.isPet && ((Pet) this.player).typePet == 1 && (((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA || ((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA2 || ((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA3)) {
-            dame += (dame * 0 / 100L);
-        }
+        // Xử lý pet mabư — BUG #11: dame * 0 luôn = 0, giữ lại để điền bonus sau
+        // if (this.player.isPet && ((Pet) this.player).typePet == 1 && (((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA || ((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA2 || ((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA3)) {
+        //     dame += (dame * 0 / 100L);
+        // }
 
         // Xử lý pet Uub
         if (this.player.isPet && ((Pet) this.player).typePet == 2 && (((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA || ((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA2 || ((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA3)) {
@@ -1186,17 +1185,18 @@ public class NPoint {
                 dame += (dame * percent / 100L);
             }
         }
-        int totalPercent = 0;
+        // BUG #8 fix: dùng biến riêng để tích lũy bonus từ danh hiệu, tránh cộng vào tlSexyDame
+        // (tlSexyDame đã được set bởi setPointWhenWearClothes bằng logic max, không nên cộng dồn thêm)
+        // BUG #10 fix: totalPercent trước đây khai báo nhưng không dùng, nay thay bằng badgeSexyDame có nghĩa
+        int badgeSexyDame = 0;
         for (Item.ItemOption opt : options) {
             if (opt.optionTemplate.id == 117) {
-                tlSexyDame += opt.param;
+                badgeSexyDame += opt.param;
             }
         }
 
-        dame += (dame * tlSexyDame / 100L);
-
-        //Sức đánh đẹp
-        dame += (dame * tlSexyDame / 100L);
+        // BUG #1 fix: chỉ áp dụng tlSexyDame MỘT LẦN (trước bị apply 2 lần liên tiếp)
+        dame += (dame * (tlSexyDame + badgeSexyDame) / 100L);
 
         // Xử lý giảm dame
         dame -= (dame * tlSubSD / 100L);
@@ -1243,7 +1243,7 @@ public class NPoint {
         }
 
         if (player.setClothes.thanVuTruKaio >= 1) {
-            this.crit += 10 / 100;
+            this.crit += 10; // BUG #6 fix: 10/100 = 0 (integer division), phải là +10
         }
     }
 

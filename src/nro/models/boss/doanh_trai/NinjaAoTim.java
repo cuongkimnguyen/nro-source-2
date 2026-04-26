@@ -48,9 +48,9 @@ public class NinjaAoTim extends Boss {
 
     @Override
     public void reward(Player plKill) {
-        int diem = 5;
+        int diem = 3;
         plKill.event.addEventPoint(diem);
-        Service.gI().sendThongBao(plKill, "+5 Point");
+        Service.gI().sendThongBao(plKill, "+3 Point");
 
         // Xác suất rơi item 1560 (50%)
         if (Util.isTrue(50, 100)) {

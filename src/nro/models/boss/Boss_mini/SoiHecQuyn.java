@@ -187,9 +187,9 @@ public class SoiHecQuyn extends Boss {
                 Service.gI().dropItemMap(this.zone, itemMap);
             }
             BadgesTaskService.updateCountBagesTask(plKill, ConstTaskBadges.KE_THAO_TUNG_SOI, 1);
-            int diem = 5;
+            int diem = 3;
             plKill.event.addEventPoint(diem);
-            Service.gI().sendThongBao(plKill, "+5 Point");
+            Service.gI().sendThongBao(plKill, "+3 Point");
 
         } catch (Exception e) {
             e.printStackTrace();

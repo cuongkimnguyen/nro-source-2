@@ -68,6 +68,13 @@ services:
       JWT_SECRET: ${ADMIN_JWT_SECRET:-change_me_to_at_least_32_random_chars!!}
       JWT_EXPIRES_IN: ${ADMIN_JWT_EXPIRES_IN:-8h}
       PORT: 4000
+      # Name of the game-app container — used by the restart-app API
+      APP_CONTAINER_NAME: ${APP_CONTAINER_NAME:-nro-app}
+    volumes:
+      # Docker socket — allows admin portal to restart the game-app container.
+      # Security note: grants admin container access to Docker daemon.
+      # Restrict access via requireAuth + admin role in the API layer.
+      - /var/run/docker.sock:/var/run/docker.sock:ro
     ports:
       - "${ADMIN_PORT:-4000}:4000"
     healthcheck:

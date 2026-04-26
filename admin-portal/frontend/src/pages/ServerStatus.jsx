@@ -9,6 +9,8 @@ export default function ServerStatus() {
   const [broadcastMsg, setBroadcastMsg] = useState('');
   const [broadcast, setBroadcast] = useState('');
   const [broadcastLoading, setBroadcastLoading] = useState(false);
+  const [restartMsg, setRestartMsg]   = useState('');
+  const [restartLoading, setRestartLoading] = useState(false);
 
   function load() {
     client.get('/server/status')
@@ -51,13 +53,27 @@ export default function ServerStatus() {
     }
   }
 
+  async function restartApp() {
+    if (!window.confirm('Restart the NRO game-app container? Players will be disconnected briefly.')) return;
+    setRestartLoading(true);
+    setRestartMsg('');
+    try {
+      const { data: r } = await client.post('/server/restart-app');
+      setRestartMsg(r.note ?? 'Restart initiated.');
+    } catch (e) {
+      setRestartMsg(e.response?.data?.error ?? 'Error');
+    } finally {
+      setRestartLoading(false);
+    }
+  }
+
   const isOnline = status?.trangthai === 'hoatdong';
 
   return (
     <>
       <div className="page-header">
         <h1>Server Control</h1>
-        <p>Maintenance mode and server broadcast</p>
+        <p>Maintenance mode, server broadcast and app restart</p>
       </div>
 
       {error && <div className="alert alert-error">{error}</div>}
@@ -124,6 +140,31 @@ export default function ServerStatus() {
               {broadcastLoading ? 'Sending…' : 'Send Broadcast'}
             </button>
           </form>
+        </div>
+
+        {/* Restart App */}
+        <div className="card">
+          <h2 style={{ fontSize: 15, fontWeight: 600, marginBottom: 14 }}>Restart Game App</h2>
+          <p className="text-muted text-sm" style={{ marginBottom: 12 }}>
+            Restart the <code>nro-app</code> container via Docker. All connected players will be
+            disconnected during restart. Use after deploying a new build or to recover a hung server.
+          </p>
+          <p className="text-muted text-sm" style={{ marginBottom: 16 }}>
+            Requires <code>/var/run/docker.sock</code> mounted inside the admin container
+            (see <code>docker-compose.yml</code>).
+          </p>
+          {restartMsg && (
+            <div className={`alert ${restartMsg.toLowerCase().includes('error') || restartMsg.toLowerCase().includes('cannot') ? 'alert-error' : 'alert-info'}`}>
+              {restartMsg}
+            </div>
+          )}
+          <button
+            className="btn btn-danger"
+            onClick={restartApp}
+            disabled={restartLoading}
+          >
+            {restartLoading ? 'Restarting…' : 'Restart NRO App'}
+          </button>
         </div>
       </div>
     </>

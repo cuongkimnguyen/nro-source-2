@@ -35,15 +35,19 @@ public class SonTinh extends Boss {
 
     @Override
     public void reward(Player plKill) {
-        int diem = 5;
+        int diem = 4;
         plKill.event.addEventPoint(diem);
-        Service.gI().sendThongBao(plKill, "+5 Point");
+        Service.gI().sendThongBao(plKill, "+4 Point");
         this.parentBoss.playerReward = plKill;
         this.parentBoss.changeStatus(BossStatus.AFK);
     }
 
     @Override
     public void afk() {
+        if (playerReward == null) {
+            this.leaveMap();
+            return;
+        }
         if (playerReward.isPl() && !isReward && this.zone != null) {
             ItemMap it = new ItemMap(this.zone, 421, 1, this.location.x, this.zone.map.yPhysicInTop(this.location.x,
                     this.location.y - 24), playerReward.id);
