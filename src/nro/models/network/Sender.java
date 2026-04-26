@@ -85,7 +85,9 @@ public final class Sender implements Runnable {
     }
 
     public void close() {
-        this.messages.clear();
+        if (this.messages != null) {
+            this.messages.clear();
+        }
         if (this.dos != null) {
             try {
                 this.dos.close();

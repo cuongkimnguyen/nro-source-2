@@ -454,14 +454,23 @@ public class SkillService {
                     player.playerSkill.lastTimePrepareQCKK = System.currentTimeMillis();
                     sendPlayerPrepareSkill(player, 4000);
                 } else {
+                    // BUG FIX: nếu không có mục tiêu (gọi từ packet -45 skill button)
+                    // thì KHÔNG fire, giữ nguyên trạng thái đã tụ để player có thể ném sau
+                    if (plTarget == null && mobTarget == null) {
+                        break;
+                    }
+                    // BUG FIX: kiểm tra thời gian tụ tối thiểu (tương tự TU_SAT)
+                    if (!Util.canDoWithTime(player.playerSkill.lastTimePrepareQCKK, 3500)) {
+                        break;
+                    }
                     //ném cầu
                     player.playerSkill.prepareQCKK = false;
                     mobs = new ArrayList<>();
                     if (plTarget != null) {
                         playerAttackPlayer(player, plTarget, false);
-                        if (!player.isBoss) {
+                        if (!player.isBoss && player.zone != null) {
                             for (Mob mob : player.zone.mobs) {
-                                if (!mob.isDie()
+                                if (mob != null && !mob.isDie()
                                         && Util.getDistance(plTarget, mob) <= SkillUtil.getRangeQCKK(player.playerSkill.skillSelect.point)) {
                                     mobs.add(mob);
                                 }
@@ -469,18 +478,19 @@ public class SkillService {
                         }
                     }
                     if (mobTarget != null) {
-                        if (!player.isBoss) {
+                        if (!player.isBoss && player.zone != null) {
                             playerAttackMob(player, mobTarget, false, true);
                             for (Mob mob : player.zone.mobs) {
-                                if (!mob.equals(mobTarget) && !mob.isDie()
+                                if (mob != null && !mob.equals(mobTarget) && !mob.isDie()
                                         && Util.getDistance(mob, mobTarget) <= SkillUtil.getRangeQCKK(player.playerSkill.skillSelect.point)) {
                                     mobs.add(mob);
                                 }
                             }
                         }
                     }
+                    long dameQCKK = player.nPoint.getDameAttack(true);
                     for (Mob mob : mobs) {
-                        mob.injured(player, player.nPoint.getDameAttack(true), true);
+                        mob.injured(player, dameQCKK, true);
                     }
                     PlayerService.gI().sendInfoHpMpMoney(player);
                     affterUseSkill(player, player.playerSkill.skillSelect.template.id);
@@ -493,6 +503,15 @@ public class SkillService {
                     player.playerSkill.lastTimePrepareLaze = System.currentTimeMillis();
                     sendPlayerPrepareSkill(player, 3000);
                 } else {
+                    // BUG FIX: nếu không có mục tiêu (gọi từ packet -45 skill button)
+                    // thì KHÔNG fire, giữ nguyên trạng thái đã nạp để player có thể bắn sau
+                    if (plTarget == null && mobTarget == null) {
+                        break;
+                    }
+                    // BUG FIX: kiểm tra thời gian nạp tối thiểu
+                    if (!Util.canDoWithTime(player.playerSkill.lastTimePrepareLaze, 2500)) {
+                        break;
+                    }
                     //bắn laze
                     player.playerSkill.prepareLaze = false;
                     if (plTarget != null) {
@@ -502,8 +521,8 @@ public class SkillService {
                         playerAttackMob(player, mobTarget, false, true);
                     }
                     affterUseSkill(player, player.playerSkill.skillSelect.template.id);
+                    PlayerService.gI().sendInfoHpMpMoney(player);
                 }
-                PlayerService.gI().sendInfoHpMpMoney(player);
                 break;
             case Skill.SOCOLA:
                 EffectSkillService.gI().sendEffectUseSkill(player, Skill.SOCOLA);

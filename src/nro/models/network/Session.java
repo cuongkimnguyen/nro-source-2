@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketException;
+import java.util.concurrent.atomic.AtomicBoolean;
 import nro.models.interfaces.IKeySessionHandler;
 import nro.models.interfaces.IMessageHandler;
 import nro.models.interfaces.IMessageSendCollect;
@@ -28,6 +29,7 @@ public class Session implements ISession {
     private final Thread tCollector;
 
     private IKeySessionHandler keyHandler;
+    private final AtomicBoolean disconnected = new AtomicBoolean(false);
 
     public static ISession gI() throws Exception {
         if (instance == null) {
@@ -153,6 +155,9 @@ public class Session implements ISession {
 
     @Override
     public void disconnect() {
+        if (!disconnected.compareAndSet(false, true)) {
+            return;
+        }
         this.connected = false;
         this.sentKey = false;
 
