@@ -166,7 +166,9 @@ public class TrungUyTrang extends Boss {
 
     @Override
     public void leaveMap() {
-        this.zone.isTUTAlive = false;
+        if (this.zone != null) {
+            this.zone.isTUTAlive = false;
+        }
         ChangeMapService.gI().exitMap(this);
         this.lastZone = null;
         this.lastTimeRest = System.currentTimeMillis();
