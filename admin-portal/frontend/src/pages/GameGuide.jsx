@@ -155,11 +155,11 @@ function TabBossDrop() {
                 ['SO4_NM → TDT_NM',   '2.5M–5M', <span style={{ color: '#51cf66', fontWeight: 700 }}>+3</span>, 'Dễ — Tiểu Đội Namek'],
                 ['Ăn Trộm / Rồng Nhi / Sói Hec Quỷn', 'Nhỏ', <span style={{ color: '#51cf66', fontWeight: 700 }}>+3</span>, 'Dễ — Mini boss'],
                 ['SO1 → TDT',         '25M–50M', <span style={{ color: '#fcc419', fontWeight: 700 }}>+4</span>, 'Trung bình — Tiểu Đội'],
-                ['Fide (cả 3 lv)',     '10M–30M', <span style={{ color: '#fcc419', fontWeight: 700 }}>+4</span>, 'Trung bình — Frieza'],
+                ['Fide (cả 3 lv)',     '30M–90M', <span style={{ color: '#fcc419', fontWeight: 700 }}>+4</span>, 'Trung bình — Frieza'],
                 ['Sơn Tinh / Thủy Tinh', '—',   <span style={{ color: '#fcc419', fontWeight: 700 }}>+4</span>, 'Trung bình — Hùng Vương'],
                 ['Xên Con 1–7',       '~5M–10M', <span style={{ color: '#fcc419', fontWeight: 700 }}>+4</span>, 'Trung bình — tiền đề Cell'],
-                ['Xên Bọ Hung',       '50M–150M', <span style={{ color: '#ff6b6b', fontWeight: 700 }}>+5</span>, 'Khó — Cell'],
-                ['Siêu Bọ Hung',      'Cao nhất', <span style={{ color: '#ff6b6b', fontWeight: 700 }}>+5</span>, 'Khó — Cell hoàn thiện'],
+                ['Xên Bọ Hung',       '100M–300M', <span style={{ color: '#ff6b6b', fontWeight: 700 }}>+5</span>, 'Khó — Cell'],
+                ['Siêu Bọ Hung',      '300M–400M', <span style={{ color: '#ff6b6b', fontWeight: 700 }}>+5</span>, 'Khó — Cell hoàn thiện'],
                 ['Mabu2H / SuperBu',  'Rất cao',  <span style={{ color: '#ff6b6b', fontWeight: 700 }}>+5</span>, 'Khó — MajinBuu 14h'],
                 ['Black Goku / Cumber', 'Rất cao', <span style={{ color: '#ff6b6b', fontWeight: 700 }}>+5</span>, 'Khó'],
                 ['Cooler / Android / GoldenFrieza / …', '—', <span style={{ color: '#ff6b6b', fontWeight: 700 }}>+5</span>, 'Khó'],
@@ -288,7 +288,7 @@ function TabBossDrop() {
               headers={['Vật phẩm', 'ID', 'Tỷ lệ', 'Số lượng']}
               rows={[
                 ['Tiền (Zeni)',    '457',       <Rate pct={100} />,                 '4 – 8 cái'],
-                ['Đồ Thần Linh',  '555–567',   <Rate pct={5} color="#74c0fc" />,   '1 cái'],
+                ['Đồ Thần Linh',  '555–567',   <Rate pct={8} color="#74c0fc" />,   '1 cái'],
                 ['Đồ thường',     '230–280',   <Rate pct={5} color="#74c0fc" />,   '1 cái + sao pha lê'],
                 ['Ngọc Rồng',     '15–20',     <Rate pct={88} />,                  '1 – 3 cái'],
                 [<span><Tag color="red">+5</Tag> Event Point</span>, '—', <Rate pct={100} />, 'mỗi kill'],
@@ -301,7 +301,7 @@ function TabBossDrop() {
               headers={['Vật phẩm', 'ID', 'Tỷ lệ', 'Số lượng']}
               rows={[
                 ['Tiền (Zeni)',    '457',     <Rate pct={100} />,                    '4 – 8 cái'],
-                ['Đồ Thần Linh',  '555–567', <Rate pct={5} color="#74c0fc" />,      '1 cái'],
+                ['Đồ Thần Linh',  '555–567', <Rate pct={8} color="#74c0fc" />,      '1 cái'],
                 ['Đồ thường',     '230–280', <Rate pct={33} color="#fcc419" />,     '1 cái + sao pha lê'],
                 ['Ngọc Rồng',     '15–20',   <Rate pct={88} />,                     '1 – 3 cái'],
                 [<span><Tag color="red">+5</Tag> Event Point</span>, '—', <Rate pct={100} />, 'mỗi kill'],
@@ -329,7 +329,7 @@ function TabBossDrop() {
               headers={['Vật phẩm', 'ID', 'Tỷ lệ', 'Số lượng']}
               rows={[
                 ['Tiền (Zeni)',          '457',         <Rate pct={100} />,                   '4 – 8 cái'],
-                ['Đồ Thần Linh',         '555–567',     <Rate pct={5} color="#74c0fc" />,     '1 cái'],
+                ['Đồ Thần Linh',         '555–567',     <Rate pct={8} color="#74c0fc" />,     '1 cái'],
                 ['Đồ thường',            '230–280',     <Rate pct={5} color="#74c0fc" />,     '1 cái + sao pha lê'],
                 ['Ngọc + Kachi Vua',     '15–20, 992',  <Rate pct={11} color="#fcc419" />,    '1 – 3 cái'],
                 [<span><Tag color="red">+5</Tag> Event Point</span>, '—', <Rate pct={100} />, 'mỗi kill'],
@@ -345,11 +345,11 @@ function TabBossDrop() {
             <Table
               headers={['Boss', 'Đồ TL', 'Đồ thường', 'Ngọc', 'Điểm đặc biệt']}
               rows={[
-                ['Mabu',        <Rate pct={1} color="#ff6b6b"/>, <Rate pct={1} color="#ff6b6b"/>, '11%, {15–20}', '+25 điểm Mabu'],
-                ['Goku (12h)',  <Rate pct={1} color="#ff6b6b"/>, <Rate pct={1} color="#ff6b6b"/>, '11%, {15–20}', '+10 điểm Mabu'],
-                ['Drabura',    <Rate pct={1} color="#ff6b6b"/>, <Rate pct={1} color="#ff6b6b"/>, '11%, {15–20}', '+5 event'],
-                ['BuiBui/2',   <Rate pct={1} color="#ff6b6b"/>, <Rate pct={1} color="#ff6b6b"/>, '11%, {15–20}', '+5 event'],
-                ['Yacon/Cadic',<Rate pct={1} color="#ff6b6b"/>, <Rate pct={1} color="#ff6b6b"/>, '11%, {15–20}', '+5 event'],
+                ['Mabu',        <Rate pct={8} color="#74c0fc"/>, <Rate pct={1} color="#ff6b6b"/>, '11%, {15–20}', '+25 điểm Mabu'],
+                ['Goku (12h)',  <Rate pct={8} color="#74c0fc"/>, <Rate pct={1} color="#ff6b6b"/>, '11%, {15–20}', '+10 điểm Mabu'],
+                ['Drabura',    <Rate pct={8} color="#74c0fc"/>, <Rate pct={1} color="#ff6b6b"/>, '11%, {15–20}', '+5 event'],
+                ['BuiBui/2',   <Rate pct={8} color="#74c0fc"/>, <Rate pct={1} color="#ff6b6b"/>, '11%, {15–20}', '+5 event'],
+                ['Yacon/Cadic',<Rate pct={8} color="#74c0fc"/>, <Rate pct={1} color="#ff6b6b"/>, '11%, {15–20}', '+5 event'],
               ]}
             />
             <Note>Boss MajinBuu 12h tập trung vào điểm Mabu, không phải farm đồ.</Note>
@@ -400,7 +400,7 @@ Thứ tự bắt buộc: diệt Android 15 trước → mới diệt được 13
               ['Điểm sự kiện nhanh nhất', 'Black Goku / Cumber / Siêu Bọ Hung', '+5/kill — boss khó nhưng điểm tối đa'],
               ['Điểm sự kiện an toàn',    'SO1–SO4 / TDT / Fide / Xên Con', '+4/kill — trung bình, dễ farm hơn'],
               ['Điểm sự kiện dễ farm',    'Kuku / Mập Đầu Đinh / Rambo', '+3/kill — boss yếu, spawn nhanh'],
-              ['Đồ Thần Linh tốt nhất',   'Baby', '11% — cao nhất toàn server'],
+              ['Đồ Thần Linh tốt nhất',   'Baby', '11% — cao nhất toàn server (các boss khác: 8%)'],
               ['Đồ thường nhiều sao',      'Siêu Bọ Hung', '33% đồ + cơ hội 6 sao (3%)'],
               ['Ngọc Rồng nhiều',          'Siêu Bọ Hung / Cooler', '88%, 1–3 cái/lần'],
               ['Kachi Vua (ID 992)',        'Baby / Black Goku / Cumber', 'Pool ngọc duy nhất có 992'],
