@@ -33,11 +33,15 @@ public class Client implements Runnable {
 
     private static Client instance;
 
+    private static final int AUTO_SAVE_INTERVAL_SECONDS = 300; // lưu mỗi 5 phút
+
     private final Map<Long, Player> players_id = new ConcurrentHashMap<>();
     private final Map<Integer, Player> players_userId = new ConcurrentHashMap<>();
     private final Map<String, Player> players_name = new ConcurrentHashMap<>();
     @Getter
     private final List<Player> players = new CopyOnWriteArrayList<>();
+
+    private long lastAutoSave = System.currentTimeMillis();
 
     private Client() {
         Executors.newSingleThreadExecutor().submit(this, "Update Client");
@@ -170,6 +174,31 @@ public class Client implements Runnable {
                     kickSession(session);
                 }
             }
+        }
+        if (Manager.DAO_AUTO_UPDATER) {
+            long now = System.currentTimeMillis();
+            if (now - lastAutoSave >= AUTO_SAVE_INTERVAL_SECONDS * 1000L) {
+                lastAutoSave = now;
+                autoSaveAllPlayers();
+            }
+        }
+    }
+
+    private void autoSaveAllPlayers() {
+        int count = 0;
+        for (Player player : players) {
+            if (player == null || player.getSession() == null) {
+                continue;
+            }
+            try {
+                PlayerDAO.updatePlayer(player);
+                count++;
+            } catch (Exception e) {
+                Logger.logException(Client.class, e);
+            }
+        }
+        if (count > 0) {
+            Logger.log(Logger.YELLOW, "[AutoSave] Saved " + count + " players\n");
         }
     }
 

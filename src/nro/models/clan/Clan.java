@@ -178,7 +178,9 @@ public class Clan {
                 msg.writer().writeByte(cmg.isNewMessage);
             }
             for (Player pl : this.membersInGame) {
-                pl.sendMessage(msg);
+                if (pl != null) {
+                    pl.sendMessage(msg);
+                }
             }
             msg.cleanup();
         } catch (Exception e) {
@@ -242,7 +244,8 @@ public class Clan {
         }
         if (cm != null) {
             for (int i = this.membersInGame.size() - 1; i >= 0; i--) {
-                if (this.membersInGame.get(i).id == cm.id) {
+                Player p = this.membersInGame.get(i);
+                if (p != null && p.id == cm.id) {
                     this.membersInGame.remove(i);
                     break;
                 }
