@@ -108,6 +108,7 @@ function TabBossDrop() {
           <TocItem href="#sao-pha-le">Sao Pha Lê</TocItem>
           <TocItem href="#do-thuong">Đồ Thường</TocItem>
           <TocItem href="#bang-drop">Bảng Drop</TocItem>
+          <TocItem href="#trai-dat">Nhóm Trái Đất</TocItem>
           <TocItem href="#co-che">Cơ Chế Đặc Biệt</TocItem>
           <TocItem href="#ket-luan">Tổng Kết</TocItem>
         </ul>
@@ -152,7 +153,7 @@ function TabBossDrop() {
                 ['Mập Đầu Đinh',      '1M',     <span style={{ color: '#51cf66', fontWeight: 700 }}>+3</span>, 'Dễ'],
                 ['Rambo (Nappa)',      '1.5M',   <span style={{ color: '#51cf66', fontWeight: 700 }}>+3</span>, 'Dễ'],
                 ['Doanh Trại (Ninja/Trung Úy/Robot)', '~500K–2M', <span style={{ color: '#51cf66', fontWeight: 700 }}>+3</span>, 'Dễ — Clan event'],
-                ['SO4_NM → TDT_NM',   '2.5M–5M', <span style={{ color: '#51cf66', fontWeight: 700 }}>+3</span>, 'Dễ — Tiểu Đội Namek'],
+                ['SO4_NM → TDT_NM',   '25M–50M', <span style={{ color: '#51cf66', fontWeight: 700 }}>+3</span>, 'Dễ — Tiểu Đội Namek'],
                 ['Ăn Trộm / Rồng Nhi / Sói Hec Quỷn', 'Nhỏ', <span style={{ color: '#51cf66', fontWeight: 700 }}>+3</span>, 'Dễ — Mini boss'],
                 ['SO1 → TDT',         '25M–50M', <span style={{ color: '#fcc419', fontWeight: 700 }}>+4</span>, 'Trung bình — Tiểu Đội'],
                 ['Fide (cả 3 lv)',     '10M–30M', <span style={{ color: '#fcc419', fontWeight: 700 }}>+4</span>, 'Trung bình — Frieza'],
@@ -250,7 +251,7 @@ function TabBossDrop() {
         </Section>
 
         <Section id="bang-drop" title="Tỷ Lệ Drop Theo Từng Boss">
-          <SubSection title="Boss Dễ (+3 điểm) — Kuku, Mập Đầu Đinh, Rambo, Doanh Trại, Tiểu Đội Namek, Mini Boss">
+          <SubSection title="Boss Dễ (+3 điểm) — Kuku, Mập Đầu Đinh, Rambo, Doanh Trại, Mini Boss">
             <Table
               headers={['Vật phẩm', 'ID', 'Tỷ lệ', 'Số lượng']}
               rows={[
@@ -263,6 +264,36 @@ function TabBossDrop() {
             <Note>
               Ngọc rơi ngẫu nhiên 1 trong {'{18, 19, 20}'} — ngọc 6, 7, 8 sao.
               Boss Doanh Trại còn rơi thêm item 1824 (100%) và item 17 / 611 theo xác suất.
+            </Note>
+          </SubSection>
+
+          <SubSection title="Tiểu Đội Sát Thủ Namek (+3 điểm) — SO1_NM, SO2_NM, SO3_NM, SO4_NM, TDT_NM">
+            <Callout color="yellow">
+              HP đã được nâng cấp x10: SO4_NM 25M → TDT_NM 50M. Drop thêm buff tiêu hao cao cấp.
+            </Callout>
+            <Table
+              headers={['Vật phẩm', 'ID', 'Tỷ lệ', 'Số lượng']}
+              rows={[
+                ['Tiền (Zeni)',                '77',          <Rate pct={100} />,                '1 – 5 cái (nhiều lần drop)'],
+                ['Trang bị đặc trưng boss',   '429–433',     <Rate pct={100} />,                '1 cái (mỗi boss 1 ID riêng)'],
+                ['Ngọc Rồng 6 & 7 sao',       '19, 20',      <Rate pct={100} />,                '1 cái mỗi loại'],
+                ['Buff cao cấp (random 1 trong 5)', '1150–1154', <Rate pct={100} />,             '2 – 4 cái'],
+                [<span><Tag color="green">+3</Tag> Event Point</span>, '—', <Rate pct={100} />, 'mỗi kill'],
+              ]}
+            />
+            <Table
+              headers={['ID', 'Tên', 'Hiệu ứng']}
+              rows={[
+                ['1150', 'Cuồng nộ 2',         '+120% sức đánh gốc, tối đa 10 phút'],
+                ['1151', 'Bổ khí 2',            '+120% KI, tối đa 10 phút'],
+                ['1152', 'Bổ huyết 2',          '+120% HP, tối đa 10 phút'],
+                ['1153', 'Giáp Xên bọ hung 2',  'Giảm 60% sát thương nhận vào, tối đa 10 phút'],
+                ['1154', 'Ẩn danh 2',           'Ẩn danh +10 phút (cộng dồn, tối đa 40 phút)'],
+              ]}
+            />
+            <Note>
+              Mỗi boss drop 1 item trang bị riêng: SO4_NM=429, SO3_NM=430, SO2_NM=431, SO1_NM=432, TDT_NM=433.
+              Buff 1150–1154 chọn ngẫu nhiên 1 loại, số lượng 2–4 cái.
             </Note>
           </SubSection>
 
@@ -341,6 +372,49 @@ function TabBossDrop() {
             </Note>
           </SubSection>
 
+          <SubSection title="Nhóm Trái Đất — BIDO, BUJIN, KOGU, ZANGYA (+5 điểm)">
+            <Table
+              headers={['Vật phẩm', 'ID', 'Tỷ lệ', 'Số lượng']}
+              rows={[
+                ['Tiền (Zeni)',                   '77',        <Rate pct={100} />, '5 – 20 cái (nhiều lần drop)'],
+                ['Trang bị đặc trưng boss',       '423–426',   <Rate pct={100} />, '1 cái (BUJIN=423, KOGU=424, ZANGYA=425, BIDO=426)'],
+                ['Ngọc Rồng 6 & 7 sao',           '19, 20',    <Rate pct={100} />, '1 cái mỗi loại'],
+                ['Buff cao cấp (random 1 trong 5)', '1150–1154', <Rate pct={100} />, '2 – 4 cái'],
+                [<span><Tag color="red">+5</Tag> Event Point</span>, '—', <Rate pct={100} />, 'mỗi kill'],
+              ]}
+            />
+            <Table
+              headers={['ID', 'Tên', 'Hiệu ứng']}
+              rows={[
+                ['1150', 'Cuồng nộ 2',         '+120% sức đánh gốc, tối đa 10 phút'],
+                ['1151', 'Bổ khí 2',            '+120% KI, tối đa 10 phút'],
+                ['1152', 'Bổ huyết 2',          '+120% HP, tối đa 10 phút'],
+                ['1153', 'Giáp Xên bọ hung 2',  'Giảm 60% sát thương nhận vào, tối đa 10 phút'],
+                ['1154', 'Ẩn danh 2',           'Ẩn danh +10 phút (cộng dồn, tối đa 40 phút)'],
+              ]}
+            />
+          </SubSection>
+
+          <SubSection title="Bojack & Siêu Bojack (+5 điểm)">
+            <Table
+              headers={['Boss', 'Vật phẩm', 'ID', 'Số lượng']}
+              rows={[
+                ['Bojack',      'Tiền (Zeni)',                      '77',      '5 – 20 cái'],
+                ['Bojack',      'Trang bị Bojack',                  '427',     '1 cái'],
+                ['Bojack',      'Ngọc Rồng 6 & 7 sao',             '19, 20',  '1 cái mỗi loại'],
+                ['Bojack',      'Buff cao cấp random (không có 1154)', '1150–1153', '2 – 4 cái'],
+                ['Siêu Bojack', 'Tiền (Zeni)',                      '77',      '5 – 15 cái'],
+                ['Siêu Bojack', 'Trang bị Siêu Bojack',             '428',     '1 cái'],
+                ['Siêu Bojack', 'Ngọc Rồng 6 & 7 sao',             '19, 20',  '1 cái mỗi loại'],
+                ['Siêu Bojack', <span>Buff cao cấp random <Tag color="red">(không có 1154)</Tag></span>, '1150–1153', <strong>5 cái (cố định)</strong>],
+              ]}
+            />
+            <Note>
+              Bojack và Siêu Bojack chỉ drop 4 loại buff (1150 Cuồng nộ 2 / 1151 Bổ khí 2 / 1152 Bổ huyết 2 / 1153 Giáp Xên bọ hung 2) — không có 1154 Ẩn danh 2.
+              Siêu Bojack drop cố định 5 cái, các boss khác ngẫu nhiên 2–4 cái.
+            </Note>
+          </SubSection>
+
           <SubSection title="Nhóm MajinBuu 12h — Mabu, Goku, Drabura, BuiBui, Yacon, Cadic">
             <Table
               headers={['Boss', 'Đồ TL', 'Đồ thường', 'Ngọc', 'Điểm đặc biệt']}
@@ -400,6 +474,7 @@ Thứ tự bắt buộc: diệt Android 15 trước → mới diệt được 13
               ['Điểm sự kiện nhanh nhất', 'Black Goku / Cumber / Siêu Bọ Hung', '+5/kill — boss khó nhưng điểm tối đa'],
               ['Điểm sự kiện an toàn',    'SO1–SO4 / TDT / Fide / Xên Con', '+4/kill — trung bình, dễ farm hơn'],
               ['Điểm sự kiện dễ farm',    'Kuku / Mập Đầu Đinh / Rambo', '+3/kill — boss yếu, spawn nhanh'],
+              ['Buff Cuồng nộ 2 / Bổ huyết 2 / ...', 'Tiểu Đội Namek / Nhóm Trái Đất / Bojack', '100% drop, 2–4 cái/kill — Siêu Bojack 5 cố định'],
               ['Đồ Thần Linh tốt nhất',   'Baby', '11% — cao nhất toàn server'],
               ['Đồ thường nhiều sao',      'Siêu Bọ Hung', '33% đồ + cơ hội 6 sao (3%)'],
               ['Ngọc Rồng nhiều',          'Siêu Bọ Hung / Cooler', '88%, 1–3 cái/lần'],

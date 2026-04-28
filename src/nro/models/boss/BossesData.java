@@ -224,7 +224,7 @@ public class BossesData {
             ConstPlayer.XAYDA, //gender
             new short[]{168, 169, 170, -1, -1, -1}, //outfit {head, body, leg, bag, aura, eff}
             10000, //dame
-            new int[]{2_500_000}, //hp
+            new int[]{25_000_000}, //hp
             new int[]{7, 8, 9, 10, 11, 12, 13, 25, 34, 33, 43}, //map join
             //           new int[]{86}, //map join
             new int[][]{
@@ -249,7 +249,7 @@ public class BossesData {
             ConstPlayer.XAYDA, //gender
             new short[]{174, 175, 176, -1, -1, -1}, //outfit {head, body, leg, bag, aura, eff}
             10000, //dame
-            new int[]{3_000_000}, //hp
+            new int[]{30_000_000}, //hp
             new int[]{7, 8, 9, 10, 11, 12, 13, 25, 34, 33, 43}, //map join
             new int[][]{
                 {Skill.LIEN_HOAN, 7, 1000},
@@ -272,7 +272,7 @@ public class BossesData {
             ConstPlayer.XAYDA, //gender
             new short[]{171, 172, 173, -1, -1, -1}, //outfit {head, body, leg, bag, aura, eff}
             12200, //dame
-            new int[]{3_500_000}, //hp
+            new int[]{35_000_000}, //hp
             new int[]{7, 8, 9, 10, 11, 12, 13, 25, 34, 33, 43}, //map join
             new int[][]{
                 {Skill.GALICK, 7, 1000},
@@ -295,7 +295,7 @@ public class BossesData {
             ConstPlayer.XAYDA, //gender
             new short[]{177, 178, 179, -1, -1, -1}, //outfit {head, body, leg, bag, aura, eff}
             13200, //dame
-            new int[]{4_000_000}, //hp
+            new int[]{40_000_000}, //hp
             new int[]{7, 8, 9, 10, 11, 12, 13, 25, 34, 33, 43}, //map join
             new int[][]{
                 {Skill.LIEN_HOAN, 7, 1000},
@@ -318,7 +318,7 @@ public class BossesData {
             ConstPlayer.XAYDA, //gender
             new short[]{180, 181, 182, -1, -1, -1}, //outfit {head, body, leg, bag, aura, eff}
             15000, //dame
-            new int[]{5000000}, //hp
+            new int[]{50_000_000}, //hp
             new int[]{7, 8, 9, 10, 11, 12, 13, 25, 34, 33, 43}, //map join
             new int[][]{
                 ////                {Skill.SOCOLA, 7, 1000},

@@ -55,6 +55,10 @@ public class SUPER_BOJACK extends Boss {
         Service.gI().dropItemMap(this.zone, it);
         Service.gI().dropItemMap(this.zone, it1);
         Service.gI().dropItemMap(this.zone, it2);
+        int[] randItems = {1150, 1151, 1152, 1153};
+        int randItem = randItems[Util.nextInt(0, randItems.length - 1)];
+        Service.gI().dropItemMap(this.zone, new ItemMap(zone, randItem, 5,
+                this.location.x + Util.nextInt(-50, 50), this.zone.map.yPhysicInTop(this.location.x, this.location.y - 24), plKill.id));
         int diem = 5;
         plKill.event.addEventPoint(diem);
         Service.gI().sendThongBao(plKill, "+5 Point");
