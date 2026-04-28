@@ -136,6 +136,14 @@ public class DrLychee extends Boss {
 
     @Override
     public void leaveMap() {
+        if (this.nPoint == null) {
+            ChangeMapService.gI().exitMap(this);
+            this.lastZone = null;
+            this.lastTimeRest = System.currentTimeMillis();
+            this.changeStatus(BossStatus.REST);
+            GasDestroyManager.gI().removeBoss(this);
+            return;
+        }
         long bossDamage = Math.min((long) (this.nPoint.dame * 1.5), 200000000L);
         long bossMaxHealth = Math.min((long) (this.nPoint.hpMax * 1.5), 2000000000L);
         try {

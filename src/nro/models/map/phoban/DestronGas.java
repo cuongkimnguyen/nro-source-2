@@ -66,6 +66,7 @@ public class DestronGas implements Runnable {
             if (Util.canDoWithTime(lastTimeOpen, TIME_KHI_GAS_HUY_DIET) || (kickoutkghd && Util.canDoWithTime(timeKickOutKGHD, 60000))) {
                 finish();
                 dispose();
+                return;
             }
 
             boolean allCharactersDead = true;
