@@ -1237,7 +1237,8 @@ public class ShopService {
             return;
         }
         if (item.template.level == 14) {
-            Item doAn = player.inventory.itemsBag.stream().filter(it -> it != null && it.template != null && (it.template.id == 663 || it.template.id == 664 || it.template.id == 665 || it.template.id == 666 || it.template.id == 667) && it.quantity >= 99).findFirst().orElse(null);
+            // Chấp nhận đồ ăn thật (663-667) hoặc phiếu ăn nhanh (1805)
+            Item doAn = player.inventory.itemsBag.stream().filter(it -> it != null && it.template != null && (it.template.id == 663 || it.template.id == 664 || it.template.id == 665 || it.template.id == 666 || it.template.id == 667 || it.template.id == 1805) && it.quantity >= 99).findFirst().orElse(null);
             if (doAn != null) {
                 InventoryService.gI().subQuantityItemsBag(player, doAn, 99);
             } else {
