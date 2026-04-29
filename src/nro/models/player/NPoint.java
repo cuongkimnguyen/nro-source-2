@@ -1523,14 +1523,13 @@ public class NPoint {
 
         dameAttack += ((long) dameAttack * percentXDame / 100);
 
-        long tempDameAttack = (long) (dameAttack / 100L * 5L);
-        if (tempDameAttack
-                <= 0) {
+        long tempDameAttack = dameAttack / 100L * 5L;
+        if (tempDameAttack <= 0) {
             tempDameAttack = 1;
+        } else if (tempDameAttack > Integer.MAX_VALUE) {
+            tempDameAttack = Integer.MAX_VALUE;
         }
-        dameAttack += (long) (Util.getOne(
-                -1, 1) * Util.nextInt((int) tempDameAttack
-                ) + 1);
+        dameAttack += (long) (Util.getOne(-1, 1) * Util.nextInt((int) tempDameAttack) + 1);
 
         if (player.effectSkin != null && player.effectSkin.isXChuong && (player.playerSkill.skillSelect.template.id == Skill.KAMEJOKO || player.playerSkill.skillSelect.template.id == Skill.ANTOMIC || player.playerSkill.skillSelect.template.id == Skill.MASENKO)) {
             dameAttack *= xChuong;
@@ -1583,8 +1582,8 @@ public class NPoint {
 
     public long calSucManhTiemNang(long tiemNang) {
         if (power < getPowerLimit()) {
-            if (this.tlTNSM != null) {
-                for (Integer tl : this.tlTNSM) {
+            if (this.tlTNSM != null && !this.tlTNSM.isEmpty()) {
+                for (Integer tl : new java.util.ArrayList<>(this.tlTNSM)) {
                     if (tl != null) {
                         tiemNang += ((long) tiemNang * tl / 100);
                     }

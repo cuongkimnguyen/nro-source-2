@@ -14,6 +14,7 @@ import giftcodesRouter from './routes/giftcodes.js';
 import serverRouter    from './routes/server.js';
 import auditLogRouter  from './routes/auditLog.js';
 import paymentsRouter  from './routes/payments.js';
+import buffLogRouter   from './routes/buffLog.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 // In Docker the built React app is copied to ./public (relative to /app)
@@ -58,6 +59,7 @@ app.use('/api/giftcodes', giftcodesRouter);
 app.use('/api/server',    serverRouter);
 app.use('/api/audit-log', auditLogRouter);
 app.use('/api/payments',  paymentsRouter);
+app.use('/api/buff-log',  buffLogRouter);
 
 // Health check (useful for Docker healthcheck)
 app.get('/health', (_req, res) => res.json({ ok: true }));

@@ -8,6 +8,7 @@ const navItems = [
   { to: '/payments',  label: '💳  Payments' },
   { to: '/server',    label: '🖥  Server' },
   { to: '/audit-log', label: '📋  Audit Log' },
+  { to: '/buff-log',  label: '🛡  Buff Log' },
 ];
 
 export default function Layout() {

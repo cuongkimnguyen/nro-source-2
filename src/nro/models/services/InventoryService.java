@@ -811,6 +811,7 @@ public class InventoryService {
                 BadgesTaskService.updateCountBagesTask(player, ConstTaskBadges.ME_RONG, 1);
             }
         }
+        normalizeFragmentItem(item);
         return addItemList(player.inventory.itemsBag, item);
     }
 
@@ -827,10 +828,17 @@ public class InventoryService {
         if (idParam[0] != -1) {
             for (Item it : items) {
                 if (it.isNotNullItem() && it.template.id == itemAdd.template.id) {
+                    boolean found = false;
                     for (Item.ItemOption io : it.itemOptions) {
                         if (io.optionTemplate.id == idParam[0]) {
                             io.param += idParam[1];
+                            found = true;
+                            break;
                         }
+                    }
+                    if (!found) {
+                        // item trong bag chưa có option param (mua shop/gift) → gắn luôn
+                        it.itemOptions.add(new Item.ItemOption(idParam[0], idParam[1]));
                     }
                     itemAdd.quantity = 0;
                     return true;
@@ -914,6 +922,23 @@ public class InventoryService {
             }
         }
         return new int[]{-1, -1};
+    }
+
+    // Các item dùng option 31 làm bộ đếm tích lũy (mảnh vỡ bông tai, hồn bông tai, ...)
+    private static final Set<Integer> FRAGMENT_ITEM_IDS = Set.of(933, 934, 935, 1820);
+
+    /**
+     * Item mua từ shop / nhận qua gift code không có option 31.
+     * Chuyển quantity → option {31: quantity} để đi vào path cộng param đúng.
+     */
+    private void normalizeFragmentItem(Item item) {
+        if (!FRAGMENT_ITEM_IDS.contains((int) item.template.id)) return;
+        for (Item.ItemOption io : item.itemOptions) {
+            if (io.optionTemplate.id == 31) return; // đã có, không cần đổi
+        }
+        int qty = Math.max(1, item.quantity);
+        item.itemOptions.add(new Item.ItemOption(31, qty));
+        item.quantity = 1;
     }
 
     private void __________________Kiểm_tra_danh_sách_còn_chỗ_trống_________() {

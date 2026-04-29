@@ -11,6 +11,7 @@ import GiftCodes from './pages/GiftCodes.jsx';
 import ServerStatus from './pages/ServerStatus.jsx';
 import AuditLog from './pages/AuditLog.jsx';
 import Payments from './pages/Payments.jsx';
+import BuffLog from './pages/BuffLog.jsx';
 
 export default function App() {
   return (
@@ -29,6 +30,7 @@ export default function App() {
             <Route path="/server"             element={<ServerStatus />} />
             <Route path="/payments"           element={<Payments />} />
             <Route path="/audit-log"          element={<AuditLog />} />
+            <Route path="/buff-log"           element={<BuffLog />} />
           </Route>
         </Route>
         <Route path="*" element={<Navigate to="/dashboard" replace />} />

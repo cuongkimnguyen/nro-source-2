@@ -146,6 +146,7 @@ parameterizedCommands.put("dm", (player, text) -> {
         player.nPoint.dameg = dmg;
         Service.gI().point(player);
         Service.gI().sendThongBao(player, "SET DAMAGE = " + dmg);
+        ServerLog.logAdminBuff(player.name, "dm", player.name, -99, "Sức đánh gốc (dameg)", dmg, null);
     } catch (Exception e) {
         Service.gI().sendThongBao(player, "Sai cú pháp: dmg <số>");
     }
@@ -158,6 +159,7 @@ parameterizedCommands.put("hp", (player, text) -> {
         player.nPoint.hpg = hpg;
         Service.gI().point(player);
         Service.gI().sendThongBao(player, "SET HP GỐC = " + hpg);
+        ServerLog.logAdminBuff(player.name, "hp", player.name, -99, "HP gốc (hpg)", hpg, null);
     } catch (Exception e) {
         Service.gI().sendThongBao(player, "Sai cú pháp: hpg <số>");
     }
@@ -170,6 +172,7 @@ parameterizedCommands.put("ki", (player, text) -> {
         player.nPoint.mpg = ki;
         Service.gI().point(player);
         Service.gI().sendThongBao(player, "SET KI GỐC = " + ki);
+        ServerLog.logAdminBuff(player.name, "ki", player.name, -99, "KI gốc (mpg)", ki, null);
     } catch (Exception e) {
         Service.gI().sendThongBao(player, "Sai cú pháp: ki <số>");
     }
@@ -180,6 +183,7 @@ parameterizedCommands.put("up", (player, text) -> {
         long power = Long.parseLong(text.replace("up", "").trim());
         Service.gI().addSMTN(player, (byte) 2, power, false);
         Service.gI().sendThongBao(player, "UP SMTN = " + power);
+        ServerLog.logAdminBuff(player.name, "up", player.name, -99, "Sức mạnh/Tiềm năng", (int) power, null);
     } catch (Exception e) {
         Service.gI().sendThongBao(player, "Sai cú pháp: up <số>");
     }
@@ -190,13 +194,10 @@ parameterizedCommands.put("upp", (player, text) -> {
             Service.gI().sendThongBao(player, "Bạn chưa có đệ tử");
             return;
         }
-
         long power = Long.parseLong(text.replace("upp", "").trim());
         Service.gI().addSMTN(player.pet, (byte) 2, power, false);
-        Service.gI().sendThongBao(
-            player,
-            "UP TNSM cho đệ tử = " + power
-        );
+        Service.gI().sendThongBao(player, "UP TNSM cho đệ tử = " + power);
+        ServerLog.logAdminBuff(player.name, "upp", player.name + " [đệ tử]", -99, "SM/TN đệ tử", (int) power, null);
     } catch (Exception e) {
         Service.gI().sendThongBao(player, "Sai cú pháp: upp <số>");
     }
@@ -238,7 +239,9 @@ parameterizedCommands.put("upp", (player, text) -> {
                 }
 
                 InventoryService.gI().sendItemBags(player);
-                Service.gI().sendThongBao(player, "GET " + quantity + " x " + ItemService.gI().getTemplate(itemId).name + " [" + itemId + "] SUCCESS!");
+                String iName = ItemService.gI().getTemplate(itemId).name;
+                Service.gI().sendThongBao(player, "GET " + quantity + " x " + iName + " [" + itemId + "] SUCCESS!");
+                ServerLog.logAdminBuff(player.name, "i", player.name, itemId, iName, quantity, customOptions.isEmpty() ? null : customOptions);
 
             } catch (Exception e) {
                 Service.gI().sendThongBao(player, "Lỗi cú pháp! Dùng: i <itemId> <số lượng> [optionId:value]");

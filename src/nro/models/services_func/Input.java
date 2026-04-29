@@ -227,19 +227,19 @@ public class Input {
                                     pBuffItem.inventory.gold = Math.min(pBuffItem.inventory.gold + (long) slItemBuff, Inventory.LIMIT_GOLD);
                                     txtBuff += slItemBuff + " vàng\b";
                                     Service.gI().sendMoney(pBuffItem);
-                                    ServerLog.logAdmin(pBuffItem.name, slItemBuff);
+                                    ServerLog.logAdminBuff(player.name, "b", pBuffItem.name, -1, "vàng", slItemBuff, null);
                                     break;
                                 case -2:
                                     pBuffItem.inventory.gem = Math.min(pBuffItem.inventory.gem + slItemBuff, 2000000000);
                                     txtBuff += slItemBuff + " ngọc\b";
                                     Service.gI().sendMoney(pBuffItem);
-                                    ServerLog.logAdmin(pBuffItem.name, slItemBuff);
+                                    ServerLog.logAdminBuff(player.name, "b", pBuffItem.name, -2, "ngọc", slItemBuff, null);
                                     break;
                                 case -3:
                                     pBuffItem.inventory.ruby = Math.min(pBuffItem.inventory.ruby + slItemBuff, 2000000000);
                                     txtBuff += slItemBuff + " ngọc khóa\b";
                                     Service.gI().sendMoney(pBuffItem);
-                                    ServerLog.logAdmin(pBuffItem.name, slItemBuff);
+                                    ServerLog.logAdminBuff(player.name, "b", pBuffItem.name, -3, "ngọc khóa", slItemBuff, null);
                                     break;
                                 default:
                                     Item itemBuffTemplate = ItemService.gI().createNewItem((short) idItemBuff);
@@ -248,7 +248,7 @@ public class Input {
 
                                     if (InventoryService.gI().addItemBag(pBuffItem, itemBuffTemplate)) {
                                         txtBuff += "x" + slItemBuff + " " + itemBuffTemplate.template.name + "\b";
-                                        ServerLog.logAdmin(pBuffItem.name, slItemBuff);
+                                        ServerLog.logAdminBuff(player.name, "b", pBuffItem.name, idItemBuff, itemBuffTemplate.template.name, slItemBuff, itemBuffTemplate.itemOptions);
                                         InventoryService.gI().sendItemBags(pBuffItem);
                                     } else {
                                         Service.gI().sendThongBao(player, "Không thể thêm vật phẩm vào hành trang của người chơi");
@@ -302,6 +302,7 @@ public class Input {
                         InventoryService.gI().addItemBag(target, item);
                         InventoryService.gI().sendItemBags(target);
                         Service.gI().sendThongBao(target, "Nhận " + item.template.name + " từ " + player.name);
+                        ServerLog.logAdminBuff(player.name, "give", target.name, id, item.template.name, q, item.itemOptions);
                     } else {
                         Service.gI().sendThongBao(player, "Không online");
                     }
@@ -322,7 +323,7 @@ public class Input {
                         InventoryService.gI().addItemBag(player, item);
                         InventoryService.gI().sendItemBags(player);
                         Service.gI().sendThongBao(player, "Nhận " + item.template.name + " !");
-
+                        ServerLog.logAdminBuff(player.name, "getitem", player.name, id, item.template.name, q, item.itemOptions);
                     } else {
                         Service.gI().sendThongBao(player, "Không đủ quyền hạn!");
                     }
