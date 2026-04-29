@@ -830,23 +830,7 @@ public class NPoint {
                 hpMax += (hpMax * percent / 100L);
             }
         }
-        // Xử lý pet mabư
-        if (this.player.isPet && ((Pet) this.player).typePet == 1 && (((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA || ((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA2 || ((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA3)) {
-            hpMax += (hpMax * 0 / 100L);
-        }
-
-        // Xử lý pet Uub
-        if (this.player.isPet && ((Pet) this.player).typePet == 2 && (((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA || ((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA2 || ((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA3)) {
-            hpMax += (hpMax * 20 / 100L);
-        }
-        // Xử lý pet vageta
-        if (this.player.isPet && ((Pet) this.player).typePet == 3 && (((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA || ((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA2 || ((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA3)) {
-            hpMax += (hpMax * 20 / 100L);
-        }
-        // Xử lý pet jiren
-        if (this.player.isPet && ((Pet) this.player).typePet == 4 && (((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA || ((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA2 || ((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA3)) {
-            hpMax += (hpMax * 20 / 100L);
-        }
+        // Bonus HP theo loại pet (hợp thể): tất cả về 0
 
         // Xử lý phù
         if (this.player.zone != null && MapService.gI().isMapBlackBallWar(this.player.zone.map.mapId)) {
@@ -962,21 +946,7 @@ public class NPoint {
             // }
         }
 
-        // Xử lý pet Uub
-        if (this.player.isPet && ((Pet) this.player).typePet == 2
-                && (((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA || ((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA2 || ((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA3)) {
-            mpMax += (this.mpMax * 20 / 100L);
-        }
-        // xử lý pet beer
-        if (this.player.isPet && ((Pet) this.player).typePet == 3
-                && (((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA || ((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA2 || ((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA3)) {
-            mpMax += (this.mpMax * 20 / 100L);
-        }
-        // Xử lý pet jiren
-        if (this.player.isPet && ((Pet) this.player).typePet == 4
-                && (((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA || ((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA2 || ((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA3)) {
-            mpMax += (this.mpMax * 20 / 100L);
-        }
+        // Bonus MP theo loại pet (hợp thể): tất cả về 0
 
         // Xử lý phù
         if (this.player.zone
@@ -1071,28 +1041,7 @@ public class NPoint {
                 }
             }
         }
-        // Xử lý pet pic
-        if (this.player.isPet && ((Pet) this.player).typePet == 3 && (((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA || ((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA2 || ((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA3)) {
-            dame += (dame * 20 / 100L);
-        }
-
-        // Xử lý pet mabư — BUG #11: dame * 0 luôn = 0, giữ lại để điền bonus sau
-        // if (this.player.isPet && ((Pet) this.player).typePet == 1 && (((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA || ((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA2 || ((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA3)) {
-        //     dame += (dame * 0 / 100L);
-        // }
-
-        // Xử lý pet Uub
-        if (this.player.isPet && ((Pet) this.player).typePet == 2 && (((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA || ((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA2 || ((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA3)) {
-            dame += (dame * 20 / 100L);
-        }
-        // Xử lý pet beer
-        if (this.player.isPet && ((Pet) this.player).typePet == 3 && (((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA || ((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA2 || ((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA3)) {
-            dame += (dame * 20 / 100L);
-        }
-        // Xử lý pet jiren
-        if (this.player.isPet && ((Pet) this.player).typePet == 4 && (((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA || ((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA2 || ((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA3)) {
-            dame += (dame * 20 / 100L);
-        }
+        // Bonus dame theo loại pet (hợp thể): tất cả về 0
 
         // Xử lý set tinh ấn
         if (this.isTinhAn) {
@@ -1448,7 +1397,7 @@ public class NPoint {
                 percentDameSkill = skillSelect.damage;
                 int dameSkill = (int) Math.min(2_147_483_647L, (long) this.mpMax * percentDameSkill / 100);
                 if (this.player.setClothes.picolo == 5) {
-                    dameSkill *= 3 / 2;
+                    dameSkill = dameSkill * 3 / 2;
                 }
                 return dameSkill;
             case Skill.QUA_CAU_KENH_KHI:

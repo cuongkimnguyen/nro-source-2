@@ -261,7 +261,7 @@ public class ItemService {
             for (int subId : getOptionIdsBySKH(skhId)) {
                 item.itemOptions.add(new Item.ItemOption(subId, 1));
             }
-            item.itemOptions.add(new Item.ItemOption(30, 1));
+            item.itemOptions.add(new Item.ItemOption(30, 0));
         }
         return item;
     }
@@ -297,9 +297,9 @@ public class ItemService {
     public int[] getOptionIdsBySKH(int skhId) {
         switch (skhId) {
             case 127:
-                return new int[]{140};
-            case 128:
                 return new int[]{139};
+            case 128:
+                return new int[]{140};
             case 129:
                 return new int[]{141};
             case 130:

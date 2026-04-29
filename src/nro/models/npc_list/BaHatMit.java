@@ -110,7 +110,10 @@ public class BaHatMit extends Npc {
                         ));
                     }
 
-                    // Thêm mục BT3 ở CUỐI danh sách (case 7 trong handler)
+                    // Đổi đồ thần linh lấy kích hoạt (case 7 trong handler)
+                    menu.add("Đổi\nĐồ\nThần Linh");
+
+                    // Thêm mục BT3 ở CUỐI danh sách (case 8 trong handler)
                     if (hasBt2 || hasBt3) {
                         menu.add(hasBt3
                                 ? "Mở chỉ số\nBông tai\nPorata cấp\n3"
@@ -365,14 +368,15 @@ public class BaHatMit extends Npc {
                             case 6:
                                 CombineService.gI().openTabCombine(player, CombineService.NHAP_NGOC_RONG);
                                 break;
-                            case 7: {
+                            case 7:
+                                CombineService.gI().openTabCombine(player, CombineService.DOI_DO_THAN_LINH);
+                                break;
+                            case 8: {
                                 boolean hasBt3 = InventoryService.gI().findItem(player, 1819);
                                 boolean hasBt2 = InventoryService.gI().findItemBongTaiCap2(player) || InventoryService.gI().findItem(player, 921);
                                 if (hasBt3) {
-                                    // Mở tab "Mở chỉ số BT3"
                                     CombineService.gI().openTabCombine(player, CombineService.NANG_CHI_SO_BONG_TAI3);
                                 } else if (hasBt2) {
-                                    // Mở tab "Nâng cấp lên BT3"
                                     CombineService.gI().openTabCombine(player, CombineService.NANG_CAP_BONG_TAI3);
                                 } else {
                                     Service.gI().sendThongBao(player, "Cần có Bông tai Porata cấp 2 hoặc 3.");
@@ -436,7 +440,7 @@ public class BaHatMit extends Npc {
                         }
                     } else if (player.idMark.getIndexMenu() == ConstNpc.MENU_START_COMBINE) {
                         switch (player.combineNew.typeCombine) {
-                            case CombineService.NANG_CAP_BONG_TAI3, CombineService.NANG_CHI_SO_BONG_TAI3, CombineService.NANG_CAP_BONG_TAI, CombineService.NANG_CHI_SO_BONG_TAI, CombineService.LAM_PHEP_NHAP_DA, CombineService.NHAP_NGOC_RONG, CombineService.GIAM_DINH_SACH, CombineService.TAY_SACH, CombineService.NANG_CAP_SACH_TUYET_KY, CombineService.HOI_PHUC_SACH, CombineService.PHAN_RA_SACH -> {
+                            case CombineService.NANG_CAP_BONG_TAI3, CombineService.NANG_CHI_SO_BONG_TAI3, CombineService.NANG_CAP_BONG_TAI, CombineService.NANG_CHI_SO_BONG_TAI, CombineService.LAM_PHEP_NHAP_DA, CombineService.NHAP_NGOC_RONG, CombineService.GIAM_DINH_SACH, CombineService.TAY_SACH, CombineService.NANG_CAP_SACH_TUYET_KY, CombineService.HOI_PHUC_SACH, CombineService.PHAN_RA_SACH, CombineService.DOI_DO_THAN_LINH -> {
                                 if (select == 0) {
                                     CombineService.gI().startCombine(player);
                                 }

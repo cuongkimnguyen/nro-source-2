@@ -850,23 +850,274 @@ Giả sử quái có:
 }
 
 /* ─────────────────────────────────────────────
+   TAB: ĐỔI ĐỒ THẦN LINH
+───────────────────────────────────────────── */
+function TabDoiDoThanLinh() {
+  return (
+    <div style={s.body}>
+      <aside style={s.toc}>
+        <p style={s.tocTitle}>Mục lục</p>
+        <ul style={s.tocList}>
+          <TocItem href="#ddtl-gioi-thieu">Giới Thiệu</TocItem>
+          <TocItem href="#ddtl-dieu-kien">Điều Kiện</TocItem>
+          <TocItem href="#ddtl-npc">Vị Trí NPC</TocItem>
+          <TocItem href="#ddtl-cach-doi">Cách Đổi</TocItem>
+          <TocItem href="#ddtl-ket-qua">Kết Quả Nhận Được</TocItem>
+          <TocItem href="#ddtl-luu-y">Lưu Ý Quan Trọng</TocItem>
+        </ul>
+      </aside>
+
+      <article style={s.article}>
+
+        <Section id="ddtl-gioi-thieu" title="Đổi Đồ Thần Linh — Lấy Đồ Kích Hoạt">
+          <Callout color="blue">
+            Hệ thống cho phép bạn <strong>đổi 5 món Đồ Thần Linh bất kỳ</strong> lấy{' '}
+            <strong>1 món Đồ Kích Hoạt ngẫu nhiên</strong> — bộ trang bị gắn sẵn hiệu ứng set
+            mà không cần phải ghép thêm Sách Kỹ Năng.
+          </Callout>
+          <p style={s.p}>
+            Đây là cách tái chế những món Đồ Thần Linh dư thừa hoặc không phù hợp hành tinh
+            của bạn, đổi lấy cơ hội nhận trang bị set có giá trị cao hơn.
+          </p>
+        </Section>
+
+        <Section id="ddtl-dieu-kien" title="Điều Kiện Tham Gia">
+          <SubSection title="Vật phẩm cần chuẩn bị">
+            <Table
+              headers={['Vật phẩm', 'Số lượng', 'Mô tả']}
+              rows={[
+                [
+                  <span><Tag color="yellow">Đồ Thần Linh</Tag> (ID 555–567)</span>,
+                  '5 món',
+                  'Bất kỳ loại nào trong 13 loại đồ thần linh — áo, quần, găng, giày, nhẫn của cả 3 hành tinh'
+                ],
+              ]}
+            />
+            <Note>
+              Không yêu cầu cùng loại, cùng hành tinh hay cùng bộ. 5 món bất kỳ trong phạm vi ID 555–567 đều được chấp nhận.
+            </Note>
+          </SubSection>
+
+          <SubSection title="Các loại Đồ Thần Linh hợp lệ">
+            <Table
+              headers={['ID', 'Tên', 'Hành Tinh', 'Loại']}
+              rows={[
+                ['555', 'Áo Thần Linh Trái Đất',    <Tag color="green">Trái Đất</Tag>, 'Áo'],
+                ['556', 'Quần Thần Linh Trái Đất',  <Tag color="green">Trái Đất</Tag>, 'Quần'],
+                ['557', 'Áo Thần Linh Namek',        <Tag color="blue">Namek</Tag>,    'Áo'],
+                ['558', 'Quần Thần Linh Namek',      <Tag color="blue">Namek</Tag>,    'Quần'],
+                ['559', 'Áo Thần Linh Xayda',        <Tag color="red">Xayda</Tag>,     'Áo'],
+                ['560', 'Quần Thần Linh Xayda',      <Tag color="red">Xayda</Tag>,     'Quần'],
+                ['561', 'Nhẫn Thần Linh',            <Tag color="gray">Chung</Tag>,    'Nhẫn'],
+                ['562', 'Găng Thần Linh Trái Đất',  <Tag color="green">Trái Đất</Tag>, 'Găng'],
+                ['563', 'Giày Thần Linh Trái Đất',  <Tag color="green">Trái Đất</Tag>, 'Giày'],
+                ['564', 'Găng Thần Linh Namek',      <Tag color="blue">Namek</Tag>,    'Găng'],
+                ['565', 'Giày Thần Linh Namek',      <Tag color="blue">Namek</Tag>,    'Giày'],
+                ['566', 'Găng Thần Linh Xayda',      <Tag color="red">Xayda</Tag>,     'Găng'],
+                ['567', 'Giày Thần Linh Xayda',      <Tag color="red">Xayda</Tag>,     'Giày'],
+              ]}
+            />
+          </SubSection>
+
+          <SubSection title="Yêu cầu khác">
+            <Table
+              headers={['Yêu cầu', 'Chi tiết']}
+              rows={[
+                ['Hành trang', 'Còn ít nhất 1 ô trống để nhận đồ kết quả'],
+                ['Vị trí',     'Phải đang ở đảo Kame và gặp NPC Bà Hạt Mít'],
+                ['Phí đổi',    'Không tốn phí zeni hay item khác — chỉ cần 5 đồ thần linh'],
+              ]}
+            />
+          </SubSection>
+        </Section>
+
+        <Section id="ddtl-npc" title="Vị Trí NPC Bà Hạt Mít">
+          <Callout color="green">
+            NPC <strong>Bà Hạt Mít</strong> nằm tại <strong>Đảo Kame</strong> — bạn có thể tìm
+            gặp bà ở các map sau:
+          </Callout>
+          <Table
+            headers={['Map ID', 'Tên Map']}
+            rows={[
+              ['42', 'Đảo Kame — Khu vực chính'],
+              ['43', 'Đảo Kame — Khu vực 2'],
+              ['44', 'Đảo Kame — Khu vực 3'],
+              ['84', 'Đảo Kame — Khu vực 4'],
+            ]}
+          />
+          <Note>
+            Bà Hạt Mít có nhiều chức năng khác nhau. Chọn đúng menu <strong>"Đổi Đồ Thần Linh"</strong> để vào hệ thống đổi.
+          </Note>
+        </Section>
+
+        <Section id="ddtl-cach-doi" title="Cách Đổi — Hướng Dẫn Từng Bước">
+          <PipelineStep num="1" title="Đến gặp Bà Hạt Mít tại đảo Kame">
+            Di chuyển đến bất kỳ map nào trong 4 map của đảo Kame (ID 42, 43, 44, 84) và bấm
+            vào NPC <strong>Bà Hạt Mít</strong> để mở menu.
+          </PipelineStep>
+
+          <PipelineStep num="2" title='Chọn "Đổi Đồ Thần Linh" trong menu'>
+            Trong danh sách menu của Bà Hạt Mít, chọn mục{' '}
+            <Tag color="yellow">Đổi Đồ Thần Linh</Tag>. Giao diện tab kết hợp sẽ mở ra.
+          </PipelineStep>
+
+          <PipelineStep num="3" title="Chọn 5 món Đồ Thần Linh từ hành trang">
+            Tab kết hợp hiển thị hành trang của bạn. Nhấn vào từng món đồ thần linh (ID 555–567)
+            để đặt vào ô đổi. Bạn phải chọn <strong>đúng 5 món</strong> — không hơn, không kém.
+          </PipelineStep>
+
+          <PipelineStep num="4" title='Bấm "Đổi" để xác nhận'>
+            Sau khi đã chọn đủ 5 món, nhấn nút <Tag color="green">Đổi</Tag> trong hộp thoại
+            xác nhận. Nếu muốn hủy, nhấn <Tag color="gray">Hủy</Tag> — đồ của bạn sẽ không bị
+            mất.
+          </PipelineStep>
+
+          <PipelineStep num="5" title="Nhận đồ kích hoạt ngẫu nhiên">
+            Hệ thống tự động xóa 5 đồ thần linh và trao ngay <strong>1 món Đồ Kích Hoạt</strong>{' '}
+            vào hành trang. Hiệu ứng đổi thành công sẽ xuất hiện trên màn hình.
+          </PipelineStep>
+
+          <Callout color="yellow">
+            <strong>Lưu ý khi chọn đồ:</strong> Chỉ những vật phẩm có ID trong khoảng 555–567 mới
+            được chấp nhận. Nếu bạn chọn sai hoặc chọn chưa đủ 5 món, hệ thống sẽ thông báo và
+            không thực hiện đổi.
+          </Callout>
+        </Section>
+
+        <Section id="ddtl-ket-qua" title="Kết Quả Nhận Được">
+          <p style={s.p}>
+            Đồ Kích Hoạt nhận được là trang bị thuộc một trong các bộ set của game, được gắn sẵn{' '}
+            <strong>hiệu ứng set (SKH)</strong> — bạn không cần dùng thêm Sách Kỹ Năng để kích hoạt.
+          </p>
+
+          <SubSection title="Loại trang bị có thể nhận">
+            <Table
+              headers={['Slot', 'Mô tả']}
+              rows={[
+                ['Áo',        'Trang bị thân trên — đồ của cả 3 hành tinh'],
+                ['Quần',      'Trang bị thân dưới — đồ của cả 3 hành tinh'],
+                ['Găng tay',  'Trang bị tay — đồ của cả 3 hành tinh'],
+                ['Giày',      'Trang bị chân — đồ của cả 3 hành tinh'],
+                ['Nhẫn / Rada', 'Trang bị phụ — dùng chung cho tất cả hành tinh'],
+              ]}
+            />
+          </SubSection>
+
+          <SubSection title="Hành tinh của đồ nhận được">
+            <Callout color="blue">
+              Đồ kích hoạt có thể thuộc <strong>bất kỳ hành tinh nào</strong> trong 3 hành tinh:{' '}
+              <Tag color="green">Trái Đất</Tag> <Tag color="blue">Namek</Tag>{' '}
+              <Tag color="red">Xayda</Tag> — không phụ thuộc vào hành tinh nhân vật của bạn.
+            </Callout>
+            <p style={s.p}>
+              Nhân vật Trái Đất vẫn có thể nhận đồ Namek hoặc Xayda, và ngược lại.
+              Đây là cơ hội để thu thập đồ kích hoạt đa dạng hành tinh nhằm phục vụ
+              nhiều chiến lược khác nhau.
+            </p>
+          </SubSection>
+
+          <SubSection title="Đặc điểm của đồ nhận được">
+            <Table
+              headers={['Đặc điểm', 'Chi tiết']}
+              rows={[
+                ['Hiệu ứng set', 'Gắn sẵn — không cần thêm SKH'],
+                ['Chỉ số',       'Đồ shop chuẩn của loại trang bị đó'],
+                ['Giao dịch',    <span><Tag color="red">Không thể giao dịch</Tag> — không thể bán, tặng hay đặt vào shop</span>],
+                ['Rớt khi chết', 'Theo cơ chế rớt đồ thông thường của game'],
+              ]}
+            />
+          </SubSection>
+        </Section>
+
+        <Section id="ddtl-luu-y" title="Lưu Ý Quan Trọng">
+          <Callout color="red">
+            <strong>Không thể hoàn tác!</strong> Sau khi bấm "Đổi" và xác nhận, 5 món đồ thần
+            linh sẽ bị xóa vĩnh viễn. Hãy chắc chắn bạn muốn đổi trước khi xác nhận.
+          </Callout>
+
+          <div style={{ marginTop: 16, display: 'flex', flexDirection: 'column', gap: 10 }}>
+            <div style={s.pipeStep}>
+              <div style={{ ...s.pipeNum, background: '#fcc419', color: '#000' }}>!</div>
+              <div style={{ flex: 1 }}>
+                <div style={s.pipeTitle}>Đồ nhận được không giao dịch được</div>
+                <div style={s.pipeSub}>
+                  Item đổi ra mang thuộc tính <strong>không thể giao dịch</strong>. Bạn không thể
+                  bán, tặng hay đăng shop. Hãy cân nhắc kỹ trước khi đổi nếu bạn không có nhu cầu
+                  dùng chính mình.
+                </div>
+              </div>
+            </div>
+
+            <div style={s.pipeStep}>
+              <div style={{ ...s.pipeNum, background: '#51cf66' }}>✓</div>
+              <div style={{ flex: 1 }}>
+                <div style={s.pipeTitle}>5 đồ thần linh có thể khác loại nhau hoàn toàn</div>
+                <div style={s.pipeSub}>
+                  Bạn có thể kết hợp tự do: 2 áo + 1 quần + 1 giày + 1 nhẫn, hay bất kỳ
+                  tổ hợp nào miễn là đủ 5 món trong phạm vi ID 555–567.
+                </div>
+              </div>
+            </div>
+
+            <div style={s.pipeStep}>
+              <div style={{ ...s.pipeNum, background: '#74c0fc' }}>i</div>
+              <div style={{ flex: 1 }}>
+                <div style={s.pipeTitle}>Hành trang phải có ô trống</div>
+                <div style={s.pipeSub}>
+                  Nếu hành trang đầy, hệ thống sẽ từ chối thực hiện đổi và thông báo cho bạn.
+                  Hãy dọn trống ít nhất 1 ô trước khi tiến hành.
+                </div>
+              </div>
+            </div>
+
+            <div style={s.pipeStep}>
+              <div style={{ ...s.pipeNum, background: '#ff6b6b' }}>?</div>
+              <div style={{ flex: 1 }}>
+                <div style={s.pipeTitle}>Kết quả hoàn toàn ngẫu nhiên</div>
+                <div style={s.pipeSub}>
+                  Hành tinh, loại trang bị, và bộ set của đồ nhận được đều được chọn ngẫu nhiên.
+                  Không có cách nào để ảnh hưởng đến kết quả. Mỗi lần đổi là một cơ hội độc lập.
+                </div>
+              </div>
+            </div>
+          </div>
+        </Section>
+
+        <div style={s.cta}>
+          <p style={{ color: 'var(--text-muted)', marginBottom: 12 }}>
+            Cần thêm Đồ Thần Linh? Săn boss khó tại các map sự kiện để tích lũy!
+          </p>
+          <Link to="/register" className="btn btn-primary" style={{ fontSize: 14 }}>
+            Tạo tài khoản ngay
+          </Link>
+        </div>
+
+      </article>
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────────
    Main page — có tab navigation
 ───────────────────────────────────────────── */
 const TABS = [
-  { key: 'boss-drop',   label: 'Boss & Tỷ lệ Rơi Đồ' },
-  { key: 'damage-calc', label: 'Cơ chế Tính Sát Thương' },
+  { key: 'boss-drop',      label: 'Boss & Tỷ lệ Rơi Đồ' },
+  { key: 'damage-calc',    label: 'Cơ chế Tính Sát Thương' },
+  { key: 'doi-do-than-linh', label: 'Đổi Đồ Thần Linh' },
 ];
 
 export default function GameGuide() {
   const [activeTab, setActiveTab] = useState('boss-drop');
 
   const heroTitles = {
-    'boss-drop':   'Cơ chế Boss & Tỷ lệ Rơi Đồ',
-    'damage-calc': 'Cơ chế Tính Sát Thương',
+    'boss-drop':         'Cơ chế Boss & Tỷ lệ Rơi Đồ',
+    'damage-calc':       'Cơ chế Tính Sát Thương',
+    'doi-do-than-linh':  'Đổi Đồ Thần Linh',
   };
   const heroSubs = {
-    'boss-drop':   'Tổng hợp đầy đủ từ source code — HP, dame, tỷ lệ drop vật phẩm, Đồ Thần Linh, Ngọc Rồng, Kachi Vua và cơ chế đặc biệt của từng boss.',
-    'damage-calc': 'Giải thích bằng ngôn ngữ bình thường: sức đánh cơ bản tính thế nào, 1 đòn đánh đi qua bao nhiêu bước, kỹ năng nào tính dame theo cơ chế riêng.',
+    'boss-drop':        'Tổng hợp đầy đủ từ source code — HP, dame, tỷ lệ drop vật phẩm, Đồ Thần Linh, Ngọc Rồng, Kachi Vua và cơ chế đặc biệt của từng boss.',
+    'damage-calc':      'Giải thích bằng ngôn ngữ bình thường: sức đánh cơ bản tính thế nào, 1 đòn đánh đi qua bao nhiêu bước, kỹ năng nào tính dame theo cơ chế riêng.',
+    'doi-do-than-linh': 'Đem 5 món Đồ Thần Linh bất kỳ đến Bà Hạt Mít tại đảo Kame, đổi lấy 1 món Đồ Kích Hoạt ngẫu nhiên — không giới hạn hành tinh.',
   };
 
   return (
@@ -899,8 +1150,9 @@ export default function GameGuide() {
       </div>
 
       {/* ── Tab content ── */}
-      {activeTab === 'boss-drop'   && <TabBossDrop />}
-      {activeTab === 'damage-calc' && <TabDamageCalc />}
+      {activeTab === 'boss-drop'         && <TabBossDrop />}
+      {activeTab === 'damage-calc'       && <TabDamageCalc />}
+      {activeTab === 'doi-do-than-linh'  && <TabDoiDoThanLinh />}
     </div>
   );
 }
