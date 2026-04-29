@@ -1138,8 +1138,7 @@ public class InventoryService {
     }
 
     public boolean x99ThucAn(Player player) {
-        // Chấp nhận cả đồ ăn thật (663-667) và phiếu ăn nhanh (1805)
-        Item doAn = player.inventory.itemsBag.stream().filter(it -> it != null && it.template != null && (it.template.id == 663 || it.template.id == 664 || it.template.id == 665 || it.template.id == 666 || it.template.id == 667 || it.template.id == 1805) && it.quantity >= 99).findFirst().orElse(null);
+        Item doAn = player.inventory.itemsBag.stream().filter(it -> it != null && it.template != null && (it.template.id == 663 || it.template.id == 664 || it.template.id == 665 || it.template.id == 666 || it.template.id == 667) && it.quantity >= 99).findFirst().orElse(null);
         return doAn != null;
     }
 

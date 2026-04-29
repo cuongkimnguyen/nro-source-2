@@ -1,11 +1,7 @@
 package nro.models.npc_list;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 import nro.models.consts.ConstNpc;
 import nro.models.item.Item;
 import nro.models.npc.Npc;
@@ -94,6 +90,11 @@ public class Bill extends Npc {
                             doiNhanhItem(player);
                         }
                     }
+                    case 100 -> {
+                        if (select == 0 && InventoryService.gI().canOpenBillShop(player)) {
+                            ShopService.gI().opendShop(player, "BILL", true);
+                        }
+                    }
                 }
             }
 
@@ -113,7 +114,6 @@ public class Bill extends Npc {
 
     private void doiNhanhItem(Player player) {
         int[] itemIds = {1798, 1799, 1800, 1801, 1802};
-        Set<Integer> itemIdSet = Arrays.stream(itemIds).boxed().collect(Collectors.toSet());
         int total1805 = 0;
 
         for (int id : itemIds) {
