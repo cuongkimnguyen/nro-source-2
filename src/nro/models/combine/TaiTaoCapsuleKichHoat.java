@@ -25,6 +25,10 @@ public class TaiTaoCapsuleKichHoat {
     private static final int REQUIRED_KHOANG = 3;
     private static final int REQUIRED_CAPSULE = 1;
 
+    private static final int OUTPUT_ITEM_ID = 1655;
+    private static final int OUTPUT_OPTION_ID = 30;
+    private static final int OUTPUT_OPTION_PARAM = 1;
+
     public static void showInfoCombine(Player player) {
         if (player.combineNew.itemsCombine.isEmpty()) {
             CombineService.gI().baHatMit.createOtherMenu(player, ConstNpc.IGNORE_MENU, "Cần đặt đủ vật phẩm!", "Đóng");
@@ -35,6 +39,7 @@ public class TaiTaoCapsuleKichHoat {
         int countVatLieu2 = 0;
 
         for (Item item : player.combineNew.itemsCombine) {
+            if (item == null || item.template == null) continue;
             if (item.template.id == KHOANG_TAI_CHE_ID) {
                 countKhoang += item.quantity;
             } else if (item.template.id == CAPSULE_ID) {
@@ -77,6 +82,7 @@ public class TaiTaoCapsuleKichHoat {
         int countCapsule = 0;
 
         for (Item item : player.combineNew.itemsCombine) {
+            if (item == null || item.template == null) continue;
             if (item.template.id == KHOANG_TAI_CHE_ID) {
                 countKhoang += item.quantity;
             } else if (item.template.id == CAPSULE_ID) {
@@ -94,15 +100,22 @@ public class TaiTaoCapsuleKichHoat {
             return;
         }
 
-        player.inventory.gold -= GOLD_TAI_TAO;
+        nro.models.player_system.Template.ItemTemplate outputTemplate = ItemService.gI().getTemplate(OUTPUT_ITEM_ID);
+        if (outputTemplate == null) {
+            Service.gI().sendThongBao(player, "Lỗi hệ thống, vui lòng báo admin!");
+            return;
+        }
+
+        // Trừ vật liệu trước, vàng sau để tránh mất vàng nếu xảy ra lỗi
         removeItem(player, KHOANG_TAI_CHE_ID, REQUIRED_KHOANG);
         removeItem(player, CAPSULE_ID, REQUIRED_CAPSULE);
+        player.inventory.gold -= GOLD_TAI_TAO;
 
         if (Util.isTrue(RATIO_TAI_TAO, 100)) {
-            int itemId = 1655;
             Item newItem = new Item();
-            newItem.template = ItemService.gI().getTemplate(itemId);
+            newItem.template = outputTemplate;
             newItem.quantity = 1;
+            newItem.addOptionParam(OUTPUT_OPTION_ID, OUTPUT_OPTION_PARAM);
             InventoryService.gI().addItemBag(player, newItem);
 
             CombineService.gI().sendEffectSuccessCombine(player);

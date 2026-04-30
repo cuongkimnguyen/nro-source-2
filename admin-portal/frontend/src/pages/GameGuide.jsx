@@ -924,7 +924,7 @@ function TabDoiDoThanLinh() {
               headers={['Yêu cầu', 'Chi tiết']}
               rows={[
                 ['Hành trang', 'Còn ít nhất 1 ô trống để nhận đồ kết quả'],
-                ['Vị trí',     'Phải đang ở đảo Kame và gặp NPC Bà Hạt Mít'],
+                ['Vị trí',     'Phải đang ở làng (map 42/43/44/84) và gặp NPC Bà Hạt Mít bên cạnh làng'],
                 ['Phí đổi',    'Không tốn phí zeni hay item khác — chỉ cần 5 đồ thần linh'],
               ]}
             />
@@ -933,16 +933,16 @@ function TabDoiDoThanLinh() {
 
         <Section id="ddtl-npc" title="Vị Trí NPC Bà Hạt Mít">
           <Callout color="green">
-            NPC <strong>Bà Hạt Mít</strong> nằm tại <strong>Đảo Kame</strong> — bạn có thể tìm
-            gặp bà ở các map sau:
+            NPC <strong>Bà Hạt Mít</strong> nằm <strong>bên cạnh làng</strong> của 3 hành tinh —
+            bạn có thể tìm gặp bà ở các map sau:
           </Callout>
           <Table
             headers={['Map ID', 'Tên Map']}
             rows={[
-              ['42', 'Đảo Kame — Khu vực chính'],
-              ['43', 'Đảo Kame — Khu vực 2'],
-              ['44', 'Đảo Kame — Khu vực 3'],
-              ['84', 'Đảo Kame — Khu vực 4'],
+              ['42', 'Làng Trái Đất'],
+              ['43', 'Làng Namek'],
+              ['44', 'Làng Xayda'],
+              ['84', 'Làng (khu vực chung)'],
             ]}
           />
           <Note>
@@ -951,9 +951,9 @@ function TabDoiDoThanLinh() {
         </Section>
 
         <Section id="ddtl-cach-doi" title="Cách Đổi — Hướng Dẫn Từng Bước">
-          <PipelineStep num="1" title="Đến gặp Bà Hạt Mít tại đảo Kame">
-            Di chuyển đến bất kỳ map nào trong 4 map của đảo Kame (ID 42, 43, 44, 84) và bấm
-            vào NPC <strong>Bà Hạt Mít</strong> để mở menu.
+          <PipelineStep num="1" title="Đến gặp Bà Hạt Mít tại làng">
+            Di chuyển đến làng của bất kỳ hành tinh nào (map ID 42, 43, 44 hoặc 84) và bấm
+            vào NPC <strong>Bà Hạt Mít</strong> đứng bên cạnh làng để mở menu.
           </PipelineStep>
 
           <PipelineStep num="2" title='Chọn "Đổi Đồ Thần Linh" trong menu'>
@@ -1117,7 +1117,7 @@ export default function GameGuide() {
   const heroSubs = {
     'boss-drop':        'Tổng hợp đầy đủ từ source code — HP, dame, tỷ lệ drop vật phẩm, Đồ Thần Linh, Ngọc Rồng, Kachi Vua và cơ chế đặc biệt của từng boss.',
     'damage-calc':      'Giải thích bằng ngôn ngữ bình thường: sức đánh cơ bản tính thế nào, 1 đòn đánh đi qua bao nhiêu bước, kỹ năng nào tính dame theo cơ chế riêng.',
-    'doi-do-than-linh': 'Đem 5 món Đồ Thần Linh bất kỳ đến Bà Hạt Mít tại đảo Kame, đổi lấy 1 món Đồ Kích Hoạt ngẫu nhiên — không giới hạn hành tinh.',
+    'doi-do-than-linh': 'Đem 5 món Đồ Thần Linh bất kỳ đến Bà Hạt Mít bên cạnh làng (map 42/43/44/84), đổi lấy 1 món Đồ Kích Hoạt ngẫu nhiên — không giới hạn hành tinh.',
   };
 
   return (

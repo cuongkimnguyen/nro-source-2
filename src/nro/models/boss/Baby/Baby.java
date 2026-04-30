@@ -94,6 +94,9 @@ public class Baby extends Boss {
             Item optionalItem = ItemService.gI().createNewItem((short) dropOptional);
             Service.gI().dropItemMap(zone, optionalItemMap);
         }
+        // 100% rơi item 933 số lượng 8-15
+        ItemMap item933Map = new ItemMap(this.zone, 933, Util.nextInt(8, 15), x, y, plKill.id);
+        Service.gI().dropItemMap(zone, item933Map);
     }
 
     @Override

@@ -21,7 +21,7 @@ import nro.models.utils.TimeUtil;
 public class MajinBuuService {
 
     public static byte HOUR_OPEN_MAP_MABU = 12;
-    public static final int AVAILABLE = 13;
+    public static final int AVAILABLE = 2;
 
     private static MajinBuuService instance;
 

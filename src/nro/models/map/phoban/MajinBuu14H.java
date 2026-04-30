@@ -15,7 +15,7 @@ import nro.models.utils.TimeUtil;
 @Data
 public final class MajinBuu14H implements Runnable {
 
-    public static final int AVAILABLE = 7;
+    public static final int AVAILABLE = 2;
     public int id;
     public final List<Zone> zones;
 
