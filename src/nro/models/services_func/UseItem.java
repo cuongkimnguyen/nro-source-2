@@ -967,12 +967,9 @@ public class UseItem {
                     Service.gI().sendThongBao(player, "reward");
                     return;
                 }
-                int baseGoldAmount = 100 * level;
-                int randomFactor = Util.nextInt(-15, 15);
-                int goldAmount = baseGoldAmount + (baseGoldAmount * randomFactor / 100);
-
-                Item itemGold = ItemService.gI().createNewItem((short) 190);
-                itemGold.quantity = goldAmount * 1000;
+                int item457Quantity = (level == 12) ? Util.nextInt(100, 120) : (level >= 10) ? Util.nextInt(100, 110) : Util.nextInt(3, 9);
+                Item itemGold = ItemService.gI().createNewItem((short) 457);
+                itemGold.quantity = item457Quantity;
                 player.itemsWoodChest.add(itemGold);
                 if (level >= 9) {
                     int quantity = 100 + (level - 9) * 20;
@@ -1038,8 +1035,103 @@ public class UseItem {
                     int rand = Util.nextInt(0, 4);
                     Item dnc = ItemService.gI().createNewItem((short) (220 + rand));
                     dnc.itemOptions.add(new Item.ItemOption(71 - rand, 0));
-                    dnc.quantity = Util.nextInt(1, level * 2);  // Số lượng đá nâng cấp phụ thuộc vào cấp độ
-                    player.itemsWoodChest.add(dnc);  // Thêm đá nâng cấp vào phần thưởng            
+                    dnc.quantity = Util.nextInt(10, level * 20);  // Số lượng đá nâng cấp phụ thuộc vào cấp độ
+                    player.itemsWoodChest.add(dnc);  // Thêm đá nâng cấp vào phần thưởng
+                }
+
+                // Rương 9: 1 đồ kích hoạt ngẫu nhiên theo gender
+                if (level == 9) {
+                    short kichHoatId = (short) ItemService.gI().randTempItemKichHoat(player.gender);
+                    Item kichHoat = ItemService.gI().createNewItem(kichHoatId);
+                    List<Item.ItemOption> kichHoatOps = ItemService.gI().getListOptionItemShop(kichHoatId);
+                    if (kichHoatOps != null && !kichHoatOps.isEmpty()) {
+                        kichHoat.itemOptions.addAll(kichHoatOps);
+                    }
+                    int[] opsRand = ItemService.gI().randOptionItemKichHoat(player.gender);
+                    for (int opId : opsRand) {
+                        if (opId > 0) {
+                            kichHoat.itemOptions.add(new Item.ItemOption(opId, 0));
+                        }
+                    }
+                    kichHoat.itemOptions.add(new Item.ItemOption(30, 0));
+                    kichHoat.quantity = 1;
+                    player.itemsWoodChest.add(kichHoat);
+                }
+
+                // Rương 10: 1 đồ thần linh kích hoạt ngẫu nhiên theo gender
+                if (level == 10) {
+                    int[][] thanLinhByGender = {
+                        {555, 556, 561, 562, 563}, // Trái Đất
+                        {557, 558, 561, 564, 565}, // Namek
+                        {559, 560, 561, 566, 567}  // Xayda
+                    };
+                    int g = Math.min(player.gender, 2);
+                    short thanLinhId = (short) thanLinhByGender[g][Util.nextInt(0, 4)];
+                    Item thanLinh = ItemService.gI().createNewItem(thanLinhId);
+                    List<Item.ItemOption> thanLinhOps = ItemService.gI().getListOptionItemShop(thanLinhId);
+                    if (thanLinhOps != null && !thanLinhOps.isEmpty()) {
+                        thanLinh.itemOptions.addAll(thanLinhOps);
+                    }
+                    int[] thanLinhRandOps = ItemService.gI().randOptionItemKichHoat(player.gender);
+                    for (int opId : thanLinhRandOps) {
+                        if (opId > 0) {
+                            thanLinh.itemOptions.add(new Item.ItemOption(opId, 0));
+                        }
+                    }
+                    thanLinh.itemOptions.add(new Item.ItemOption(30, 0));
+                    thanLinh.quantity = 1;
+                    player.itemsWoodChest.add(thanLinh);
+                }
+
+                // Rương 11: 1 đồ huỷ diệt kích hoạt ngẫu nhiên theo gender
+                if (level == 11) {
+                    int[][] huyDietByGender = {
+                        {650, 651, 656, 657, 658}, // Trái Đất
+                        {652, 653, 656, 659, 660}, // Namek
+                        {654, 655, 656, 661, 662}  // Xayda
+                    };
+                    int g = Math.min(player.gender, 2);
+                    short huyDietId = (short) huyDietByGender[g][Util.nextInt(0, 4)];
+                    Item huyDiet = ItemService.gI().createNewItem(huyDietId);
+                    List<Item.ItemOption> huyDietOps = ItemService.gI().getListOptionItemShop(huyDietId);
+                    if (huyDietOps != null && !huyDietOps.isEmpty()) {
+                        huyDiet.itemOptions.addAll(huyDietOps);
+                    }
+                    int[] huyDietRandOps = ItemService.gI().randOptionItemKichHoat(player.gender);
+                    for (int opId : huyDietRandOps) {
+                        if (opId > 0) {
+                            huyDiet.itemOptions.add(new Item.ItemOption(opId, 0));
+                        }
+                    }
+                    huyDiet.itemOptions.add(new Item.ItemOption(30, 0));
+                    huyDiet.quantity = 1;
+                    player.itemsWoodChest.add(huyDiet);
+                }
+
+                // Rương 12: 1 đồ thiên sứ kích hoạt ngẫu nhiên theo gender
+                if (level == 12) {
+                    // slot: 0=áo, 1=quần, 2=găng, 3=giày, 4=nhẫn
+                    int[][] thienSuByGender = {
+                        {1048, 1051, 1054, 1057, 1060}, // Trái Đất
+                        {1049, 1052, 1055, 1058, 1061}, // Namek
+                        {1050, 1053, 1056, 1059, 1062}  // Xayda
+                    };
+                    int g = Math.min(player.gender, 2);
+                    short thienSuId = (short) thienSuByGender[g][Util.nextInt(0, 4)];
+                    Item thienSu = ItemService.gI().createNewItem(thienSuId);
+                    List<Item.ItemOption> thienSuOps = ItemService.gI().getListOptionItemShop(thienSuId);
+                    if (thienSuOps != null && !thienSuOps.isEmpty()) {
+                        thienSu.itemOptions.addAll(thienSuOps);
+                    }
+                    int[] thienSuRandOps = ItemService.gI().randOptionItemKichHoat(player.gender);
+                    for (int opId : thienSuRandOps) {
+                        if (opId > 0) {
+                            thienSu.itemOptions.add(new Item.ItemOption(opId, 0));
+                        }
+                    }
+                    thienSu.itemOptions.add(new Item.ItemOption(30, 0));
+                    thienSu.quantity = 1;
+                    player.itemsWoodChest.add(thienSu);
                 }
 
                 // Trừ 1 rương gỗ
@@ -1084,15 +1176,8 @@ public class UseItem {
         // Khởi tạo số ô trống cần thiết
         int requiredSlots = 0;
 
-        // Tính số lượng vàng
-        int baseGoldAmount = 100 * level;
-        int randomFactor = Util.nextInt(-15, 15);
-        int goldAmount = baseGoldAmount + (baseGoldAmount * randomFactor / 100);
-
-        // Vàng có ID 190, không tính vào số ô trống yêu cầu
-        if (goldAmount > 0) {
-            requiredSlots++;
-        }
+        // Item 457 (thoi vang) luon co
+        requiredSlots++;
 
         // Tính phần thưởng quần áo
         int clothesCount = 1;
@@ -1101,19 +1186,15 @@ public class UseItem {
         } else if (level >= 10 && level <= 12) {
             clothesCount = 3;
         }
-        // Đếm số phần thưởng quần áo
         requiredSlots += clothesCount;
 
         // Tính phần thưởng item hỗ trợ
-        int[] rewardItems = {17, 18, 19, 20, 380, 381, 382, 383, 384, 385, 1229};
         int rewardCount = 2;
-
         if (level >= 5 && level <= 8) {
             rewardCount = 3;
         } else if (level >= 10 && level <= 12) {
             rewardCount = 4;
         }
-        // Đếm phần thưởng item hỗ trợ
         requiredSlots += rewardCount;
 
         // Tính sao pha lê (Số lượng 2 nếu level > 9)
@@ -1123,6 +1204,11 @@ public class UseItem {
         // Tính đá nâng cấp (Số lượng 2 nếu level > 9)
         int dncCount = (level > 9) ? 2 : 1;
         requiredSlots += dncCount;
+
+        // Đồ đặc biệt theo cấp
+        if (level == 9 || level == 10 || level == 11 || level == 12) {
+            requiredSlots++;
+        }
 
         // Trả về tổng số ô trống cần thiết
         return requiredSlots;

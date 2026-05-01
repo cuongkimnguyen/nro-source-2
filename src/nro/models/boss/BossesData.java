@@ -1261,8 +1261,8 @@ public class BossesData {
             "Sói hẹc quyn", //name
             ConstPlayer.TRAI_DAT, //gender
             new short[]{394, 395, 396, -1, -1, -1}, //outfit {head, body, leg, bag, aura, eff}
-            1000, //dame
-            new int[]{10000}, //hp
+            10000, //dame
+            new int[]{100000}, //hp
             new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 79, 80, 81, 82, 83, 84, 92, 93, 94, 96, 97, 98, 99, 100, 102, 103, 104, 105, 106, 107, 108, 109, 110},
             new int[][]{
                 {Skill.KAMEJOKO, 7, 5000},
@@ -1278,8 +1278,8 @@ public class BossesData {
             "Ở dơ", //name
             ConstPlayer.TRAI_DAT, //gender
             new short[]{400, 401, 402, -1, -1, -1}, //outfit {head, body, leg, bag, aura, eff}
-            3000, //dame
-            new int[]{25000}, //hp
+            30000, //dame
+            new int[]{250000}, //hp
             new int[]{168}, //map join
             new int[][]{
                 {Skill.KAMEJOKO, 7, 5000},
@@ -1295,8 +1295,8 @@ public class BossesData {
             "Xinbatô", //name
             ConstPlayer.TRAI_DAT, //gender
             new short[]{359, 360, 361, -1, -1, -1}, //outfit {head, body, leg, bag, aura, eff}
-            6000, //dame
-            new int[]{50000}, //hp
+            60000, //dame
+            new int[]{500000}, //hp
             new int[]{168}, //map join
             new int[][]{
                 {Skill.KAMEJOKO, 7, 5000},
@@ -1312,8 +1312,8 @@ public class BossesData {
             "Cha pa", //name
             ConstPlayer.TRAI_DAT, //gender
             new short[]{362, 363, 364, -1, -1, -1}, //outfit {head, body, leg, bag, aura, eff}
-            9000, //dame
-            new int[]{100000}, //hp
+            90000, //dame
+            new int[]{1000000}, //hp
             new int[]{168}, //map join
             new int[][]{
                 {Skill.KAMEJOKO, 7, 5000},
@@ -1328,8 +1328,8 @@ public class BossesData {
             "Pon put", //name
             ConstPlayer.TRAI_DAT, //gender
             new short[]{365, 366, 367, -1, -1, -1}, //outfit {head, body, leg, bag, aura, eff}
-            10000, //dame
-            new int[]{250000}, //hp
+            100000, //dame
+            new int[]{2500000}, //hp
             new int[]{168}, //map join
             new int[][]{
                 {Skill.KAMEJOKO, 7, 5000},
@@ -1345,8 +1345,8 @@ public class BossesData {
             "Chan xư", //name
             ConstPlayer.TRAI_DAT, //gender
             new short[]{371, 372, 373, -1, -1, -1}, //outfit {head, body, leg, bag, aura, eff}
-            10000, //dame
-            new int[]{500000}, //hp
+            100000, //dame
+            new int[]{5000000}, //hp
             new int[]{168}, //map join
             new int[][]{
                 {Skill.KAMEJOKO, 7, 5000},
@@ -1362,8 +1362,8 @@ public class BossesData {
             "Tàu Pảy Pảy", //name
             ConstPlayer.TRAI_DAT, //gender
             new short[]{92, 93, 94, -1, -1, -1}, //outfit {head, body, leg, bag, aura, eff}
-            15000, //dame
-            new int[]{2000000}, //hp
+            150000, //dame
+            new int[]{20000000}, //hp
             new int[]{168}, //map join
             new int[][]{
                 {Skill.KAMEJOKO, 7, 5000},
@@ -1379,8 +1379,8 @@ public class BossesData {
             "Yamcha", //name
             ConstPlayer.TRAI_DAT, //gender
             new short[]{374, 375, 376, -1, -1, -1}, //outfit {head, body, leg, bag, aura, eff}
-            15000, //dame
-            new int[]{5000000}, //hp
+            150000, //dame
+            new int[]{50000000}, //hp
             new int[]{168}, //map join
             new int[][]{
                 {Skill.KAMEJOKO, 7, 5000},
@@ -1396,8 +1396,8 @@ public class BossesData {
             "PôCôLô", //name
             ConstPlayer.TRAI_DAT, //gender
             new short[]{9, 12, 13, -1, -1, -1}, //outfit {head, body, leg, bag, aura, eff}
-            50000, //dame
-            new int[]{100000000}, //hp
+            500000, //dame
+            new int[]{1_000_000_000}, //hp
             new int[]{168}, //map join
             new int[][]{
                 {Skill.KAMEJOKO, 7, 5000},
@@ -1413,8 +1413,8 @@ public class BossesData {
             "Jacky Chun", //name
             ConstPlayer.TRAI_DAT, //gender
             new short[]{356, 357, 358, -1, -1, -1}, //outfit {head, body, leg, bag, aura, eff}
-            20000, //dame
-            new int[]{25000000}, //hp
+            200000, //dame
+            new int[]{250000000}, //hp
             new int[]{168}, //map join
             new int[][]{
                 {Skill.KAMEJOKO, 7, 5000},
@@ -1430,8 +1430,8 @@ public class BossesData {
             "Thiên xin hăng", //name
             ConstPlayer.TRAI_DAT, //gender
             new short[]{368, 369, 370, -1, -1, -1}, //outfit {head, body, leg, bag, aura, eff}
-            22000, //dame
-            new int[]{75000000}, //hp
+            220000, //dame
+            new int[]{750000000}, //hp
             new int[]{168}, //map join
             new int[][]{
                 {Skill.KAMEJOKO, 7, 5000},
@@ -1463,8 +1463,8 @@ public class BossesData {
             "Liu Liu", //name
             ConstPlayer.TRAI_DAT, //gender
             new short[]{397, 398, 399, -1, -1, -1}, //outfit {head, body, leg, bag, aura, eff}
-            30000, //dame
-            new int[]{150000000}, //hp
+            300000, //dame
+            new int[]{1_500_000_000}, //hp
             new int[]{168}, //map join
             new int[][]{
                 {Skill.KAMEJOKO, 7, 5000},

@@ -1098,12 +1098,256 @@ function TabDoiDoThanLinh() {
 }
 
 /* ─────────────────────────────────────────────
+   TAB: ĐẠI HỘI VÕ THUẬT LẦN THỨ 23
+───────────────────────────────────────────── */
+function TabDHVT23() {
+  return (
+    <div style={s.body}>
+      <aside style={s.toc}>
+        <p style={s.tocTitle}>Mục lục</p>
+        <ul style={s.tocList}>
+          <TocItem href="#dhvt-tong-quan">Tổng Quan</TocItem>
+          <TocItem href="#dhvt-chi-phi">Chi Phí Thi Đấu</TocItem>
+          <TocItem href="#dhvt-boss">Danh Sách Boss</TocItem>
+          <TocItem href="#dhvt-ruong">Rương Gỗ — Phần Thưởng</TocItem>
+          <TocItem href="#dhvt-do-dac-biet">Đồ Đặc Biệt Theo Cấp</TocItem>
+          <TocItem href="#dhvt-luu-y">Lưu Ý</TocItem>
+        </ul>
+      </aside>
+
+      <article style={s.article}>
+
+        <Section id="dhvt-tong-quan" title="Đại Hội Võ Thuật Lần Thứ 23 — Tổng Quan">
+          <Callout color="blue">
+            Sự kiện đấu trường <strong>diễn ra bất kể ngày đêm</strong> tại map 129.
+            Người chơi thách đấu lần lượt 12 boss để leo cấp Rương Gỗ — phần thưởng tăng
+            theo số boss đã hạ. Mỗi ngày chỉ nhận thưởng <strong>1 lần</strong>.
+          </Callout>
+          <Table
+            headers={['Thông số', 'Giá trị']}
+            rows={[
+              ['Map',              '129 (Đấu Trường DHVT23)'],
+              ['NPC đăng ký',     'GhiDanh (map 129)'],
+              ['Thời gian / trận','3 phút (181 giây)'],
+              ['Số vòng',         '12 vòng (level 0 → 12)'],
+              ['Reset hàng ngày', 'Sau nửa đêm — level về 0, chi phí về mức khởi đầu'],
+              ['Phần thưởng',     'Rương Gỗ (ID 570) chứa loot theo cấp level'],
+            ]}
+          />
+        </Section>
+
+        <Section id="dhvt-chi-phi" title="Chi Phí Thi Đấu">
+          <p style={s.p}>
+            Mỗi lần thắng, phí tăng lên. Người chơi chọn thanh toán bằng <strong>Vàng</strong> hoặc <strong>Ngọc</strong>.
+          </p>
+          <Table
+            headers={['Trận', 'Vàng', 'Ngọc']}
+            rows={[
+              ['Trận 1 (level 0→1)',   '50,000',       '2'],
+              ['Trận 2 (level 1→2)',   '100,000',      '4'],
+              ['Trận 3 (level 2→3)',   '200,000',      '6'],
+              ['Trận 4 (level 3→4)',   '400,000',      '8'],
+              ['Trận 5 (level 4→5)',   '800,000',      '10'],
+              ['Trận 6 (level 5→6)',   '1,600,000',    '12'],
+              ['Trận 7 (level 6→7)',   '3,200,000',    '14'],
+              ['Trận 8 (level 7→8)',   '6,400,000',    '16'],
+              ['Trận 9 (level 8→9)',   '12,800,000',   '18'],
+              ['Trận 10 (level 9→10)', '25,600,000',   '20'],
+              ['Trận 11 (level 10→11)','51,200,000',   '22'],
+              ['Trận 12 (level 11→12)','102,400,000',  '24'],
+            ]}
+          />
+          <Note>Vàng nhân đôi mỗi trận. Ngọc cộng thêm 2 mỗi trận.</Note>
+        </Section>
+
+        <Section id="dhvt-boss" title="Danh Sách 12 Boss — Chỉ Số Hiện Tại">
+          <Callout color="yellow">
+            <strong>Đã cập nhật:</strong> HP và Dame đều tăng ×10 so với phiên bản cũ.
+          </Callout>
+          <Table
+            headers={['Vòng', 'Tên Boss', 'Dame', 'HP', 'Skill', 'Cơ Chế Đặc Biệt']}
+            rows={[
+              ['0',  'Sói Hẹc Quyn',   '10,000',    '100,000',       'Kamehameha Lv7 / Galick Lv7', '—'],
+              ['1',  'Ở Dơ',           '30,000',    '250,000',       'Kamehameha Lv7 / Galick Lv7', '—'],
+              ['2',  'Xinbatô',        '60,000',    '500,000',       'Kamehameha Lv7 / Galick Lv7', '—'],
+              ['3',  'Cha Pa',         '90,000',    '1,000,000',     'Kamehameha Lv7 / Galick Lv7', '—'],
+              ['4',  'Pon Put',        '100,000',   '2,500,000',     'Kamehameha Lv7 / Galick Lv7', '—'],
+              ['5',  'Chan Xư',        '100,000',   '5,000,000',     'Kamehameha Lv7 / Galick Lv7', <Tag color="yellow">Stun 10% / 10s</Tag>],
+              ['6',  'Tàu Pảy Pảy',   '150,000',   '20,000,000',    'Kamehameha Lv7 / Galick Lv7', '—'],
+              ['7',  'Yamcha',         '150,000',   '50,000,000',    'Kamehameha Lv7 / Galick Lv7', '—'],
+              ['8',  'Jacky Chun',     '200,000',   '250,000,000',   'Kamehameha Lv7 / Galick Lv7', '—'],
+              ['9',  'Thiên Xin Hăng', '220,000',   '750,000,000',   'Kamehameha Lv7 / Galick Lv7', <Tag color="red">Triệu hồi 4 Clone mỗi 30s</Tag>],
+              ['10', 'Liu Liu',        '300,000',   '1,500,000,000', 'Kamehameha Lv7 / Galick Lv7', '—'],
+              ['11', 'PôCôLô',        '500,000',   '1,000,000,000', 'Kamehameha Lv7 / Galick Lv7', '—'],
+            ]}
+          />
+          <SubSection title="Clone của Thiên Xin Hăng (Vòng 9)">
+            <Table
+              headers={['Thông số', 'Giá trị']}
+              rows={[
+                ['Số lượng clone', '4 bản sao, triệu hồi mỗi 30s'],
+                ['Dame clone',     '5,000'],
+                ['HP clone',       '20,000,000'],
+                ['Skill',          'Kamehameha Lv7 / Galick Lv7'],
+              ]}
+            />
+          </SubSection>
+        </Section>
+
+        <Section id="dhvt-ruong" title="Rương Gỗ — Phần Thưởng Theo Cấp">
+          <Callout color="green">
+            Sau khi thắng ≥ 1 vòng, chọn <strong>"Nhận thưởng Rương Cấp X"</strong> tại GhiDanh
+            để nhận item <strong>Rương Gỗ (ID 570)</strong> với option 72 = levelWoodChest.
+            Mỗi ngày chỉ nhận 1 lần.
+          </Callout>
+
+          <SubSection title="Bảng Phần Thưởng Tổng Hợp">
+            <Table
+              headers={['Cấp', 'Thỏi Vàng (ID 457)', 'Quần Áo', 'Item Hỗ Trợ (random)', 'Sao Pha Lê', 'Đá Nâng Cấp', 'Đồ Đặc Biệt', 'Bonus (Item 77)']}
+              rows={[
+                ['1–4',   '3–9 cái',     '1 món',  '2 món', '1',  'random(10, level×20)', '—',                         '—'],
+                ['5–8',   '3–9 cái',     '2 món',  '3 món', '1',  'random(10, level×20)', '—',                         '—'],
+                ['9',     '3–9 cái',     '1 món',  '2 món', '1',  'random(10, 180)',       <Tag color="blue">Đồ Kích Hoạt</Tag>,  '100 cái'],
+                ['10',    '100–110 cái', '3 món',  '4 món', '2',  'random(10, 200)',       <Tag color="yellow">Thần Linh</Tag>,   '120 cái'],
+                ['11',    '100–110 cái', '3 món',  '4 món', '2',  'random(10, 220)',       <Tag color="red">Huỷ Diệt</Tag>,      '140 cái'],
+                ['12',    '100–120 cái', '3 món',  '4 món', '2',  'random(10, 240)',       <Tag color="green">Thiên Sứ</Tag>,           '160 cái'],
+              ]}
+            />
+            <Note>Thỏi Vàng (ID 457) thay thế hoàn toàn Zeni (ID 190) ở mọi cấp. Đá nâng cấp tăng gấp 10 lần so với phiên bản cũ.</Note>
+          </SubSection>
+
+          <SubSection title="Pool Item Hỗ Trợ (chọn không trùng)">
+            <Table
+              headers={['Item ID', 'Số lượng per item']}
+              rows={[
+                ['17, 18, 19, 20', 'random(1, levelWoodChest)'],
+                ['380, 381, 382, 383, 384, 385', 'random(1, levelWoodChest)'],
+                ['1229', 'random(1, levelWoodChest)'],
+              ]}
+            />
+          </SubSection>
+
+          <SubSection title="Sao Pha Lê (ID 441–447)">
+            <Table
+              headers={['Cấp', 'Số lượng loại', 'Số lượng / loại', 'Option']}
+              rows={[
+                ['1–9',   '1 loại ngẫu nhiên', 'random(1, 3)', 'option 95+rand → 3 (rand=3,4) hoặc 5'],
+                ['10–12', '2 loại ngẫu nhiên', 'random(1, 3) mỗi loại', 'Tương tự'],
+              ]}
+            />
+          </SubSection>
+
+          <SubSection title="Đá Nâng Cấp (ID 220–224)">
+            <Table
+              headers={['Cấp', 'Số lượng loại', 'Số lượng / loại', 'Option']}
+              rows={[
+                ['1–9',   '1 loại', 'random(10, level×20)', 'option 71-rand'],
+                ['10–12', '2 loại', 'random(10, level×20) mỗi loại', 'option 71-rand'],
+              ]}
+            />
+          </SubSection>
+
+          <SubSection title="Số Ô Hành Trang Cần Trống">
+            <Table
+              headers={['Cấp', 'Ô cần trống']}
+              rows={[
+                ['1–4',  '6'],
+                ['5–8',  '8'],
+                ['9',    '8 (thêm 1 cho đồ kích hoạt)'],
+                ['10',   '12 (thêm 1 cho thần linh)'],
+                ['11',   '12 (thêm 1 cho huỷ diệt)'],
+                ['12',   '11'],
+              ]}
+            />
+          </SubSection>
+        </Section>
+
+        <Section id="dhvt-do-dac-biet" title="Đồ Đặc Biệt Theo Cấp Rương — Mới">
+          <Callout color="red">
+            Các món đồ đặc biệt đều được <strong>kích hoạt sẵn (option 30)</strong> và
+            chứa option từ shop. Gender của đồ <strong>khớp với gender nhân vật</strong>.
+          </Callout>
+
+          <SubSection title="Rương Cấp 9 — Đồ Kích Hoạt (randTempItemKichHoat)">
+            <p style={s.p}>
+              Chọn ngẫu nhiên 1 món từ bộ đồ kích hoạt theo gender, kèm option set ngẫu nhiên.
+            </p>
+            <Table
+              headers={['Gender', 'Áo', 'Quần', 'Găng', 'Giày', 'Nhẫn/Rada']}
+              rows={[
+                [<Tag color="green">Trái Đất</Tag>, '0 / 33', '6 / 35', '21 / 24', '27 / 30', '12 / 57'],
+                [<Tag color="blue">Namek</Tag>,     '1 / 41', '7 / 43', '22 / 46', '28 / 47', '12 / 57'],
+                [<Tag color="red">Xayda</Tag>,      '2 / 49', '8 / 51', '23 / 53', '29 / 55', '12 / 57'],
+              ]}
+            />
+            <Note>Loại slot được chọn ngẫu nhiên (10% rada, 23% găng, 23% quần, 23% áo, còn lại giày).</Note>
+          </SubSection>
+
+          <SubSection title="Rương Cấp 10 — Đồ Thần Linh Kích Hoạt">
+            <Table
+              headers={['Gender', 'Áo', 'Quần', 'Nhẫn', 'Găng', 'Giày']}
+              rows={[
+                [<Tag color="green">Trái Đất</Tag>, '555', '556', '561', '562', '563'],
+                [<Tag color="blue">Namek</Tag>,     '557', '558', '561', '564', '565'],
+                [<Tag color="red">Xayda</Tag>,      '559', '560', '561', '566', '567'],
+              ]}
+            />
+            <Note>Chọn ngẫu nhiên 1 trong 5 slot. Đồ được gắn option shop + option 30 (kích hoạt).</Note>
+          </SubSection>
+
+          <SubSection title="Rương Cấp 11 — Đồ Huỷ Diệt Kích Hoạt">
+            <Table
+              headers={['Gender', 'Áo', 'Quần', 'Nhẫn', 'Găng', 'Giày']}
+              rows={[
+                [<Tag color="green">Trái Đất</Tag>, '650', '651', '656', '657', '658'],
+                [<Tag color="blue">Namek</Tag>,     '652', '653', '656', '659', '660'],
+                [<Tag color="red">Xayda</Tag>,      '654', '655', '656', '661', '662'],
+              ]}
+            />
+            <Note>Chọn ngẫu nhiên 1 trong 5 slot. Đồ được gắn option shop + option 30 (kích hoạt).</Note>
+          </SubSection>
+
+          <SubSection title="Rương Cấp 12 — Đồ Thiên Sứ Kích Hoạt">
+            <Table
+              headers={['Gender', 'Áo', 'Quần', 'Găng', 'Giày', 'Nhẫn']}
+              rows={[
+                [<Tag color="green">Trái Đất</Tag>, '1048', '1051', '1054', '1057', '1060'],
+                [<Tag color="blue">Namek</Tag>,     '1049', '1052', '1055', '1058', '1061'],
+                [<Tag color="red">Xayda</Tag>,      '1050', '1053', '1056', '1059', '1062'],
+              ]}
+            />
+            <Note>Chọn ngẫu nhiên 1 trong 5 slot theo gender. Đồ được gắn option shop + option 30 (kích hoạt). Thỏi Vàng cấp 12: random(100, 120) cái.</Note>
+          </SubSection>
+        </Section>
+
+        <Section id="dhvt-luu-y" title="Lưu Ý Quan Trọng">
+          <Table
+            headers={['Điều kiện', 'Chi tiết']}
+            rows={[
+              ['Giới hạn ngày', 'Mỗi ngày chỉ nhận Rương Gỗ 1 lần — reset sau nửa đêm'],
+              ['Điều kiện nhận', 'Phải còn Rương Báu Vật trong hành trang trước khi thi đấu'],
+              ['Vô địch (cấp 12)', 'Không thể thi đấu thêm, chờ ngày mai reset'],
+              ['Thỏi Vàng (ID 457)', 'Cấp 1–9: 3–9 cái; cấp 10–11: 100–110 cái; cấp 12: 100–120 cái'],
+              ['Đồ đặc biệt', 'Cấp 9: Kích Hoạt | Cấp 10: Thần Linh | Cấp 11: Huỷ Diệt | Cấp 12: Thiên Sứ'],
+              ['Gender đồ', 'Đồ kích hoạt / thần linh / huỷ diệt luôn đúng gender nhân vật'],
+              ['Đá nâng cấp', 'Số lượng tăng gấp 10 so với phiên bản cũ'],
+            ]}
+          />
+        </Section>
+
+      </article>
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────────
    Main page — có tab navigation
 ───────────────────────────────────────────── */
 const TABS = [
   { key: 'boss-drop',      label: 'Boss & Tỷ lệ Rơi Đồ' },
   { key: 'damage-calc',    label: 'Cơ chế Tính Sát Thương' },
   { key: 'doi-do-than-linh', label: 'Đổi Đồ Thần Linh' },
+  { key: 'dhvt23',         label: 'ĐHVT Lần Thứ 23' },
 ];
 
 export default function GameGuide() {
@@ -1113,11 +1357,13 @@ export default function GameGuide() {
     'boss-drop':         'Cơ chế Boss & Tỷ lệ Rơi Đồ',
     'damage-calc':       'Cơ chế Tính Sát Thương',
     'doi-do-than-linh':  'Đổi Đồ Thần Linh',
+    'dhvt23':            'Đại Hội Võ Thuật Lần Thứ 23',
   };
   const heroSubs = {
     'boss-drop':        'Tổng hợp đầy đủ từ source code — HP, dame, tỷ lệ drop vật phẩm, Đồ Thần Linh, Ngọc Rồng, Kachi Vua và cơ chế đặc biệt của từng boss.',
     'damage-calc':      'Giải thích bằng ngôn ngữ bình thường: sức đánh cơ bản tính thế nào, 1 đòn đánh đi qua bao nhiêu bước, kỹ năng nào tính dame theo cơ chế riêng.',
     'doi-do-than-linh': 'Đem 5 món Đồ Thần Linh bất kỳ đến Bà Hạt Mít bên cạnh làng (map 42/43/44/84), đổi lấy 1 món Đồ Kích Hoạt ngẫu nhiên — không giới hạn hành tinh.',
+    'dhvt23':           '12 vòng boss đấu trường tại map 129 — HP & dame ×10, Rương Gỗ cấp cao rơi đồ Kích Hoạt / Thần Linh / Huỷ Diệt, Thỏi Vàng thay Zeni, Đá Nâng Cấp ×10.',
   };
 
   return (
@@ -1153,6 +1399,7 @@ export default function GameGuide() {
       {activeTab === 'boss-drop'         && <TabBossDrop />}
       {activeTab === 'damage-calc'       && <TabDamageCalc />}
       {activeTab === 'doi-do-than-linh'  && <TabDoiDoThanLinh />}
+      {activeTab === 'dhvt23'            && <TabDHVT23 />}
     </div>
   );
 }

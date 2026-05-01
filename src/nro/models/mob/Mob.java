@@ -767,7 +767,7 @@ public class Mob {
                 tileDrop = (int) (baseTileDrop * 1.15);
             }
 
-            if (Util.isTrue(tileDrop, 9999)) {
+            if (Util.isTrue(tileDrop, 49995)) {
                 int soLuong = 1;
                 list.add(new ItemMap(zone, 1634, soLuong, x, yEnd, player.id));
             }
@@ -823,7 +823,7 @@ public class Mob {
             }
 
             // Check rơi đồ kích hoạt
-            if (Util.isTrue((int) tileDrop, 9999)) {
+            if (Util.isTrue((int) tileDrop, 49995)) {
                 short itTemp = (short) ItemService.gI().randTempItemKichHoat(player.gender);
                 ItemMap it = new ItemMap(zone, itTemp, 1, x, yEnd, player.id);
                 List<Item.ItemOption> ops = ItemService.gI().getListOptionItemShop(itTemp);
@@ -870,7 +870,7 @@ public class Mob {
             }
 
             // Check rơi đồ kích hoạt
-            if (Util.isTrue((int) tileDrop, 9999)) {
+            if (Util.isTrue((int) tileDrop, 49995)) {
                 short itTemp = (short) ItemService.gI().randTempItemKichHoat(player.gender);
                 ItemMap it = new ItemMap(zone, itTemp, 1, x, yEnd, player.id);
                 List<Item.ItemOption> ops = ItemService.gI().getListOptionItemShop(itTemp);
@@ -892,7 +892,7 @@ public class Mob {
         }
 
         //========================Đồ Sao Khác Vải Thô========================
-        if (((Util.isTrue(1, 8000))) && MapService.gI().isMapUpSKH(mapid)) {
+        if (((Util.isTrue(1, 40000))) && MapService.gI().isMapUpSKH(mapid)) {
             int baseDropRate = 1;
             if (player.itemTime.isUseCoBonLa) {
                 baseDropRate = 1;
@@ -900,7 +900,7 @@ public class Mob {
                 baseDropRate = (int) (baseDropRate * (1 + coBonLaBonus / 100.0));
             }
 
-            if (Util.isTrue(baseDropRate, 19999)) {
+            if (Util.isTrue(baseDropRate, 99995)) {
                 short itTemp = (short) ItemService.gI().randTempItemDoSao(player.gender);
                 ItemMap it = new ItemMap(zone, itTemp, 1, x, yEnd, player.id);
                 List<Item.ItemOption> ops = ItemService.gI().getListOptionItemShop(itTemp);
@@ -933,7 +933,7 @@ public class Mob {
 
         // END
         //========================Đồ Sao 3 Map Đầu========================
-        if (((Util.isTrue(50, 50000))) && MapService.gI().isMapUpSKH(mapid)) {
+        if (((Util.isTrue(50, 250000))) && MapService.gI().isMapUpSKH(mapid)) {
             int baseRate = 50;
             if (player.itemTime.isUseCoBonLa) {
                 baseRate = (int) (baseRate * (1 + 0.15));
