@@ -11,5 +11,6 @@ public class LiuLiu extends The23rdMartialArtCongress {
     public LiuLiu(Player player) throws Exception {
         super(PHOBAN, BossID.LIU_LIU, BossesData.LIU_LIU);
         this.playerAtt = player;
+        this.nPoint.tlNeDon = 400; // 40% né đòn (400/1000)
     }
 }

@@ -1401,7 +1401,10 @@ public class BossesData {
             new int[]{168}, //map join
             new int[][]{
                 {Skill.KAMEJOKO, 7, 5000},
-                {Skill.GALICK, 7, 1000},},
+                {Skill.GALICK, 7, 1000},
+                {Skill.DE_TRUNG, 7, 5000},
+                {Skill.KHIEN_NANG_LUONG, 5, 5000},
+                {Skill.THAI_DUONG_HA_SAN, 7, 5000},},
             //skill
             new String[]{}, //text chat 1
             new String[]{}, //text chat 2
@@ -1418,7 +1421,8 @@ public class BossesData {
             new int[]{168}, //map join
             new int[][]{
                 {Skill.KAMEJOKO, 7, 5000},
-                {Skill.GALICK, 7, 1000},},
+                {Skill.GALICK, 7, 1000},
+                {Skill.DICH_CHUYEN_TUC_THOI, 7, 5000},},
             //skill
             new String[]{}, //text chat 1
             new String[]{}, //text chat 2
@@ -1435,7 +1439,8 @@ public class BossesData {
             new int[]{168}, //map join
             new int[][]{
                 {Skill.KAMEJOKO, 7, 5000},
-                {Skill.GALICK, 7, 1000},},
+                {Skill.GALICK, 7, 1000},
+                {Skill.THAI_DUONG_HA_SAN, 7, 5000},},
             //skill
             new String[]{}, //text chat 1
             new String[]{}, //text chat 2
@@ -1468,7 +1473,9 @@ public class BossesData {
             new int[]{168}, //map join
             new int[][]{
                 {Skill.KAMEJOKO, 7, 5000},
-                {Skill.GALICK, 7, 1000},},
+                {Skill.GALICK, 7, 1000},
+                {Skill.THAI_DUONG_HA_SAN, 6, 5000},
+                {Skill.THOI_MIEN, 5, 5000},},
             //skill
             new String[]{}, //text chat 1
             new String[]{}, //text chat 2

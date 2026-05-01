@@ -11,5 +11,7 @@ public class JackyChun extends The23rdMartialArtCongress {
     public JackyChun(Player player) throws Exception {
         super(PHOBAN, BossID.JACKY_CHUN, BossesData.JACKY_CHUN);
         this.playerAtt = player;
+        this.nPoint.tlNeDon = 200; // 20% né đòn (200/1000)
+        this.nPoint.tlPST = 40;   // 40% phản sát thương
     }
 }

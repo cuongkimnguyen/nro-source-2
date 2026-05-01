@@ -6,6 +6,7 @@ import nro.models.boss.BossesData;
 import static nro.models.consts.BossType.PHOBAN;
 import nro.models.player.Player;
 import nro.models.services.EffectSkillService;
+import nro.models.services.Service;
 import nro.models.utils.Util;
 
 public class ThienXinHang extends The23rdMartialArtCongress {
@@ -15,6 +16,7 @@ public class ThienXinHang extends The23rdMartialArtCongress {
     public ThienXinHang(Player player) throws Exception {
         super(PHOBAN, BossID.THIEN_XIN_HANG, BossesData.THIEN_XIN_HANG);
         this.playerAtt = player;
+        this.nPoint.tlNeDon = 400; // 40% né đòn (400/1000)
     }
 
     @Override
@@ -25,10 +27,18 @@ public class ThienXinHang extends The23rdMartialArtCongress {
                 lastTimePhanThan = System.currentTimeMillis();
                 phanThan();
             }
+            int hpBefore = playerAtt != null ? playerAtt.nPoint.hp : 0;
+            super.attack();
+            if (playerAtt != null && !playerAtt.isDie() && !this.isDie()) {
+                int dmgDealt = hpBefore - playerAtt.nPoint.hp;
+                if (dmgDealt > 0) {
+                    this.nPoint.addHp(dmgDealt / 5); // hút máu 20% dame
+                    Service.gI().Send_Info_NV(this);
+                }
+            }
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        super.attack();
     }
 
     private void phanThan() {
