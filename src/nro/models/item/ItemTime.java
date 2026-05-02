@@ -239,13 +239,13 @@ public class ItemTime {
             }
         }
         if (isUseNuocMia2) {
-            if (Util.canDoWithTime(lastTimeUseNuocMia1, TIME_NUOC_MIA2)) {
+            if (Util.canDoWithTime(lastTimeUseNuocMia2, TIME_NUOC_MIA2)) {
                 isUseNuocMia2 = false;
                 Service.gI().point(player);
             }
         }
         if (isUseNuocMia3) {
-            if (Util.canDoWithTime(lastTimeUseNuocMia1, TIME_NUOC_MIA3)) {
+            if (Util.canDoWithTime(lastTimeUseNuocMia3, TIME_NUOC_MIA3)) {
                 isUseNuocMia3 = false;
                 Service.gI().point(player);
             }

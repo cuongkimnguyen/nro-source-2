@@ -98,7 +98,7 @@ public class ItemTimeService {
         if (player.itemTime.isUseNuocMia2) {
             sendItemTime(player, 13463, (int) ((TIME_NUOC_MIA2 - (System.currentTimeMillis() - player.itemTime.lastTimeUseNuocMia2)) / 1000));
         }
-        if (player.itemTime.isUseNuocMia2) {
+        if (player.itemTime.isUseNuocMia3) {
             sendItemTime(player, 13464, (int) ((TIME_NUOC_MIA3 - (System.currentTimeMillis() - player.itemTime.lastTimeUseNuocMia3)) / 1000));
         }
         if (player.itemTime.isUseKilis) {
