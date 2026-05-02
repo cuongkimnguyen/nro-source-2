@@ -20,7 +20,7 @@ public class CHIENBINH0 extends Yardart {
         range = 1000;
         range2 = 150;
         timeHoiHP = 20000;
-        rewardRatio = 3;
+        rewardRatio = 15;
     }
 
 }

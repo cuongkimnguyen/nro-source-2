@@ -1043,22 +1043,19 @@ public class UseItem {
                 if (level == 9) {
                     short kichHoatId = (short) ItemService.gI().randTempItemKichHoat(player.gender);
                     Item kichHoat = ItemService.gI().createNewItem(kichHoatId);
-                    List<Item.ItemOption> kichHoatOps = ItemService.gI().getListOptionItemShop(kichHoatId);
-                    if (kichHoatOps != null && !kichHoatOps.isEmpty()) {
-                        kichHoat.itemOptions.addAll(kichHoatOps);
-                    }
+                    RewardService.gI().initChiSoItem(kichHoat);
                     int[] opsRand = ItemService.gI().randOptionItemKichHoat(player.gender);
                     for (int opId : opsRand) {
                         if (opId > 0) {
                             kichHoat.itemOptions.add(new Item.ItemOption(opId, 0));
                         }
                     }
-                    kichHoat.itemOptions.add(new Item.ItemOption(30, 0));
+                    kichHoat.itemOptions.add(new Item.ItemOption(30, 1));
                     kichHoat.quantity = 1;
                     player.itemsWoodChest.add(kichHoat);
                 }
 
-                // Rương 10: 1 đồ thần linh kích hoạt ngẫu nhiên theo gender
+                // Rương 10: 1 đồ thần linh ngẫu nhiên theo gender
                 if (level == 10) {
                     int[][] thanLinhByGender = {
                         {555, 556, 561, 562, 563}, // Trái Đất
@@ -1068,22 +1065,19 @@ public class UseItem {
                     int g = Math.min(player.gender, 2);
                     short thanLinhId = (short) thanLinhByGender[g][Util.nextInt(0, 4)];
                     Item thanLinh = ItemService.gI().createNewItem(thanLinhId);
-                    List<Item.ItemOption> thanLinhOps = ItemService.gI().getListOptionItemShop(thanLinhId);
-                    if (thanLinhOps != null && !thanLinhOps.isEmpty()) {
-                        thanLinh.itemOptions.addAll(thanLinhOps);
-                    }
+                    RewardService.gI().initChiSoItem(thanLinh);
                     int[] thanLinhRandOps = ItemService.gI().randOptionItemKichHoat(player.gender);
                     for (int opId : thanLinhRandOps) {
                         if (opId > 0) {
                             thanLinh.itemOptions.add(new Item.ItemOption(opId, 0));
                         }
                     }
-                    thanLinh.itemOptions.add(new Item.ItemOption(30, 0));
+                    thanLinh.itemOptions.add(new Item.ItemOption(30, 1));
                     thanLinh.quantity = 1;
                     player.itemsWoodChest.add(thanLinh);
                 }
 
-                // Rương 11: 1 đồ huỷ diệt kích hoạt ngẫu nhiên theo gender
+                // Rương 11: 1 đồ huỷ diệt ngẫu nhiên theo gender
                 if (level == 11) {
                     int[][] huyDietByGender = {
                         {650, 651, 656, 657, 658}, // Trái Đất
@@ -1093,22 +1087,18 @@ public class UseItem {
                     int g = Math.min(player.gender, 2);
                     short huyDietId = (short) huyDietByGender[g][Util.nextInt(0, 4)];
                     Item huyDiet = ItemService.gI().createNewItem(huyDietId);
-                    List<Item.ItemOption> huyDietOps = ItemService.gI().getListOptionItemShop(huyDietId);
-                    if (huyDietOps != null && !huyDietOps.isEmpty()) {
-                        huyDiet.itemOptions.addAll(huyDietOps);
-                    }
+                    RewardService.gI().initChiSoItem(huyDiet);
                     int[] huyDietRandOps = ItemService.gI().randOptionItemKichHoat(player.gender);
                     for (int opId : huyDietRandOps) {
                         if (opId > 0) {
                             huyDiet.itemOptions.add(new Item.ItemOption(opId, 0));
                         }
                     }
-                    huyDiet.itemOptions.add(new Item.ItemOption(30, 0));
                     huyDiet.quantity = 1;
                     player.itemsWoodChest.add(huyDiet);
                 }
 
-                // Rương 12: 1 đồ thiên sứ kích hoạt ngẫu nhiên theo gender
+                // Rương 12: 1 đồ thiên sứ ngẫu nhiên theo gender
                 if (level == 12) {
                     // slot: 0=áo, 1=quần, 2=găng, 3=giày, 4=nhẫn
                     int[][] thienSuByGender = {
@@ -1118,19 +1108,7 @@ public class UseItem {
                     };
                     int g = Math.min(player.gender, 2);
                     short thienSuId = (short) thienSuByGender[g][Util.nextInt(0, 4)];
-                    Item thienSu = ItemService.gI().createNewItem(thienSuId);
-                    List<Item.ItemOption> thienSuOps = ItemService.gI().getListOptionItemShop(thienSuId);
-                    if (thienSuOps != null && !thienSuOps.isEmpty()) {
-                        thienSu.itemOptions.addAll(thienSuOps);
-                    }
-                    int[] thienSuRandOps = ItemService.gI().randOptionItemKichHoat(player.gender);
-                    for (int opId : thienSuRandOps) {
-                        if (opId > 0) {
-                            thienSu.itemOptions.add(new Item.ItemOption(opId, 0));
-                        }
-                    }
-                    thienSu.itemOptions.add(new Item.ItemOption(30, 0));
-                    thienSu.quantity = 1;
+                    Item thienSu = ItemService.gI().DoThienSu(thienSuId, player.gender);
                     player.itemsWoodChest.add(thienSu);
                 }
 
@@ -1143,6 +1121,20 @@ public class UseItem {
                     InventoryService.gI().addItemBag(player, it);
                 }
                 InventoryService.gI().sendItemBags(player);
+
+                // Thông báo toàn server khi nhận rương cấp 9-12 tại Đại Hội Võ Thuật lần 23
+                if (level >= 9) {
+                    String tenDo = switch (level) {
+                        case 9 -> "Đồ Kích Hoạt";
+                        case 10 -> "Đồ Thần Linh";
+                        case 11 -> "Đồ Huỷ Diệt";
+                        default -> "Đồ Thiên Sứ";
+                    };
+                    ChatGlobalService.gI().ThongBaoRoiDo(player,
+                            "[Hệ Thống] Chúc mừng " + player.name
+                            + " đã mở Rương Cấp " + level
+                            + " tại Đại Hội Võ Thuật lần 23 và nhận được " + tenDo + "!");
+                }
 
                 // Cập nhật chỉ số rương gỗ
                 player.indexWoodChest = player.itemsWoodChest.size() - 1;

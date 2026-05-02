@@ -13,11 +13,6 @@ public class KyGui extends Npc {
 
     @Override
     public void openBaseMenu(Player player) {
-        if (canOpenNpc(player)) {
-            createOtherMenu(player, 0,
-                    "Cửa hàng chúng tôi chuyên mua bán hàng hiệu, hàng độc, cảm ơn bạn đã ghé thăm.",
-                    "Hướng\ndẫn\nthêm", "Mua bán\nKý gửi", "Từ chối");
-        }
     }
 
     @Override

@@ -628,13 +628,15 @@ public class Mob {
         //========================Map Bang Hội========================
         if (MapService.gI().isMapUpPorata(mapid)) {
             int dropRate1 = 10;
-            int dropRate2 = 5;
+            int dropRate2 = 1;
             int dropRate3 = 1;
+            int dropRateVang = 10;
 
             if (player.itemTime.isUseCoBonLa) {
                 dropRate1 += 5;
-                dropRate2 += 3;
+                dropRate2 += 1;
                 dropRate3 += 1;
+                dropRateVang += 5;
             }
 
             if (Util.isTrue(dropRate1, 100)) {
@@ -649,6 +651,12 @@ public class Mob {
                 ItemMap it = new ItemMap(zone, 935, 1, x, yEnd, player.id);
                 it.options.add(new Item.ItemOption(31, 1));
                 list.add(it);
+            }
+
+            if (Util.isTrue(dropRateVang, 100)) {
+                ItemMap vang = new ItemMap(zone, 457, 1, x, yEnd, player.id);
+                vang.options.add(new Item.ItemOption(30, 1));
+                list.add(vang);
             }
         }
 
@@ -783,6 +791,11 @@ public class Mob {
                 int soLuong = 1;
                 list.add(new ItemMap(zone, 1778, soLuong, x, yEnd, player.id));
             }
+        }
+        if (MapService.gI().isMapBanDoKhoBau(mapid)
+                && player.clan != null && player.clan.BanDoKhoBau != null) {
+            int soLuong = player.clan.BanDoKhoBau.level;
+            list.add(new ItemMap(zone, 457, soLuong, x, yEnd, player.id));
         }
         if (MapService.gI().isMapRiengTu(mapid)) {
             int baseTileDrop = 1;

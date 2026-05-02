@@ -108,12 +108,15 @@ public class Hirudegarn extends BigBoss {
                 short idItem = possibleIds[Util.nextInt(possibleIds.length)];
                 ItemMap it = new ItemMap(this.zone, idItem, 1, this.location.x,
                         this.zone.map.yPhysicInTop(this.location.x, this.location.y - 24), -1);
-                ItemMap itemWithOptions = ItemService.gI().randDoTL(this.zone, 1, this.location.x,
-                        this.zone.map.yPhysicInTop(this.location.x, this.location.y - 24), -1);
-                it.options.clear();
-                it.options.addAll(itemWithOptions.options);
+                int tiLe = Util.nextInt(100, 115);
+                // Gán đúng chỉ số Giáp theo từng loại Áo Thần Linh
+                int giapBase = (idItem == 555) ? 800 : (idItem == 557) ? 850 : 900;
+                it.options.add(new ItemOption(47, giapBase * tiLe / 100));
+                if (tiLe > 100) {
+                    it.options.add(new ItemOption(206, tiLe - 100));
+                }
+                it.options.add(new ItemOption(21, Util.nextInt(15, 17)));
                 Service.gI().dropItemMap(this.zone, it);
-
             }
             Service.gI().sendBigBoss2(this.zone, action, this);
             if (lvMob <= 2) {

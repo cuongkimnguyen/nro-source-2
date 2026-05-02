@@ -20,6 +20,6 @@ public class DOITRUONG5 extends Yardart {
         range = 1000;
         range2 = 150;
         timeHoiHP = 15000;
-        rewardRatio = 2;
+        rewardRatio = 10;
     }
 }

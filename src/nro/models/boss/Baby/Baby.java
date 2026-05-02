@@ -107,16 +107,35 @@ public class Baby extends Boss {
         this.attack();
     }
 
+    private boolean isChuongSkill(Player plAtt) {
+        if (plAtt == null || plAtt.playerSkill == null || plAtt.playerSkill.skillSelect == null) {
+            return false;
+        }
+        int sid = plAtt.playerSkill.skillSelect.template.id;
+        return sid == nro.models.skill.Skill.KAMEJOKO
+                || sid == nro.models.skill.Skill.MASENKO
+                || sid == nro.models.skill.Skill.ANTOMIC
+                || sid == nro.models.skill.Skill.SUPER_KAME
+                || sid == nro.models.skill.Skill.LIEN_HOAN_CHUONG;
+    }
+
     @Override
     public synchronized int injured(Player plAtt, long damage, boolean piercing, boolean isMobAttack
     ) {
         if (!this.isDie()) {
+            // Né 100% chiêu chưởng
+            if (!piercing && isChuongSkill(plAtt)) {
+                this.chat("Xí hụt");
+                return 0;
+            }
+            // Né đòn ngẫu nhiên theo tlNeDon
             if (!piercing && Util.isTrue(this.nPoint.tlNeDon, 1000)) {
                 this.chat("Xí hụt");
                 return 0;
             }
 
-            damage = (long) (damage * 0.7);
+            // Giáp giảm 30% (từ 30% xuống còn 21%)
+            damage = (long) (damage * 0.79);
 
             damage = this.nPoint.subDameInjureWithDeff(damage / 2);
 
@@ -124,7 +143,7 @@ public class Baby extends Boss {
                 if (damage > nPoint.hpMax) {
                     EffectSkillService.gI().breakShield(this);
                 }
-                damage = damage / 4;
+                damage = damage / 2;
             }
 
             this.nPoint.subHP(damage);

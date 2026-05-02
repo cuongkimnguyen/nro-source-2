@@ -20,6 +20,6 @@ public class TANBINH1 extends Yardart {
         range = 1000;
         range2 = 150;
         timeHoiHP = 25000;
-        rewardRatio = 4;
+        rewardRatio = 20;
     }
 }

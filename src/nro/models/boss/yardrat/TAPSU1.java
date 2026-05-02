@@ -20,6 +20,6 @@ public class TAPSU1 extends Yardart {
         range = 1000;
         range2 = 150;
         timeHoiHP = 30000;
-        rewardRatio = 5;
+        rewardRatio = 25;
     }
 }

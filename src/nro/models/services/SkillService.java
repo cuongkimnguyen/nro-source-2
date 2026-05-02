@@ -577,7 +577,7 @@ public class SkillService {
                 EffectSkillService.gI().sendEffectUseSkill(player, Skill.TROI);
                 int timeHold = SkillUtil.getTimeTroi(player.playerSkill.skillSelect.point);
                 if (plTarget instanceof Boss && ((Boss) plTarget).id == BossID.BABY) {
-                    timeHold = 5000;
+                    timeHold = 20000;
                 }
                 if (mobTarget instanceof GauTuongCuop) {
                     timeHold = 5000;
