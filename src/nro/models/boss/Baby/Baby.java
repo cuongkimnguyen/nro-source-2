@@ -25,7 +25,7 @@ public class Baby extends Boss {
         int x = this.location.x; // đâyyyy
         int y = this.zone.map.yPhysicInTop(x, this.location.y - 24);
         int drop = 457; // 100% rơi item ID 190
-        int quantity = Util.nextInt(4, 8);
+        int quantity = Util.nextInt(4, 16);
         // Tạo itemMap cho item ID 190
         if (Util.isTrue(11, 100)) {
             ItemMap it = ItemService.gI().randDoTLBoss(this.zone, 1, x, y, plKill.id);

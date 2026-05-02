@@ -795,7 +795,9 @@ public class Mob {
         if (MapService.gI().isMapBanDoKhoBau(mapid)
                 && player.clan != null && player.clan.BanDoKhoBau != null) {
             int soLuong = player.clan.BanDoKhoBau.level;
-            list.add(new ItemMap(zone, 457, soLuong, x, yEnd, player.id));
+            ItemMap vangKhoBau = new ItemMap(zone, 457, soLuong, x, yEnd, player.id);
+            vangKhoBau.options.add(new Item.ItemOption(30, 1));
+            list.add(vangKhoBau);
         }
         if (MapService.gI().isMapRiengTu(mapid)) {
             int baseTileDrop = 1;

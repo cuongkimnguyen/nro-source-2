@@ -56,8 +56,8 @@ public class TreasureUnderSeaService {
                         if (Util.isAfterMidnight(player.lastTimeJoinBDKB)) {
                             player.timesPerDayBDKB = 1;
                         } else if (player.lastTimeJoinBDKB != player.clan.lastTimeOpenBanDoKhoBau) {
-                            if (player.timesPerDayBDKB >= 3) {
-                                Service.gI().sendThongBao(player, "Bạn đã vào hang kho báu 3 lần trong hôm nay, hẹn gặp lại ngày mai");
+                            if (player.timesPerDayBDKB >= 1) {
+                                Service.gI().sendThongBao(player, "Bạn đã vào hang kho báu hôm nay, hẹn gặp lại ngày mai");
                                 return;
                             }
                         }

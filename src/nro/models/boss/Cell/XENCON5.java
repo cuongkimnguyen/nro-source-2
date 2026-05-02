@@ -30,7 +30,7 @@ public class XENCON5 extends Boss {
         plKill.event.addEventPoint(diem);
         Service.gI().sendThongBao(plKill, "+4 Point");
         TaskService.gI().checkDoneTaskKillBoss(plKill, this);
-        Service.gI().dropItemMap(this.zone, new ItemMap(this.zone, 457, Util.nextInt(4, 8),
+        Service.gI().dropItemMap(this.zone, new ItemMap(this.zone, 457, Util.nextInt(4, 16),
           this.location.x, this.zone.map.yPhysicInTop(this.location.x, this.location.y - 24), plKill.id));
         if (Util.isTrue(88, 100)) {
             int[] items = Util.isTrue(50, 100) ? new int[]{18, 19, 20} : new int[]{18,19,20};
