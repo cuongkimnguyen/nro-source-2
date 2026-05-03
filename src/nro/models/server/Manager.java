@@ -393,11 +393,11 @@ public final class Manager {
                     clan.addClanMember(cm);
                 }
                 dataArray = (JSONArray) JSONValue.parse(rs.getString("thanhTichBDKB"));
-                if (!dataArray.isEmpty()) {
+                if (dataArray != null && !dataArray.isEmpty()) {
                     clan.levelDoneBanDoKhoBau = Integer.parseInt(String.valueOf(dataArray.get(0)));
                     clan.thoiGianHoanThanhBDKB = Long.parseLong(String.valueOf(dataArray.get(1)));
                 }
-                dataArray.clear();
+                if (dataArray != null) dataArray.clear();
                 CLANS.add(clan);
             }
 
