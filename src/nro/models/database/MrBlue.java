@@ -122,7 +122,6 @@ public class MrBlue {
                                 player.thachdauwhis = rs.getInt("thachdauwhis");
                                 player.point_maydam = rs.getInt("point_maydam");
                                 player.total_damage_maydam = rs.getLong("total_damage_maydam");
-                                player.goldReceivedTrade = rs.getLong("gold_received_trade");
                                 player.isNewMember = !Util.isTimeDifferenceGreaterThanNDays(createTime, 35);
                                 LocalManager.executeUpdate("update account set last_time_login = ?, ip_address = ? where id = ?", new Timestamp(System.currentTimeMillis()), session.ipAddress, session.userId);
                             }
