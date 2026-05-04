@@ -25,7 +25,7 @@ public class Maintenance extends Thread {
         return instance;
     }
 
-    public void startCountdown() {
+    public synchronized void startCountdown() {
         if (!isRunning) {
             isRunning = true;
             this.timeInSeconds = 60;
@@ -33,7 +33,7 @@ public class Maintenance extends Thread {
         }
     }
 
-    public void startSeconds(int seconds) {
+    public synchronized void startSeconds(int seconds) {
         if (!isRunning) {
             isRunning = true;
             this.timeInSeconds = seconds;

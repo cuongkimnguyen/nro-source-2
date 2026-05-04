@@ -2893,6 +2893,9 @@ public class UseItem {
             // Tạo vật phẩm mới từ ID đã chọn
             Item it = ItemService.gI().createNewItem((short) itemBlackGoku);
 
+            // Khoá item, không thể giao dịch
+            it.itemOptions.add(new ItemOption(30, 1));
+
             // Kiểm tra nếu người chơi có item 1561 (chìa khóa)
             Item item1561 = InventoryService.gI().findItem(pl.inventory.itemsBag, 1561);
             if (item1561 != null) {

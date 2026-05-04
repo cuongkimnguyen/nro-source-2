@@ -31,6 +31,8 @@ public class AutoMaintenance extends Thread {
     public void run() {
         boolean hasAnnounced = false;
         long announceStartTime = 0L;
+        // Tránh log "Reset" ngay khi server khởi động trước khi có maintenance
+        hasResetAfterMaintenance = true;
 
         while (true) {
             try {

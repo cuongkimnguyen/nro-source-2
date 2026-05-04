@@ -516,8 +516,8 @@ public class ShopService {
         } else if (player.inventory.gem < gem) {
             Service.gI().sendThongBao(player, "Bạn không có đủ ngọc");
             return false;
-        } else if (player.inventory.gem < ruby) {
-            Service.gI().sendThongBao(player, "Bạn không có đủ ngọc");
+        } else if (player.inventory.ruby < ruby) {
+            Service.gI().sendThongBao(player, "Bạn không có đủ hồng ngọc");
             return false;
         } else if (player.inventory.coupon < coupon) {
             Service.gI().sendThongBao(player, "Bạn không có đủ điểm");
@@ -792,60 +792,11 @@ public class ShopService {
         }
         // Đổi bằng điểm Capsule Bang
         if (is.tabShop.id == 60 || is.tabShop.id == 61 || is.tabShop.id == 62) {
-            int capsuleClanPointPrice = 0;
-
-            switch (is.temp.id) {
-                case 1794:
-                case 1204:
-                case 1423:
-                case 1438:
-                case 1439:
-                case 987:
-                case 1635:
-                    capsuleClanPointPrice = 1;
-                    break;
-                case 1790:
-                    capsuleClanPointPrice = 2;
-                    break;
-                case 1791:
-                    capsuleClanPointPrice = 3;
-                    break;
-                case 1792:
-                    capsuleClanPointPrice = 4;
-                    break;
-                case 1634:
-                    capsuleClanPointPrice = 10;
-                    break;
-                case 1620:
-                case 1748:
-                case 1750:
-                case 1729:
-                case 1727:
-                case 1714:
-                case 1683:
-                case 1682:
-                case 1668:
-                case 1629:
-                case 1630:
-                case 1631:
-                case 1573:
-                case 1550:
-                case 1551:
-                case 1541:
-                case 1563:
-                case 1724:
-                case 1733:
-                case 1734:
-                case 1749:
-                    capsuleClanPointPrice = 50;
-                    break;
-                default:
-                    capsuleClanPointPrice = -1;
-                    break;
-            }
+            // Giá lấy trực tiếp từ DB (item_shop.cost), không hardcode ID nữa
+            int capsuleClanPointPrice = is.cost;
 
             if (capsuleClanPointPrice <= 0) {
-                Service.gI().sendThongBao(player, "Vật phẩm này không thể mua bằng điểm Capsule Bang.");
+                Service.gI().sendThongBao(player, "Vật phẩm này chưa được cấu hình giá Capsule Bang.");
                 return;
             }
 

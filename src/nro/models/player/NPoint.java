@@ -251,8 +251,11 @@ public class NPoint {
 
         Card card = player.Cards.stream().filter(r -> r != null && r.Used == 1).findFirst().orElse(null);
         if (card != null) {
+            // effectiveLevel: -1 → 0, 1 → 1, 2 → 2
+            // Áp dụng tất cả option có active <= effectiveLevel (tích lũy qua các cấp)
+            int effectiveLevel = card.Level == -1 ? 0 : card.Level;
             for (OptionCard io : card.Options) {
-                if (io.active == card.Level || (card.Level == -1 && io.active == 0)) {
+                if (io.active <= effectiveLevel) {
                     switch (io.id) {
                         case 0: //Tấn công +#
                             this.dameAdd += io.param;
