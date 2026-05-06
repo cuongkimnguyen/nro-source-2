@@ -25,6 +25,7 @@ public class LocalManager {
     private static int MIN_CONN;
     private static int MAX_CONN;
     private static long MAX_LIFE_TIME;
+    private static long CONNECTION_TIMEOUT = 10000L;
     public static boolean LOG_QUERY;
     private static HikariConfig config;
     private static HikariDataSource ds;
@@ -95,6 +96,9 @@ public class LocalManager {
             if ((value = properties.get("database.log")) != null) {
                 LocalManager.LOG_QUERY = Boolean.parseBoolean(String.valueOf(value));
             }
+            if ((value = properties.get("database.connectiontimeout")) != null) {
+                LocalManager.CONNECTION_TIMEOUT = Long.parseLong(String.valueOf(value));
+            }
             Logger.log(Logger.RED, "Successfully loaded file properties!\n");
         } catch (final IOException | NumberFormatException ex) {
             Logger.log(Logger.RED, "Không thể load file properties!\n");
@@ -119,6 +123,7 @@ public class LocalManager {
                 }
             }
         } catch (Exception ex) {
+            restoreInterruptIfNeeded(ex);
             Logger.log(Logger.RED, "Có lỗi xảy ra khi thực thi câu lệnh: " + query + "\n");
             throw ex;
         }
@@ -134,6 +139,7 @@ public class LocalManager {
             }
             return new ResultSetImpl(ps.executeQuery());
         } catch (final Exception ex) {
+            restoreInterruptIfNeeded(ex);
             Logger.log(Logger.RED, "Có lỗi xảy ra khi thực thi câu lệnh: " + query + "\n");
             throw ex;
         }
@@ -147,6 +153,7 @@ public class LocalManager {
             }
             rowUpdated = ps.executeUpdate();
         } catch (final Exception e) {
+            restoreInterruptIfNeeded(e);
             Logger.log(Logger.RED, "Có lỗi xảy ra khi thực thi câu lệnh: " + query + "\n");
             throw e;
         }
@@ -176,8 +183,16 @@ public class LocalManager {
             }
             return ps.executeUpdate();
         } catch (final Exception ex) {
+            restoreInterruptIfNeeded(ex);
             Logger.log(Logger.RED, "Có lỗi xảy ra khi thực thi câu lệnh: " + query + "\n");
             throw ex;
+        }
+    }
+
+    private static void restoreInterruptIfNeeded(Throwable ex) {
+        Throwable cause = ex.getCause();
+        if (cause instanceof InterruptedException) {
+            Thread.currentThread().interrupt();
         }
     }
 
@@ -191,6 +206,7 @@ public class LocalManager {
         config.setMinimumIdle(MIN_CONN);
         config.setMaximumPoolSize(MAX_CONN);
         config.setMaxLifetime(MAX_LIFE_TIME);
+        config.setConnectionTimeout(CONNECTION_TIMEOUT);
         config.setPoolName(poolName);
         config.addDataSourceProperty("cachePrepStmts", "true");
         config.addDataSourceProperty("prepStmtCacheSize", "250");

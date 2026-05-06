@@ -155,7 +155,7 @@ public class SuperRankDAO {
 
     public static void loadData(Player player) {
         try {
-            LocalResultSet rs = LocalManager.executeQuery("SELECT * FROM super_rank WHERE player_id = " + player.id);
+            LocalResultSet rs = LocalManager.executeQuery("SELECT * FROM super_rank WHERE player_id = ?", player.id);
             if (rs.first()) {
                 player.superRank.rank = rs.getInt("rank");
                 player.superRank.lastPKTime = rs.getLong("last_pk_time");
@@ -187,7 +187,7 @@ public class SuperRankDAO {
 
     public static int getRank(int playerId) {
         try {
-            LocalResultSet rs = LocalManager.executeQuery("SELECT rank FROM super_rank WHERE player_id = " + playerId);
+            LocalResultSet rs = LocalManager.executeQuery("SELECT rank FROM super_rank WHERE player_id = ?", playerId);
             if (rs.first()) {
                 return rs.getInt("rank");
             }

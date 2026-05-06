@@ -82,8 +82,11 @@ public class ResultSetImpl implements LocalResultSet {
         if (this.data == null) {
             throw new Exception("No data available");
         }
-        ++this.indexData;
-        return this.indexData == this.data.length - 1;
+        if (this.data.length == 0) {
+            return false;
+        }
+        this.indexData = 0;
+        return true;
     }
 
     @Override
