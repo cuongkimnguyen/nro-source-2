@@ -84,6 +84,10 @@ public class BlackGoku extends Boss {
             Service.gI().dropItemMap(zone, optionalItemMap);
         }
         TaskService.gI().checkDoneTaskKillBoss(plKill, this);
+        int bikiepQty = this.currentLevel == 0 ? Util.nextInt(40, 50) : Util.nextInt(80, 99);
+        ItemMap biKiep590 = new ItemMap(this.zone, 590, bikiepQty, x, y, plKill.id);
+        biKiep590.options.add(new Item.ItemOption(31, bikiepQty));
+        Service.gI().dropItemMap(zone, biKiep590);
         int diem = 5;
         plKill.event.addEventPoint(diem);
         Service.gI().sendThongBao(plKill, "+5 Point");

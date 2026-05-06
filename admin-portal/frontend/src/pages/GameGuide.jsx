@@ -109,6 +109,7 @@ function TabBossDrop() {
           <TocItem href="#do-thuong">Đồ Thường</TocItem>
           <TocItem href="#bang-drop">Bảng Drop</TocItem>
           <TocItem href="#trai-dat">Nhóm Trái Đất</TocItem>
+          <TocItem href="#nguc-tu">Hành Tinh Ngục Tù</TocItem>
           <TocItem href="#co-che">Cơ Chế Đặc Biệt</TocItem>
           <TocItem href="#ket-luan">Tổng Kết</TocItem>
         </ul>
@@ -297,7 +298,7 @@ function TabBossDrop() {
             </Note>
           </SubSection>
 
-          <SubSection title="Boss Trung Bình (+4 điểm) — SO1–SO4, TDT, Fide, Sơn Tinh, Thủy Tinh, Xên Con 1–7">
+          <SubSection title="Boss Trung Bình (+4 điểm) — SO1–SO4, TDT, Fide, Sơn Tinh, Thủy Tinh">
             <Table
               headers={['Vật phẩm', 'ID', 'Tỷ lệ', 'Số lượng']}
               rows={[
@@ -308,13 +309,30 @@ function TabBossDrop() {
               ]}
             />
             <Note>
-              Fide và Xên Con có cùng cơ chế drop nhưng HP/dame cao hơn đáng kể so với nhóm dễ.
               Sơn Tinh / Thủy Tinh (event Hùng Vương) ngoài +4 điểm còn rơi trang bị đặc biệt
               421/422 với nhiều option khi chết.
             </Note>
           </SubSection>
 
-          <SubSection title="Boss Khó (+5 điểm) — Cooler, Android 13/14/15/19, Dr.Kôrê, GoldenFrieza">
+          <SubSection title="Xên Con 1–7 (+4 điểm)">
+            <Table
+              headers={['Vật phẩm', 'ID', 'Tỷ lệ', 'Số lượng']}
+              rows={[
+                ['Tiền (Zeni)',      '457',        <Rate pct={100} />,                '4 – 16 cái'],
+                ['Ngọc Rồng 5–7★',  '18, 19, 20', <Rate pct={44} color="#fcc419" />, '1 cái (50% trong pool 88%)'],
+                ['Ngọc Rồng 2–4★',  '15, 16, 17', <Rate pct={44} color="#fcc419" />, '1 cái (50% trong pool 88%)'],
+                ['Bí Kiếp',         '590',         <Rate pct={100} />,               '3 – 5 cái'],
+                [<span><Tag color="yellow">+4</Tag> Event Point</span>, '—', <Rate pct={100} />, 'mỗi kill'],
+              ]}
+            />
+            <Note>
+              Ngọc: 88% tổng — 50% ra ngọc 5–7★ (ID 18/19/20), 50% ra ngọc 2–4★ (ID 15/16/17).
+              Bí Kiếp (ID 590) rơi 100% mỗi lần kill, 3–5 cái (option 31).
+              Event Point +4 luôn được cộng sau mỗi kill, không phụ thuộc vào việc có drop ngọc hay không.
+            </Note>
+          </SubSection>
+
+          <SubSection title="Boss Khó (+5 điểm) — Cooler, Android 19, Dr.Kôrê, GoldenFrieza">
             <Table
               headers={['Vật phẩm', 'ID', 'Tỷ lệ', 'Số lượng']}
               rows={[
@@ -327,6 +345,56 @@ function TabBossDrop() {
             />
           </SubSection>
 
+          <SubSection title="Android 13, 14, 15 (+5 điểm)">
+            <Table
+              headers={['Vật phẩm', 'ID', 'Tỷ lệ', 'Số lượng']}
+              rows={[
+                ['Tiền (Zeni)',      '457',       <Rate pct={100} />,                '4 – 16 cái'],
+                ['Ngọc Rồng 2–4★',  '15, 16, 17', <Rate pct={44} color="#fcc419" />, '1 cái'],
+                ['Ngọc Rồng 5–7★',  '18, 19, 20', <Rate pct={44} color="#fcc419" />, '1 cái'],
+                ['Mảnh trang bị',   '1066–1070',  <Rate pct={100} />,                '2 – 4 mảnh (random 1 loại)'],
+                [<span><Tag color="red">+5</Tag> Event Point</span>, '—', <Rate pct={100} />, 'mỗi kill'],
+              ]}
+            />
+            <Note>
+              Ngọc: 88% tổng — 50% ra ngọc 2–4★ (ID 15/16/17), 50% ra ngọc 5–7★ (ID 18/19/20).
+              Mảnh trang bị rơi 100%, ngẫu nhiên 1 trong 5 loại: Mảnh Áo / Quần / Giày / Nhẫn / Găng Tay.
+            </Note>
+          </SubSection>
+
+          <SubSection title="Pic, Poc, KingKong (+5 điểm)">
+            <Table
+              headers={['Vật phẩm', 'ID', 'Tỷ lệ', 'Số lượng']}
+              rows={[
+                ['Tiền (Zeni)',      '457',        <Rate pct={100} />,                '4 – 16 cái'],
+                ['Ngọc Rồng 2–4★',  '15, 16, 17', <Rate pct={44} color="#fcc419" />, '1 cái'],
+                ['Ngọc Rồng 5–7★',  '18, 19, 20', <Rate pct={44} color="#fcc419" />, '1 cái'],
+                ['Mảnh trang bị',   '1066–1070',  <Rate pct={100} />,                '4 – 8 mảnh (random 1 loại)'],
+                [<span><Tag color="red">+5</Tag> Event Point</span>, '—', <Rate pct={100} />, 'mỗi kill'],
+              ]}
+            />
+            <Note>
+              Pic kích hoạt Poc khi chết; Poc kích hoạt Pic; KingKong là boss độc lập.
+              Mảnh trang bị nhiều hơn Android 13/14/15 (4–8 vs 2–4).
+            </Note>
+          </SubSection>
+
+          <SubSection title="Xên Bọ Hung (+5 điểm)">
+            <Table
+              headers={['Vật phẩm', 'ID', 'Tỷ lệ', 'Số lượng']}
+              rows={[
+                ['Tiền (Zeni)',      '457',        <Rate pct={100} />,                '4 – 16 cái'],
+                ['Ngọc Rồng 5–7★',  '18, 19, 20', <Rate pct={44} color="#fcc419" />, '1 cái (50% trong pool 88%)'],
+                ['Ngọc Rồng 2–4★',  '15, 16, 17', <Rate pct={44} color="#fcc419" />, '1 cái (50% trong pool 88%)'],
+                ['Bí Kiếp',         '590',         <Rate pct={100} />,               '15 – 20 cái'],
+              ]}
+            />
+            <Note>
+              Ngọc: 88% tổng — 50% ra ngọc 5–7★ (ID 18/19/20), 50% ra ngọc 2–4★ (ID 15/16/17).
+              Bí Kiếp (ID 590) rơi 100% mỗi lần kill, 15–20 cái (option 31).
+            </Note>
+          </SubSection>
+
           <SubSection title="Siêu Bọ Hung — Cell Hoàn Thiện (+5 điểm)">
             <Table
               headers={['Vật phẩm', 'ID', 'Tỷ lệ', 'Số lượng']}
@@ -335,10 +403,11 @@ function TabBossDrop() {
                 ['Đồ Thần Linh',  '555–567', <Rate pct={5} color="#74c0fc" />,      '1 cái'],
                 ['Đồ thường',     '230–280', <Rate pct={33} color="#fcc419" />,     '1 cái + sao pha lê'],
                 ['Ngọc Rồng',     '15–20',   <Rate pct={88} />,                     '1 – 3 cái'],
+                ['Bí Kiếp',       '590',     <Rate pct={100} />,                    '20 – 30 cái'],
                 [<span><Tag color="red">+5</Tag> Event Point</span>, '—', <Rate pct={100} />, 'mỗi kill'],
               ]}
             />
-            <Note>Cell Hoàn Thiện có tỷ lệ đồ thường cao nhất (33%) trong tất cả boss.</Note>
+            <Note>Cell Hoàn Thiện có tỷ lệ đồ thường cao nhất (33%) trong tất cả boss. Bí Kiếp (ID 590) rơi 100% mỗi kill, 20–30 cái (option 31).</Note>
           </SubSection>
 
           <SubSection title="Baby (boss sự kiện)">
@@ -357,18 +426,21 @@ function TabBossDrop() {
 
           <SubSection title="Black Goku / Cumber (+5 điểm, 2 giai đoạn)">
             <Table
-              headers={['Vật phẩm', 'ID', 'Tỷ lệ', 'Số lượng']}
+              headers={['Vật phẩm', 'ID', 'Tỷ lệ', 'Giai đoạn 1 (level 0)', 'Giai đoạn 2 (Super)']}
               rows={[
-                ['Tiền (Zeni)',          '457',         <Rate pct={100} />,                   '4 – 8 cái'],
-                ['Đồ Thần Linh',         '555–567',     <Rate pct={5} color="#74c0fc" />,     '1 cái'],
-                ['Đồ thường',            '230–280',     <Rate pct={5} color="#74c0fc" />,     '1 cái + sao pha lê'],
-                ['Ngọc + Kachi Vua',     '15–20, 992',  <Rate pct={11} color="#fcc419" />,    '1 – 3 cái'],
-                [<span><Tag color="red">+5</Tag> Event Point</span>, '—', <Rate pct={100} />, 'mỗi kill'],
+                ['Tiền (Zeni)',                       '457',        <Rate pct={100} />,                '4 – 16 cái',                              '4 – 16 cái'],
+                ['Đồ Thần Linh',                     '555–567',    <Rate pct={5} color="#74c0fc" />,   '1 cái',                                   '1 cái'],
+                ['Đồ thường',                        '230–280',    <Rate pct={5} color="#74c0fc" />,   '1 cái + sao pha lê',                      '1 cái + sao pha lê'],
+                ['Ngọc + Kachi Vua',                 '15–20, 992', <Rate pct={11} color="#fcc419" />,  '1 – 3 cái',                               '1 – 3 cái'],
+                ['Mảnh trang bị',                    '1066–1070',  <Rate pct={100} />,                 '10 – 15 mảnh',                            <strong style={{color:'#fcc419'}}>20 – 25 mảnh</strong>],
+                [<span>Bí Kiếp <Tag color="blue">(chỉ BlackGoku)</Tag></span>, '590', <Rate pct={100} />, '40 – 50 cái', <strong style={{color:'#fcc419'}}>80 – 99 cái</strong>],
+                [<span><Tag color="red">+5</Tag> Event Point</span>, '—', <Rate pct={100} />, 'mỗi kill', 'mỗi kill'],
               ]}
             />
             <Note>
-              Item 992 (Kachi Vua) chỉ có trong pool ngọc của Baby, Black Goku và Cumber.
-              Xác suất ra Kachi Vua = 11% × 1/7 ≈ <strong>1.57%</strong>.
+              Mảnh trang bị (1066–1070): cả BlackGoku và Cumber đều drop — ngẫu nhiên 1 trong 5 loại, giai đoạn 2 drop nhiều hơn gấp đôi.
+              Bí Kiếp (ID 590, option 31): chỉ BlackGoku drop, Super BlackGoku (giai đoạn 2) drop gần gấp đôi so với giai đoạn 1.
+              Kachi Vua (992) chỉ có trong pool ngọc của Baby, Black Goku và Cumber — xác suất ≈ <strong>1.57%</strong> (11% × 1/7).
             </Note>
           </SubSection>
 
@@ -430,6 +502,50 @@ function TabBossDrop() {
           </SubSection>
         </Section>
 
+        <Section id="nguc-tu" title="Hành Tinh Ngục Tù (Map 155) — Drop Quái Thường">
+          <Callout color="yellow">
+            Drop đặc biệt tại Hành Tinh Ngục Tù đến từ <strong>quái thường</strong>, không phải boss.
+            Một số drop yêu cầu trang bị đặc biệt <strong>Set Des</strong> (5 ô body đều là ID 650–662).
+          </Callout>
+
+          <SubSection title="Mảnh Trang Bị (1066–1070)">
+            <Table
+              headers={['Điều kiện', 'Tỷ lệ', 'Ghi chú']}
+              rows={[
+                ['Mặc Set Des (không cần active)', <Rate pct={0.67} color="#74c0fc" />, '1/150 — drop 1 mảnh random'],
+                ['Mặc Set Des + tài khoản active', <Rate pct={0.024} color="#ff6b6b" />, '2/8325 — cộng thêm vào rate trên'],
+              ]}
+            />
+            <Table
+              headers={['ID', 'Tên mảnh']}
+              rows={[
+                ['1066', 'Mảnh Áo'],
+                ['1067', 'Mảnh Quần'],
+                ['1068', 'Mảnh Giày'],
+                ['1069', 'Mảnh Nhẫn'],
+                ['1070', 'Mảnh Găng Tay'],
+              ]}
+            />
+            <Note>
+              Mỗi lần drop ra 1 mảnh ngẫu nhiên trong 5 loại, số lượng 1 cái/lần.
+              Phải <strong>mặc Set Des</strong> — không có Set Des thì không bao giờ drop mảnh.
+            </Note>
+          </SubSection>
+
+          <SubSection title="Bí Kíp Tuyệt Kỹ (ID 1229)">
+            <Table
+              headers={['Điều kiện', 'Tỷ lệ']}
+              rows={[
+                ['Bất kỳ người chơi',                <Rate pct={10} color="#fcc419" />],
+                ['Có Set Des + active (cộng thêm)',   <Rate pct={18} color="#51cf66" />],
+              ]}
+            />
+            <Note>
+              Tỷ lệ thực tế khi có Set Des + active ≈ 28% (10% OR 90%×20%). Không có Set Des thì chỉ 10%.
+            </Note>
+          </SubSection>
+        </Section>
+
         <Section id="co-che" title="Cơ Chế Boss Đặc Biệt">
           <SubSection title="Siêu Bọ Hung — 2 Giai Đoạn">
             <CodeBlock>{`Giai đoạn 1 (HP > 0 lần đầu):
@@ -480,6 +596,9 @@ Thứ tự bắt buộc: diệt Android 15 trước → mới diệt được 13
               ['Ngọc Rồng nhiều',          'Siêu Bọ Hung / Cooler', '88%, 1–3 cái/lần'],
               ['Kachi Vua (ID 992)',        'Baby / Black Goku / Cumber', 'Pool ngọc duy nhất có 992'],
               ['Trang phục độc quyền',     'Baby', '1% — outfit duy nhất từ boss'],
+              ['Mảnh trang bị (boss)',     'Black Goku / Cumber / Pic / Poc / KingKong / Android 13–15', '100% — nhiều nhất ở Super BlackGoku/Cumber giai đoạn 2 (20–25/kill)'],
+              ['Bí Kiếp (ID 590)',         'Xên Con 1–7 / Xên Bọ Hung / Siêu Bọ Hung / Black Goku', '100% — nhiều nhất ở Super BlackGoku (80–99/kill)'],
+              ['Mảnh trang bị (map)',      'Hành Tinh Ngục Tù (quái thường)', 'Cần Set Des — 0.67% / quái'],
               ['Điểm Mabu',                'Mabu + Goku (12h)', 'Quest chuỗi MajinBuu 12h'],
             ]}
           />

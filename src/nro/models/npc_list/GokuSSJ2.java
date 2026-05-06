@@ -20,6 +20,14 @@ public class GokuSSJ2 extends Npc {
         super(mapId, status, cx, cy, tempId, avartar);
     }
 
+    // 80% → 30–55, 19% → 55–79, 1% → 80
+    private static int randStat() {
+        int rd = nro.models.utils.Util.nextInt(1, 100);
+        if (rd <= 80) return nro.models.utils.Util.nextInt(30, 55);
+        if (rd <= 99) return nro.models.utils.Util.nextInt(55, 79);
+        return 80;
+    }
+
     @Override
     public void openBaseMenu(Player player) {
         if (canOpenNpc(player)) {
@@ -43,14 +51,21 @@ public class GokuSSJ2 extends Npc {
                     yardart.itemOptions.add(new Item.ItemOption(47, 400));  // Giáp
                     yardart.itemOptions.add(new Item.ItemOption(97, 10));   // Kháng chưởng khí
                     yardart.itemOptions.add(new Item.ItemOption(14, 10));   // Chí mạng
-                    yardart.itemOptions.add(new Item.ItemOption(5, 80));
-                    yardart.itemOptions.add(new Item.ItemOption(50, 80));
-                    yardart.itemOptions.add(new Item.ItemOption(77, 80));
-                    yardart.itemOptions.add(new Item.ItemOption(103, 80));
+                    yardart.itemOptions.add(new Item.ItemOption(5, randStat()));
+                    yardart.itemOptions.add(new Item.ItemOption(50, randStat()));
+                    yardart.itemOptions.add(new Item.ItemOption(77, randStat()));
+                    yardart.itemOptions.add(new Item.ItemOption(103, randStat()));
                     yardart.itemOptions.add(new Item.ItemOption(192, 30));
+                    boolean vinh_vien = nro.models.utils.Util.nextInt(1000) == 0; // 0.1% vĩnh viễn
+                    if (vinh_vien) {
+                        Service.gI().sendThongBao(player, "Chúc mừng! Bạn nhận được võ phục Yardrat VĨNH VIỄN!");
+                    } else {
+                        int days = nro.models.utils.Util.nextInt(2, 10);
+                        yardart.itemOptions.add(new Item.ItemOption(93, days)); // Hạn sử dụng # ngày
+                        Service.gI().sendThongBao(player, "Bạn nhận được võ phục của người Yardrat (" + days + " ngày)");
+                    }
                     InventoryService.gI().addItemBag(player, yardart);
                     InventoryService.gI().sendItemBags(player);
-                    Service.gI().sendThongBao(player, "Bạn nhận được võ phục của người Yardrat");
                 } else {
                     Service.gI().sendThongBao(player, "Bạn cần 9.999 Bí Kiếp để đổi trang phục");
                 }

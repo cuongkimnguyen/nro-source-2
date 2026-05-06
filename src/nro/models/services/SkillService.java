@@ -580,7 +580,7 @@ public class SkillService {
                     timeHold = 20000;
                 }
                 if (mobTarget instanceof GauTuongCuop) {
-                    timeHold = 5000;
+                    timeHold = 20000;
                 }
                 EffectSkillService.gI().setUseTroi(player, System.currentTimeMillis(), timeHold);
                 if (plTarget != null && (!plTarget.playerSkill.prepareQCKK && !plTarget.playerSkill.prepareLaze && !plTarget.playerSkill.prepareTuSat)) {

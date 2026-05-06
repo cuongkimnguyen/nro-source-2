@@ -28,11 +28,15 @@ public class Pic extends Boss {
         Service.gI().dropItemMap(this.zone, new ItemMap(this.zone, 457, Util.nextInt(4, 16),
           this.location.x, this.zone.map.yPhysicInTop(this.location.x, this.location.y - 24), plKill.id));
         if (Util.isTrue(88, 100)) {
-            int[] items = Util.isTrue(50, 100) ? new int[]{18, 19, 20} : new int[]{18,19,20};
+            int[] items = Util.isTrue(50, 100) ? new int[]{18, 19, 20} : new int[]{15, 16, 17};
             int randomItem = items[new Random().nextInt(items.length)];
             Service.gI().dropItemMap(this.zone, new ItemMap(this.zone, randomItem, 1,
           this.location.x, this.zone.map.yPhysicInTop(this.location.x, this.location.y - 24), plKill.id));
         }
+        int[] manh = {1066, 1067, 1068, 1069, 1070};
+        int randomManh = manh[Util.nextInt(0, manh.length - 1)];
+        Service.gI().dropItemMap(this.zone, new ItemMap(this.zone, randomManh, Util.nextInt(4, 8),
+          this.location.x, this.zone.map.yPhysicInTop(this.location.x, this.location.y - 24), plKill.id));
     }
 
     @Override

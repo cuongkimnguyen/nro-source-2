@@ -7,6 +7,7 @@ import nro.models.consts.BossStatus;
 import nro.models.boss.BossesData;
 import java.util.Random;
 import nro.models.consts.ConstTaskBadges;
+import nro.models.item.Item;
 import nro.models.map.ItemMap;
 import nro.models.player.Player;
 import nro.models.services.Service;
@@ -33,11 +34,16 @@ public class XENCON4 extends Boss {
         Service.gI().dropItemMap(this.zone, new ItemMap(this.zone, 457, Util.nextInt(4, 16),
           this.location.x, this.zone.map.yPhysicInTop(this.location.x, this.location.y - 24), plKill.id));
         if (Util.isTrue(88, 100)) {
-            int[] items = Util.isTrue(50, 100) ? new int[]{18, 19, 20} : new int[]{18,19,20};
+            int[] items = Util.isTrue(50, 100) ? new int[]{18, 19, 20} : new int[]{15, 16, 17};
             int randomItem = items[new Random().nextInt(items.length)];
             Service.gI().dropItemMap(this.zone, new ItemMap(this.zone, randomItem, 1,
           this.location.x, this.zone.map.yPhysicInTop(this.location.x, this.location.y - 24), plKill.id));
         }
+        int biKiepQty = Util.nextInt(3, 5);
+        ItemMap biKiep590 = new ItemMap(this.zone, 590, biKiepQty,
+          this.location.x, this.zone.map.yPhysicInTop(this.location.x, this.location.y - 24), plKill.id);
+        biKiep590.options.add(new Item.ItemOption(31, biKiepQty));
+        Service.gI().dropItemMap(this.zone, biKiep590);
     }
     @Override
     public void joinMap() {

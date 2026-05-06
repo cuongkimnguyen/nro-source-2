@@ -75,6 +75,10 @@ public class Cumber extends Boss {
             Item optionalItem = ItemService.gI().createNewItem((short) dropOptional);
             Service.gI().dropItemMap(zone, optionalItemMap);
         }
+        int[] manh = {1066, 1067, 1068, 1069, 1070};
+        int randomManh = manh[Util.nextInt(0, manh.length - 1)];
+        int manhQty = this.currentLevel == 0 ? Util.nextInt(10, 15) : Util.nextInt(20, 25);
+        Service.gI().dropItemMap(zone, new ItemMap(this.zone, randomManh, manhQty, x, y, plKill.id));
         TaskService.gI().checkDoneTaskKillBoss(plKill, this);
         int diem = 5;
         plKill.event.addEventPoint(diem);

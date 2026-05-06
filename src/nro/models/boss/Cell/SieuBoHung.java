@@ -127,16 +127,18 @@ public class SieuBoHung extends Boss {
         if (Util.isTrue(88, 100)) {
             int[] dropItems = {15, 16, 17, 18, 19, 20};
             int dropOptional = dropItems[Util.nextInt(0, dropItems.length - 1)];
-            // Tạo và rơi vật phẩm ngọc rồng hoặc item cấp 2
             ItemMap optionalItemMap = new ItemMap(this.zone, dropOptional, Util.nextInt(1, 3), x, y, plKill.id);
             Item optionalItem = ItemService.gI().createNewItem((short) dropOptional);
             Service.gI().dropItemMap(zone, optionalItemMap);
-            int diem = 5;
-            plKill.event.addEventPoint(diem);
-            Service.gI().sendThongBao(plKill, "+5 Point");
         }
-
+        int biKiepQty = Util.nextInt(20, 30);
+        ItemMap biKiep590 = new ItemMap(this.zone, 590, biKiepQty, x, y, plKill.id);
+        biKiep590.options.add(new Item.ItemOption(31, biKiepQty));
+        Service.gI().dropItemMap(zone, biKiep590);
         TaskService.gI().checkDoneTaskKillBoss(plKill, this);
+        int diem = 5;
+        plKill.event.addEventPoint(diem);
+        Service.gI().sendThongBao(plKill, "+5 Point");
     }
 
     @Override

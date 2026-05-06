@@ -1047,7 +1047,7 @@ public class Mob {
             }
         }
         if (player.setClothes.checkSetDes() && MapService.gI().isMapNgucTu(mapid)) {
-            if ((player.isActive() && Util.isTrue(2, 555)) || Util.isTrue(10, 100)) {
+            if ((player.isActive() && Util.isTrue(2, 8325)) || Util.isTrue(1, 150)) {
                 list.add(new ItemMap(zone, Util.nextInt(1066, 1070), 1, x, yEnd, player.id));
             }
         }
