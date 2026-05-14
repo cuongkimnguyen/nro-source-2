@@ -81,6 +81,11 @@ public class SkillService {
         if (player.playerSkill == null) {
             return false;
         }
+        // Khi đang hoá khỉ chỉ được dùng BIEN_KHI (monkey attack), block tất cả skill khác
+        if (player.effectSkill != null && player.effectSkill.isMonkey
+                && player.playerSkill.skillSelect.template.id != Skill.BIEN_KHI) {
+            return false;
+        }
         if (player.playerSkill.skillSelect.template.type == 2 && canUseSkillWithMana(player) && canUseSkillWithCooldown(player)) {
             useSkillBuffToPlayer(player, plTarget);
             return true;
@@ -556,7 +561,9 @@ public class SkillService {
                     mobTarget.effectSkill.setStartBlindDCTT(System.currentTimeMillis(), timeChoangDCTT);
                     EffectSkillService.gI().sendEffectMob(player, mobTarget, EffectSkillService.TURN_ON_EFFECT, EffectSkillService.BLIND_EFFECT);
                 }
-                player.nPoint.isCrit100 = true;
+                if (player.nPoint != null) {
+                    player.nPoint.isCrit100 = true;
+                }
                 affterUseSkill(player, player.playerSkill.skillSelect.template.id);
                 break;
             case Skill.THOI_MIEN:

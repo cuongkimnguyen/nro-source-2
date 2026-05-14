@@ -244,7 +244,7 @@ public class Service {
                 msg.writer().writeInt(i + 1);
                 msg.writer().writeInt((int) pl.id);
                 msg.writer().writeShort(pl.getHead());
-                if (player.getSession().version > 214) {
+                if (player.getSession() != null && player.getSession().version > 214) {
                     msg.writer().writeShort(-1);
                 }
                 msg.writer().writeShort(pl.getBody());
@@ -282,7 +282,7 @@ public class Service {
                 msg.writer().writeInt(i + 1);
                 msg.writer().writeInt((int) pl.id);
                 msg.writer().writeShort(pl.getHead());
-                if (player.getSession().version > 214) {
+                if (player.getSession() != null && player.getSession().version > 214) {
                     msg.writer().writeShort(-1);
                 }
                 msg.writer().writeShort(pl.getBody());
@@ -319,7 +319,7 @@ public class Service {
                 msg.writer().writeInt(i + 1);
                 msg.writer().writeInt((int) pl.id);
                 msg.writer().writeShort(pl.getHead());
-                if (player.getSession().version > 214) {
+                if (player.getSession() != null && player.getSession().version > 214) {
                     msg.writer().writeShort(-1);
                 }
                 msg.writer().writeShort(pl.getBody());
@@ -356,7 +356,7 @@ public class Service {
                 msg.writer().writeInt(i + 1);
                 msg.writer().writeInt((int) pl.id);
                 msg.writer().writeShort(pl.getHead());
-                if (player.getSession().version > 214) {
+                if (player.getSession() != null && player.getSession().version > 214) {
                     msg.writer().writeShort(-1);
                 }
                 msg.writer().writeShort(pl.getBody());
@@ -385,7 +385,7 @@ public class Service {
                 msg.writer().writeInt(i + 1); // thứ hạng
                 msg.writer().writeInt((int) pl.id);
                 msg.writer().writeShort(pl.getHead());
-                if (player.getSession().version > 214) {
+                if (player.getSession() != null && player.getSession().version > 214) {
                     msg.writer().writeShort(-1);
                 }
                 msg.writer().writeShort(pl.getBody());
@@ -414,7 +414,7 @@ public class Service {
                 msg.writer().writeInt(i + 1);
                 msg.writer().writeInt((int) pl.id);
                 msg.writer().writeShort(pl.getHead());
-                if (player.getSession().version > 214) {
+                if (player.getSession() != null && player.getSession().version > 214) {
                     msg.writer().writeShort(-1);
                 }
                 msg.writer().writeShort(pl.getBody());
@@ -443,7 +443,7 @@ public class Service {
                 msg.writer().writeInt(i + 1); // thứ hạng
                 msg.writer().writeInt((int) pl.id);
                 msg.writer().writeShort(pl.getHead());
-                if (player.getSession().version > 214) {
+                if (player.getSession() != null && player.getSession().version > 214) {
                     msg.writer().writeShort(-1);
                 }
                 msg.writer().writeShort(pl.getBody());
@@ -472,7 +472,7 @@ public class Service {
                 msg.writer().writeInt(i + 1); // thứ hạng
                 msg.writer().writeInt((int) pl.id);
                 msg.writer().writeShort(pl.getHead());
-                if (player.getSession().version > 214) {
+                if (player.getSession() != null && player.getSession().version > 214) {
                     msg.writer().writeShort(-1);
                 }
                 msg.writer().writeShort(pl.getBody());
@@ -843,7 +843,7 @@ public class Service {
                     msg.writer().writeShort(skill.skillId);
                 }
             }
-            if (pl.getSession().version >= 214) {
+            if (pl.getSession() != null && pl.getSession().version >= 214) {
                 msg.writer().writeLong(pl.inventory.gold);
             } else {
                 msg.writer().writeInt((int) pl.inventory.gold);
@@ -1325,7 +1325,7 @@ public class Service {
         Message msg;
         try {
             msg = new Message(6);
-            if (pl.getSession().version >= 214) {
+            if (pl.getSession() != null && pl.getSession().version >= 214) {
                 msg.writer().writeLong(pl.inventory.gold);
             } else {
                 msg.writer().writeInt((int) pl.inventory.gold);
@@ -1760,7 +1760,7 @@ public class Service {
             msg.writer().writeUTF("|5|" + text);
             msg.writer().writeInt((int) plChat.id);
             msg.writer().writeShort(plChat.getHead());
-            if (plChat.getSession().version > 214) {
+            if (plChat.getSession() != null && plChat.getSession().version > 214) {
                 msg.writer().writeShort(-1);
             }
             msg.writer().writeShort(plChat.getBody());
@@ -1774,7 +1774,7 @@ public class Service {
             msg.writer().writeUTF("|5|" + text);
             msg.writer().writeInt((int) plChat.id);
             msg.writer().writeShort(plChat.getHead());
-            if (plReceive.getSession().version > 214) {
+            if (plReceive.getSession() != null && plReceive.getSession().version > 214) {
                 msg.writer().writeShort(-1);
             }
             msg.writer().writeShort(plChat.getBody());
@@ -2563,7 +2563,7 @@ public class Service {
             msg.writer().writeShort(plBody);
             msg.writer().writeShort(plLeg);
             int flagbag = pl.getFlagBag();
-            if (pl.isPl() && plR.getSession().version >= 220) {
+            if (pl.isPl() && plR.getSession() != null && plR.getSession().version >= 220) {
                 switch (flagbag) {
                     case 83 ->
                         flagbag = 205;

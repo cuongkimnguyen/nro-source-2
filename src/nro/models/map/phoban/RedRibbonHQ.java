@@ -337,7 +337,7 @@ public class RedRibbonHQ implements Runnable {
         long dame = totalHp / 20;
         long hp = totalDame * 50;
         for (Boss boss : bosses) {
-            if (boss.isDie()) {
+            if (boss.isDie() || boss.zone == null) {
                 continue;
             }
             if (boss.zone.map.mapId == 59) {

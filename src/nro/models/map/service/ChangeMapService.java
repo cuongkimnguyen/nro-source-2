@@ -442,14 +442,16 @@ public class ChangeMapService {
             checkJoinSpecialMap(pl);
             checkJoinMapMaBu(pl);
         } else {
-            int plX = pl.location.x;
-            if (pl.location.x >= pl.zone.map.mapWidth - 60) {
-                plX = pl.zone.map.mapWidth - 60;
-            } else if (pl.location.x <= 60) {
-                plX = 60;
-            }
-            Service.gI().resetPoint(pl, plX, pl.location.y);
             Service.gI().sendThongBao(pl, "Bạn chưa thể đến khu vực này");
+            if (pl.location != null && pl.zone != null) {
+                int plX = pl.location.x;
+                if (pl.location.x >= pl.zone.map.mapWidth - 60) {
+                    plX = pl.zone.map.mapWidth - 60;
+                } else if (pl.location.x <= 60) {
+                    plX = 60;
+                }
+                Service.gI().resetPoint(pl, plX, pl.location.y);
+            }
         }
     }
 

@@ -27,9 +27,9 @@ public class ThienXinHang extends The23rdMartialArtCongress {
                 lastTimePhanThan = System.currentTimeMillis();
                 phanThan();
             }
-            int hpBefore = playerAtt != null ? playerAtt.nPoint.hp : 0;
+            int hpBefore = playerAtt != null && playerAtt.nPoint != null ? playerAtt.nPoint.hp : 0;
             super.attack();
-            if (playerAtt != null && !playerAtt.isDie() && !this.isDie()) {
+            if (playerAtt != null && playerAtt.nPoint != null && !playerAtt.isDie() && !this.isDie()) {
                 int dmgDealt = hpBefore - playerAtt.nPoint.hp;
                 if (dmgDealt > 0) {
                     this.nPoint.addHp(dmgDealt / 5); // hút máu 20% dame

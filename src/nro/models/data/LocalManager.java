@@ -50,7 +50,19 @@ public class LocalManager {
     }
 
     public static Connection getConnection() throws SQLException {
-        return LocalManager.ds.getConnection();
+        // HikariCP throws InterruptedException (wrapped in SQLException) if the thread
+        // interrupt flag is set when its internal poll() is called. This can happen when
+        // Session.dispose() interrupts the Collector thread while it is mid-request.
+        // Clear the flag here so the DB call completes, then restore it so the Collector
+        // loop can detect the shutdown and exit on its next iteration.
+        boolean wasInterrupted = Thread.interrupted();
+        try {
+            return LocalManager.ds.getConnection();
+        } finally {
+            if (wasInterrupted) {
+                Thread.currentThread().interrupt();
+            }
+        }
     }
     
     public void release(Connection con) {
