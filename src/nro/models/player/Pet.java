@@ -168,6 +168,7 @@ public class Pet extends Player {
             ChangeMapService.gI().exitMap(this);
             fusionEffect(master.fusion.typeFusion);
             Service.gI().Send_Caitrang(master);
+            this.nPoint.calPoint();
             master.nPoint.calPoint();
             master.nPoint.setFullHpMp();
             Service.gI().point(master);
@@ -198,6 +199,7 @@ public class Pet extends Player {
             this.status = FUSION;
             ChangeMapService.gI().exitMap(this);
             fusionEffect(master.fusion.typeFusion);
+            this.nPoint.calPoint();
             master.nPoint.calPoint();
             master.nPoint.setFullHpMp();
             Service.gI().point(master);
@@ -219,6 +221,7 @@ public class Pet extends Player {
             this.status = FUSION;
             ChangeMapService.gI().exitMap(this);
             fusionEffect(master.fusion.typeFusion);
+            this.nPoint.calPoint();
             master.nPoint.calPoint();
             master.nPoint.setFullHpMp();
             Service.gI().point(master);
@@ -246,6 +249,7 @@ public class Pet extends Player {
             ChangeMapService.gI().exitMap(this);
             fusionEffect(master.fusion.typeFusion);
             Service.gI().Send_Caitrang(master);
+            this.nPoint.calPoint();
             master.nPoint.calPoint();
             master.nPoint.setFullHpMp();
             Service.gI().point(master);
