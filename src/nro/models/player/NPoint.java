@@ -833,7 +833,23 @@ public class NPoint {
                 hpMax += (hpMax * percent / 100L);
             }
         }
-        // Bonus HP theo loại pet (hợp thể): tất cả về 0
+        // Xử lý pet mabư
+        if (this.player.isPet && ((Pet) this.player).typePet == 1 && (((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA || ((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA2 || ((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA3)) {
+            hpMax += (hpMax * 0 / 100L);
+        }
+
+        // Xử lý pet Uub
+        if (this.player.isPet && ((Pet) this.player).typePet == 2 && (((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA || ((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA2 || ((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA3)) {
+            hpMax += (hpMax * 20 / 100L);
+        }
+        // Xử lý pet vageta
+        if (this.player.isPet && ((Pet) this.player).typePet == 3 && (((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA || ((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA2 || ((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA3)) {
+            hpMax += (hpMax * 20 / 100L);
+        }
+        // Xử lý pet jiren
+        if (this.player.isPet && ((Pet) this.player).typePet == 4 && (((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA || ((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA2 || ((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA3)) {
+            hpMax += (hpMax * 20 / 100L);
+        }
 
         // Xử lý phù
         if (this.player.zone != null && MapService.gI().isMapBlackBallWar(this.player.zone.map.mapId)) {
@@ -949,7 +965,21 @@ public class NPoint {
             // }
         }
 
-        // Bonus MP theo loại pet (hợp thể): tất cả về 0
+        // Xử lý pet Uub
+        if (this.player.isPet && ((Pet) this.player).typePet == 2
+                && (((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA || ((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA2 || ((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA3)) {
+            mpMax += (this.mpMax * 20 / 100L);
+        }
+        // xử lý pet beer
+        if (this.player.isPet && ((Pet) this.player).typePet == 3
+                && (((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA || ((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA2 || ((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA3)) {
+            mpMax += (this.mpMax * 20 / 100L);
+        }
+        // Xử lý pet jiren
+        if (this.player.isPet && ((Pet) this.player).typePet == 4
+                && (((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA || ((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA2 || ((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA3)) {
+            mpMax += (this.mpMax * 20 / 100L);
+        }
 
         // Xử lý phù
         if (this.player.zone
@@ -1044,7 +1074,28 @@ public class NPoint {
                 }
             }
         }
-        // Bonus dame theo loại pet (hợp thể): tất cả về 0
+        // Xử lý pet pic
+        if (this.player.isPet && ((Pet) this.player).typePet == 3 && (((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA || ((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA2 || ((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA3)) {
+            dame += (dame * 20 / 100L);
+        }
+
+        // Xử lý pet mabư — dame * 0 luôn = 0, giữ lại để điền bonus sau
+        // if (this.player.isPet && ((Pet) this.player).typePet == 1 && (((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA || ((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA2 || ((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA3)) {
+        //     dame += (dame * 0 / 100L);
+        // }
+
+        // Xử lý pet Uub
+        if (this.player.isPet && ((Pet) this.player).typePet == 2 && (((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA || ((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA2 || ((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA3)) {
+            dame += (dame * 20 / 100L);
+        }
+        // Xử lý pet beer
+        if (this.player.isPet && ((Pet) this.player).typePet == 3 && (((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA || ((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA2 || ((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA3)) {
+            dame += (dame * 20 / 100L);
+        }
+        // Xử lý pet jiren
+        if (this.player.isPet && ((Pet) this.player).typePet == 4 && (((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA || ((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA2 || ((Pet) this.player).master.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA3)) {
+            dame += (dame * 20 / 100L);
+        }
 
         // Xử lý set tinh ấn
         if (this.isTinhAn) {
@@ -1052,7 +1103,8 @@ public class NPoint {
         }
 
         // Xử lý thức ăn
-        if (!this.player.isPet && this.player.itemTime != null && this.player.itemTime.isEatMeal || this.player.isPet && this.player.itemTime != null && ((Pet) this.player).master.itemTime.isEatMeal) {
+        if (!this.player.isPet && this.player.itemTime != null && this.player.itemTime.isEatMeal
+                || this.player.isPet && ((Pet) this.player).master != null && ((Pet) this.player).master.itemTime != null && ((Pet) this.player).master.itemTime.isEatMeal) {
             dame += (dame * 10 / 100L);
         }
 
@@ -1408,14 +1460,14 @@ public class NPoint {
                 long hppl = 0;
                 for (Mob mob : this.player.zone.mobs) {
                     if (!mob.isDie()
-                            && Util.getDistance(this.player, mob) <= SkillUtil.getRangeQCKK(this.player.playerSkill.skillSelect.point)) {
+                            && Util.getDistance(this.player, mob) <= SkillUtil.getRangeQCKK(skillSelect.point)) {
                         hpmob += mob.point.hp;
                     }
                 }
 
                 for (Player pl : this.player.zone.getHumanoids()) {
                     if (!pl.isDie() && this.player.id != pl.id
-                            && Util.getDistance(this.player, pl) <= SkillUtil.getRangeQCKK(this.player.playerSkill.skillSelect.point)) {
+                            && Util.getDistance(this.player, pl) <= SkillUtil.getRangeQCKK(skillSelect.point)) {
                         hppl += pl.nPoint.hp;
                     }
                 }
@@ -1461,7 +1513,9 @@ public class NPoint {
             for (Integer tl : this.tlDameAttMob) {
                 dameAttack += (dameAttack * tl / 100);
             }
-            if (this.player.isPet && ((Pet) this.player).master.charms.tdDeTu > System.currentTimeMillis()) {
+            if (this.player.isPet && ((Pet) this.player).master != null
+                    && ((Pet) this.player).master.charms != null
+                    && ((Pet) this.player).master.charms.tdDeTu > System.currentTimeMillis()) {
                 dameAttack *= 2;
             }
         }
@@ -1483,7 +1537,9 @@ public class NPoint {
         }
         dameAttack += (long) (Util.getOne(-1, 1) * Util.nextInt((int) tempDameAttack) + 1);
 
-        if (player.effectSkin != null && player.effectSkin.isXChuong && (player.playerSkill.skillSelect.template.id == Skill.KAMEJOKO || player.playerSkill.skillSelect.template.id == Skill.ANTOMIC || player.playerSkill.skillSelect.template.id == Skill.MASENKO)) {
+        if (player.effectSkin != null && player.effectSkin.isXChuong
+                && player.playerSkill != null && player.playerSkill.skillSelect != null && player.playerSkill.skillSelect.template != null
+                && (player.playerSkill.skillSelect.template.id == Skill.KAMEJOKO || player.playerSkill.skillSelect.template.id == Skill.ANTOMIC || player.playerSkill.skillSelect.template.id == Skill.MASENKO)) {
             dameAttack *= xChuong;
             player.effectSkin.isXDame = true;
             player.effectSkin.isXChuong = false;
@@ -1582,11 +1638,12 @@ public class NPoint {
                 tiemNang -= ((long) tiemNang * 80 / 100);
             }
             if (this.player.isPet) {
-                if (((Pet) this.player).master.itemTime.isUseBuaSanta) {
+                Player petMaster = ((Pet) this.player).master;
+                if (petMaster != null && petMaster.itemTime != null && petMaster.itemTime.isUseBuaSanta) {
                     tiemNang += tn * 2;
                 }
-                if (((Pet) this.player).master.nPoint != null && ((Pet) this.player).master.nPoint.tlTNSMPet > 0) {
-                    tiemNang += tn / 100 * (((Pet) this.player).master.nPoint.tlTNSMPet + 100);
+                if (petMaster != null && petMaster.nPoint != null && petMaster.nPoint.tlTNSMPet > 0) {
+                    tiemNang += tn / 100 * (petMaster.nPoint.tlTNSMPet + 100);
                 }
             }
             if (MapService.gI().isMapNguHanhSon(this.player.zone.map.mapId)) {
@@ -1938,7 +1995,8 @@ public class NPoint {
 
     public void update() {
         if (player != null && player.effectSkill != null) {
-            if (player.effectSkill.isCharging && player.effectSkill.countCharging < 10) {
+            if (player.effectSkill.isCharging && player.effectSkill.countCharging < 10
+                    && player.playerSkill != null && player.playerSkill.skillSelect != null) {
                 int tiLeHoiPhuc = SkillUtil.getPercentCharge(player.playerSkill.skillSelect.point);
                 if (player.effectSkill.isCharging && !player.isDie() && !player.effectSkill.isHaveEffectSkill()
                         && (hp < hpMax || mp < mpMax)) {

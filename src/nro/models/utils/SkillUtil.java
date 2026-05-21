@@ -79,6 +79,10 @@ public class SkillUtil {
     }
 
     public static boolean isUseSkillDam(Player player) {
+        if (player.playerSkill == null || player.playerSkill.skillSelect == null
+                || player.playerSkill.skillSelect.template == null) {
+            return false;
+        }
         int skillId = player.playerSkill.skillSelect.template.id;
         return (skillId == Skill.DRAGON || skillId == Skill.DEMON
                 || skillId == Skill.GALICK || skillId == Skill.KAIOKEN
@@ -86,6 +90,10 @@ public class SkillUtil {
     }
 
     public static boolean isUseSkillChuong(Player player) {
+        if (player.playerSkill == null || player.playerSkill.skillSelect == null
+                || player.playerSkill.skillSelect.template == null) {
+            return false;
+        }
         int skillId = player.playerSkill.skillSelect.template.id;
         return (skillId == Skill.KAMEJOKO || skillId == Skill.MASENKO || skillId == Skill.ANTOMIC);
     }

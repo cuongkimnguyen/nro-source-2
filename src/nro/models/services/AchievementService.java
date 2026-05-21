@@ -113,7 +113,8 @@ public class AchievementService {
     }
 
     public void checkDoneTaskUseSkill(Player player) {
-        if (player.isPl()) {
+        if (player.isPl() && player.playerSkill != null && player.playerSkill.skillSelect != null
+                && player.playerSkill.skillSelect.template != null) {
             switch (player.playerSkill.skillSelect.template.id) {
                 case Skill.KAMEJOKO, Skill.MASENKO, Skill.ANTOMIC -> {
                     checkDoneTask(player, ConstAchievement.NOI_CONG_CAO_CUONG);

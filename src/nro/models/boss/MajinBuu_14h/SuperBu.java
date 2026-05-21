@@ -17,6 +17,8 @@ import nro.models.server.ServerNotify;
 import nro.models.services.SkillService;
 import nro.models.services.TaskService;
 import nro.models.map.service.ChangeMapService;
+import nro.models.map.ItemMap;
+import nro.models.services.ItemService;
 import nro.models.utils.SkillUtil;
 
 public class SuperBu extends Boss {
@@ -79,6 +81,14 @@ public class SuperBu extends Boss {
         plKill.event.addEventPoint(diem);
         Service.gI().sendThongBao(plKill, "+5 Point");
         TaskService.gI().checkDoneTaskKillBoss(plKill, this);
+        int x = this.location.x;
+        int y = this.zone.map.yPhysicInTop(x, this.location.y - 24);
+        if (Util.isTrue(2, 100)) {
+            ItemMap it = ItemService.gI().randDoTLBoss(this.zone, 1, x, y, plKill.id);
+            if (it != null) {
+                Service.gI().dropItemMap(zone, it);
+            }
+        }
     }
 
     @Override

@@ -223,6 +223,9 @@ public class EffectSkillService {
 
     public void setIsMonkey(Player player) {
         EffectSkillService.gI().sendEffectMonkey(player);
+        if (player.playerSkill == null || player.playerSkill.skillSelect == null) {
+            return;
+        }
         int timeMonkey = SkillUtil.getTimeMonkey(player.playerSkill.skillSelect.point);
         if (player.setClothes.cadic == 5) {
             timeMonkey *= 5;
@@ -484,7 +487,9 @@ public class EffectSkillService {
     public void setStartShield(Player player) {
         player.effectSkill.isShielding = true;
         player.effectSkill.lastTimeShieldUp = System.currentTimeMillis();
-        player.effectSkill.timeShield = SkillUtil.getTimeShield(player.playerSkill.skillSelect.point);
+        if (player.playerSkill != null && player.playerSkill.skillSelect != null) {
+            player.effectSkill.timeShield = SkillUtil.getTimeShield(player.playerSkill.skillSelect.point);
+        }
     }
 
     public void removeShield(Player player) {

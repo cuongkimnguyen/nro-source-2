@@ -194,9 +194,9 @@ public class Mob {
         }
         if (MapService.gI().isMapCadic(this.zone.map.mapId) && plAtt != null) {
             boolean hasKilisBuff = plAtt.itemTime != null && plAtt.itemTime.isUseKilis;
-            int successRate = hasKilisBuff ? 10 : 1;
+            int denominator = hasKilisBuff ? 333 : 1110;
 
-            if (Util.isTrue(successRate, 333)) {
+            if (Util.isTrue(1, denominator)) {
                 if (plAtt != null) {
                     Item item = InventoryService.gI().findItemBag(plAtt, 1795);
                     if (item != null) {
@@ -564,9 +564,10 @@ public class Mob {
                 }
             }
         } else if (player.isPet) {
-            if (((Pet) player).master.charms.tdThuHut > System.currentTimeMillis()) {
+            Player petMaster = ((Pet) player).master;
+            if (petMaster != null && petMaster.charms != null && petMaster.charms.tdThuHut > System.currentTimeMillis()) {
                 for (ItemMap item : items) {
-                    ItemMapService.gI().pickItem(((Pet) player).master, item.itemMapId, true);
+                    ItemMapService.gI().pickItem(petMaster, item.itemMapId, true);
                 }
             }
         } else if (player.isBot) {

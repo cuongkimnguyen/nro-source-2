@@ -130,7 +130,8 @@ public final class MobMe extends Mob {
             msg = new Message(-95);
             msg.writer().writeByte(5);//type
             msg.writer().writeInt((int) plAtt.id);
-            msg.writer().writeByte(plAtt.playerSkill.skillSelect.template.id); // id skill
+            msg.writer().writeByte(plAtt.playerSkill != null && plAtt.playerSkill.skillSelect != null && plAtt.playerSkill.skillSelect.template != null
+                    ? plAtt.playerSkill.skillSelect.template.id : -1); // id skill
             msg.writer().writeInt(id); //mob id
             msg.writer().writeInt((int) damage);
             msg.writer().writeInt(point.hp);

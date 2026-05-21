@@ -73,10 +73,12 @@ public class NADIC extends Boss {
 
     @Override
     public void die(Player plKill) {
-        for (Boss boss : clan.ConDuongRanDoc.bosses) {
-            if (boss.id == BossID.CADICH) {
-                boss.moveTo(boss.location.x + this.location.x > boss.location.x ? - 100 : 100, this.location.y);
-                break;
+        if (clan != null && clan.ConDuongRanDoc != null && clan.ConDuongRanDoc.bosses != null) {
+            for (Boss boss : clan.ConDuongRanDoc.bosses) {
+                if (boss.id == BossID.CADICH) {
+                    boss.moveTo(boss.location.x + this.location.x > boss.location.x ? -100 : 100, this.location.y);
+                    break;
+                }
             }
         }
         if (plKill != null) {

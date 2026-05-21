@@ -835,7 +835,7 @@ public class ChangeMapService {
         if (!player.idMark.isGoToBDKB()) {
             if (Util.isAfterMidnight(player.lastTimeJoinBDKB)) {
                 player.timesPerDayBDKB = 1;
-            } else if (player.lastTimeJoinBDKB != player.clan.lastTimeOpenBanDoKhoBau) {
+            } else if (player.clan != null && player.lastTimeJoinBDKB != player.clan.lastTimeOpenBanDoKhoBau) {
                 player.lastTimeJoinBDKB = player.clan.lastTimeOpenBanDoKhoBau;
                 player.timesPerDayBDKB++;
                 if (player.timesPerDayBDKB > 1) {

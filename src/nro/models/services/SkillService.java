@@ -369,6 +369,15 @@ public class SkillService {
     }
 
     public void useSkillAttack(Player player, Player plTarget, Mob mobTarget) {
+        if (player.playerSkill == null || player.playerSkill.skillSelect == null) {
+            if (plTarget != null) {
+                playerAttackPlayer(player, plTarget, true);
+            }
+            if (mobTarget != null) {
+                playerAttackMob(player, mobTarget, true, false);
+            }
+            return;
+        }
         if (player.effectSkill != null && player.effectSkill.useTroi) {
             EffectSkillService.gI().removeUseTroi(player);
         }
@@ -630,6 +639,10 @@ public class SkillService {
     }
 
     public void useSkillAlone(Player player) {
+        if (player.playerSkill == null || player.playerSkill.skillSelect == null
+                || player.playerSkill.skillSelect.template == null) {
+            return;
+        }
         List<Mob> mobs;
         List<Player> players;
         switch (player.playerSkill.skillSelect.template.id) {
@@ -1109,6 +1122,9 @@ public class SkillService {
     }
 
     public boolean canUseSkillWithCooldown(Player player) {
+        if (player.playerSkill == null || player.playerSkill.skillSelect == null) {
+            return false;
+        }
         return Util.canDoWithTime(player.playerSkill.skillSelect.lastTimeUseThisSkill,
                 player.playerSkill.skillSelect.coolDown - 50);
     }
@@ -1219,11 +1235,13 @@ public class SkillService {
                 }
             }
         }
-        player.playerSkill.skillSelect.lastTimeUseThisSkill = System.currentTimeMillis() - 1;
-        int coolDown = player.playerSkill.skillSelect.coolDown;
-        long lastTimeUseSkill = System.currentTimeMillis() - ((long) coolDown * subTimeParam / 100);
-        if (subTimeParam != 0) {
-            EffectSkillService.gI().setIntrinsic(player, skillId, coolDown, lastTimeUseSkill);
+        if (player.playerSkill != null && player.playerSkill.skillSelect != null) {
+            player.playerSkill.skillSelect.lastTimeUseThisSkill = System.currentTimeMillis() - 1;
+            int coolDown = player.playerSkill.skillSelect.coolDown;
+            long lastTimeUseSkill = System.currentTimeMillis() - ((long) coolDown * subTimeParam / 100);
+            if (subTimeParam != 0) {
+                EffectSkillService.gI().setIntrinsic(player, skillId, coolDown, lastTimeUseSkill);
+            }
         }
     }
 
@@ -1282,6 +1300,9 @@ public class SkillService {
     }
 
     private void sendPlayerAttackMob(Player plAtt, Mob mob) {
+        if (plAtt.playerSkill == null || plAtt.playerSkill.skillSelect == null) {
+            return;
+        }
         Message msg = null;
         try {
             msg = new Message(54);
