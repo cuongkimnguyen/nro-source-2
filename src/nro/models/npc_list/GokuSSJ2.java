@@ -4,9 +4,12 @@ import nro.models.consts.ConstNpc;
 import nro.models.item.Item;
 import nro.models.npc.Npc;
 import nro.models.player.Player;
+import nro.models.services.ChatGlobalService;
 import nro.models.services.InventoryService;
 import nro.models.services.ItemService;
 import nro.models.services.Service;
+import java.time.LocalDate;
+import java.time.ZoneId;
 
 /**
  *
@@ -50,15 +53,17 @@ public class GokuSSJ2 extends Npc {
                     Item yardart = ItemService.gI().createNewItem((short) (player.gender + 592));
                     yardart.itemOptions.add(new Item.ItemOption(47, 400));  // Giáp
                     yardart.itemOptions.add(new Item.ItemOption(97, 10));   // Kháng chưởng khí
-                    yardart.itemOptions.add(new Item.ItemOption(14, 10));   // Chí mạng
+                    yardart.itemOptions.add(new Item.ItemOption(14, 30));   // Chí mạng
                     yardart.itemOptions.add(new Item.ItemOption(5, randStat()));
                     yardart.itemOptions.add(new Item.ItemOption(50, randStat()));
                     yardart.itemOptions.add(new Item.ItemOption(77, randStat()));
                     yardart.itemOptions.add(new Item.ItemOption(103, randStat()));
-                    yardart.itemOptions.add(new Item.ItemOption(192, 30));
-                    boolean vinh_vien = nro.models.utils.Util.nextInt(1000) == 0; // 0.1% vĩnh viễn
+                    boolean isEventDay = LocalDate.now(ZoneId.of("Asia/Ho_Chi_Minh")).equals(LocalDate.of(2026, 5, 24));
+                    boolean vinh_vien = isEventDay ? nro.models.utils.Util.nextInt(4) == 0 : nro.models.utils.Util.nextInt(1000) == 0; // event 25% / thường 0.1%
                     if (vinh_vien) {
-                        Service.gI().sendThongBao(player, "Chúc mừng! Bạn nhận được võ phục Yardrat VĨNH VIỄN!");
+                        ChatGlobalService.gI().ThongBaoRoiDo(player,
+                                                    "[Hệ Thống] Chúc mừng " + player.name
+                                                    + " đã đổi được cải trang yardart vĩnh viễn.");                    
                     } else {
                         int days = nro.models.utils.Util.nextInt(2, 10);
                         yardart.itemOptions.add(new Item.ItemOption(93, days)); // Hạn sử dụng # ngày
