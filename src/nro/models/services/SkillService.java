@@ -81,11 +81,7 @@ public class SkillService {
         if (player.playerSkill == null) {
             return false;
         }
-        // Khi đang hoá khỉ chỉ được dùng BIEN_KHI (monkey attack), block tất cả skill khác
-        if (player.effectSkill != null && player.effectSkill.isMonkey
-                && player.playerSkill.skillSelect.template.id != Skill.BIEN_KHI) {
-            return false;
-        }
+
         if (player.playerSkill.skillSelect.template.type == 2 && canUseSkillWithMana(player) && canUseSkillWithCooldown(player)) {
             useSkillBuffToPlayer(player, plTarget);
             return true;
